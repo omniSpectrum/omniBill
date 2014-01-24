@@ -1,8 +1,14 @@
 omniBill
 ========
 
-Billing System.
+Billing System. 
 
-About:
+About: 
+Simple, Lightweight, efficient, extensible and easy integratable.
 
 Team:
+Niko Karppinen
+Daniel Freitas
+Alex Shkunov
+
+License:
