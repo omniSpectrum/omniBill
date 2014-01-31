@@ -11,4 +11,4 @@ Niko Karppinen
 Daniel Freitas
 Alex Shkunov
 
-License:
+License: Common Public License (CPL)
