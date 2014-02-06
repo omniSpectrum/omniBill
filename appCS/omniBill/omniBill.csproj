@@ -79,6 +79,9 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="InnerComponents\DataAcessLayer\DatabaseAcessHandler.cs" />
+    <Compile Include="InnerComponents\Interfaces\IDataAcessHandler.cs" />
+    <Compile Include="InnerComponents\Models\GenericModel.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -135,9 +138,12 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="ExternalComponents\" />
-    <Folder Include="InnerComponents\DataAcessLayer\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Data\omniBillMsDb.sdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
