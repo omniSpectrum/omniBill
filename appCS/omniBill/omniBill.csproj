@@ -79,9 +79,12 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="InnerComponents\DataAcessLayer\DatabaseAcessHandler.cs" />
-    <Compile Include="InnerComponents\Interfaces\IDataAcessHandler.cs" />
-    <Compile Include="InnerComponents\Models\GenericModel.cs" />
+    <Compile Include="InnerComponents\DataAccessLayer\BaseDAO.cs" />
+    <Compile Include="InnerComponents\DataAccessLayer\CustomersMSSql.cs" />
+    <Compile Include="InnerComponents\DataAccessLayer\DataAccessSpectrum.cs" />
+    <Compile Include="InnerComponents\Interfaces\IDataAccessLayer.cs" />
+    <Compile Include="InnerComponents\Models\BaseModel.cs" />
+    <Compile Include="InnerComponents\Models\Customer.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using omniBill;
-//using omniBill.InnerComponents.DataAcessLayer;
-//using omniBill.InnerComponents.Interfaces;
+using omniBill.InnerComponents.DataAccessLayer;
+using omniBill.InnerComponents.Interfaces;
+using omniBill.InnerComponents.Models;
 
 namespace UnitTestOmniBill
 {
@@ -12,7 +14,18 @@ namespace UnitTestOmniBill
         [TestMethod]
         public void TestConnectionString()
         {
-            //IDataAcessHandler db = new DatabaseAcessHandler();
+            IDataAccessLayer db = new DataAccessSpectrum();
+
+            Customer myCustomer = new Customer(11, "Nokia", "Espoo");
+
+            db.Customers.Create(myCustomer);
+
+            List<BaseModel> myList = db.Customers.GetAll();
+
+            foreach (Customer singleCustomer in myList)
+            {
+                String here = singleCustomer.CompanyName;
+            }
         }
     }
 }
