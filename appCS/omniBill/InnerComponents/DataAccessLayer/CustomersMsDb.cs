@@ -6,9 +6,9 @@ using omniBill.InnerComponents.Models;
 
 namespace omniBill.InnerComponents.DataAccessLayer
 {
-    public class CustomersMSSql : BaseDAO
+    public class CustomersMsDb : MsDbBaseDAO
     {
-        public CustomersMSSql()
+        public CustomersMsDb()
         {
 
         }

@@ -16,27 +16,30 @@ namespace omniBill.InnerComponents.DataAccessLayer
     public class DataAccessSpectrum : IDataAccessLayer
     {
         //HELPER FIELDS
-        private String connectionString;
         private DataStorage storageInUse;
+        private String connectionString;       
+        private String appDirectory;
         //DATA ACCESS FIELDS
-        private BaseDAO customers;
+        private IBaseDAO customers;
 
-        public DataAccessSpectrum(String connectString, DataStorage storageToUse)
+        //CONSTRUCTORS
+        public DataAccessSpectrum(DataStorage storageToUse, String connectString)
         {
-            //by initial idea connection strings should be stored in and retrived from Setting 
-            this.connectionString = connectString;
-            storageInUse = storageToUse;
+            //by initial idea connection strings and Storage to use should be stored in and retrived from Setting 
+            this.storageInUse = storageToUse;
+            this.connectionString = connectString;           
+            this.appDirectory = AppDomain.CurrentDomain.BaseDirectory;
         }
-        public DataAccessSpectrum() : this(null, DataStorage.MSSql) { }
+        public DataAccessSpectrum() : this(DataStorage.MSSql, null) { }
         
         //HELPER PROPERTIES
         public String ConnectionString
         { get { return connectionString; } set { connectionString = value; } }
 
         //DATA ACCESS PROPERTIES
-        public BaseDAO Customers
+        public IBaseDAO Customers
         { 
-            get { return Customers = (customers) ?? new CustomersMSSql(); }
+            get { return Customers = (customers) ?? new CustomersMsDb(); }
             set { customers = value; }
         }
     }

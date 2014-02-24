@@ -79,9 +79,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="InnerComponents\DataAccessLayer\BaseDAO.cs" />
-    <Compile Include="InnerComponents\DataAccessLayer\CustomersMSSql.cs" />
+    <Compile Include="InnerComponents\DataAccessLayer\IBaseDAO.cs" />
+    <Compile Include="InnerComponents\DataAccessLayer\CustomersMsDb.cs" />
     <Compile Include="InnerComponents\DataAccessLayer\DataAccessSpectrum.cs" />
+    <Compile Include="InnerComponents\DataAccessLayer\MsDbBaseDAO.cs" />
     <Compile Include="InnerComponents\Interfaces\IDataAccessLayer.cs" />
     <Compile Include="InnerComponents\Models\BaseModel.cs" />
     <Compile Include="InnerComponents\Models\Customer.cs" />
@@ -144,7 +145,7 @@
     <Folder Include="ExternalComponents\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\omniBillMsDb.sdf">
+    <Content Include="Data\omniBillMsDb.sdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
