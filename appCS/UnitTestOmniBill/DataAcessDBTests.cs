@@ -11,21 +11,28 @@ namespace UnitTestOmniBill
     [TestClass]
     public class DataAcessDBTests
     {
+        //[TestMethod]
+        //public void TestConnectionString()
+        //{
+        //    IDataAccessLayer db = new DataAccessSpectrum();
+
+        //    Customer myCustomer = new Customer(11, "Nokia", "Espoo");
+
+        //    db.Customers.Create(myCustomer);
+
+        //    List<BaseModel> myList = db.Customers.GetAll();
+
+        //    foreach (Customer singleCustomer in myList)
+        //    {
+        //        String here = singleCustomer.CompanyName;
+        //    }
+        //}
+
         [TestMethod]
-        public void TestConnectionString()
+        public void createTables()
         {
-            IDataAccessLayer db = new DataAccessSpectrum();
-
-            Customer myCustomer = new Customer(11, "Nokia", "Espoo");
-
-            db.Customers.Create(myCustomer);
-
-            List<BaseModel> myList = db.Customers.GetAll();
-
-            foreach (Customer singleCustomer in myList)
-            {
-                String here = singleCustomer.CompanyName;
-            }
+            createTables sq = new createTables();
+            sq.accessDB();
         }
     }
 }
