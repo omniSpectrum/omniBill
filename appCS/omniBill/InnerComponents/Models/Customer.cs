@@ -1,26 +1,27 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace omniBill.InnerComponents.Models
 {
     public class Customer : BaseModel
     {
-        private String companyName;
-        private String address;
+        public Customer() :base(0){ }
 
-        public Customer(int key, String companyName, String address)
-            : base(key)
+        public Customer(int customerId, String companyName, String street, String postCode, String city, String phoneNumber, String email)
+            : base(customerId)
         {
-            this.companyName = companyName;
-            this.address = address;
+            CompanyName = companyName;
+            Street = street;
+            PostCode = postCode;
+            City = city;
+            PhoneNumber = phoneNumber;
+            Email = email;
         }
 
-        public String CompanyName
-        { get { return companyName; } set { companyName = value; } }
-
-        public String Address
-        { get { return address; } set { address = value; } }
+        public String CompanyName { get; set; }
+        public String Street { get; set; }
+        public String PostCode { get; set; }
+        public String City { get; set; }
+        public String PhoneNumber { get; set; }
+        public String Email { get; set; }
     }
 }

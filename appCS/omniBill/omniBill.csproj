@@ -80,7 +80,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="InnerComponents\DataAccessLayer\createTables.cs" />
+    <Compile Include="InnerComponents\DataAccessLayer\StoredProcedures\CreateTables.cs" />
     <Compile Include="InnerComponents\DataAccessLayer\IBaseDAO.cs" />
     <Compile Include="InnerComponents\DataAccessLayer\CustomersMsDb.cs" />
     <Compile Include="InnerComponents\DataAccessLayer\DataAccessSpectrum.cs" />
@@ -143,13 +143,12 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ExternalComponents\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Data\omniBillMsDb.sdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="ExternalComponents\dummyFileDeleteLater.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

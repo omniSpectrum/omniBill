@@ -1,23 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using omniBill.InnerComponents.Models;
 
 namespace omniBill.InnerComponents.DataAccessLayer
 {
     public class CustomersMsDb : MsDbBaseDAO
     {
-        public CustomersMsDb()
+        public CustomersMsDb(String connectionString)
+            : base(connectionString)
         {
 
         }
 
-        public override List<BaseModel> GetAll()
+        public override List<BaseModel> FindAll()
         {
+
+
             throw new NotImplementedException();
         }
-        public override BaseModel GetById(int key)
+        public override BaseModel FindById(int key)
         {
             throw new NotImplementedException();
         }

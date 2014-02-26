@@ -1,28 +1,38 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Data.SqlServerCe;
 using omniBill.InnerComponents.Models;
 
 namespace omniBill.InnerComponents.DataAccessLayer
 {
     /// <summary>
     /// Class specificly for Microsoft SQL database
+    /// Contains generic SELECT, INSERT, UPDATE and DELETE
     /// </summary>
     public abstract class MsDbBaseDAO : IBaseDAO
     {
-        ///Will contain generic SELECT, INSERT, UPDATE and DELETE
+        String connectionString;
 
-        public MsDbBaseDAO()
+        public MsDbBaseDAO(String connectionString)
         {
-
+            this.connectionString = connectionString;
         }
 
-        public virtual List<BaseModel> GetAll()
-        { 
-            throw new NotImplementedException(); 
+        public virtual List<BaseModel> FindAll()
+        {
+            using (SqlCeConnection scn = new SqlCeConnection(connectionString))
+            {
+                scn.Open();
+                SqlCeCommand command = scn.CreateCommand();
+
+                command.CommandText = "SELECT * FROM table";
+                SqlCeDataReader result = command.ExecuteReader();
+
+                scn.Close();
+                return null;
+            }
         }
-        public virtual BaseModel GetById(int key)
+        public virtual BaseModel FindById(int key)
         { 
             throw new NotImplementedException();
         }

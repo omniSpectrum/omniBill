@@ -18,7 +18,7 @@ namespace omniBill.InnerComponents.DataAccessLayer
         //HELPER FIELDS
         private DataStorage storageInUse;
         private String connectionString;       
-        private String appDirectory;
+        private String dataDirectory;
         //DATA ACCESS FIELDS
         private IBaseDAO customers;
 
@@ -28,9 +28,13 @@ namespace omniBill.InnerComponents.DataAccessLayer
             //by initial idea connection strings and Storage to use should be stored in and retrived from Setting 
             this.storageInUse = storageToUse;
             this.connectionString = connectString;           
-            this.appDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            this.dataDirectory = AppDomain.CurrentDomain.BaseDirectory + "\\Data\\";
         }
-        public DataAccessSpectrum() : this(DataStorage.MSSql, null) { }
+        public DataAccessSpectrum() : this(DataStorage.MSSql, null) 
+        {
+            dataDirectory = dataDirectory.Replace("\\UnitTestOmniBill", "\\omniBill");
+            connectionString = dataDirectory + "omniBillMsDb.sdf";
+        }
         
         //HELPER PROPERTIES
         public String ConnectionString
@@ -38,9 +42,8 @@ namespace omniBill.InnerComponents.DataAccessLayer
 
         //DATA ACCESS PROPERTIES
         public IBaseDAO Customers
-        { 
-            get { return Customers = (customers) ?? new CustomersMsDb(); }
-            set { customers = value; }
+        {
+            get { return customers = (customers) ?? new CustomersMsDb(connectionString); }
         }
     }
 }

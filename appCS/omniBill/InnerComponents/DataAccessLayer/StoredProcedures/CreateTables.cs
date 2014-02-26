@@ -1,21 +1,49 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Data.SqlServerCe;
 
 namespace omniBill.InnerComponents.DataAccessLayer
 {
-    public class createTables
+    /*TRANSACTION EXAMPLE
+     * The Idea is that if some statement fails 
+     * We don't need to drop tables manually,
+     * but the transaction will be rolled back */
+    //    SqlConnection = null;
+    //try
+    //{
+    //        connection = new SqlConnection(connStr);
+    //        connection.Open();
+    //        SqlTransaction trans = connection.BeginTransaction();
+    //        String queryString = "INSERT SOME STUFF";
+    //        SqlCommand command = new SqlCommand(queryString, connection);
+    //        command.Transaction = trans;
+    //        command.ExecuteNonQuery();
+    //        queryString = "INSERT SOME OTHER STUFF";
+    //        command = new SqlCommand(queryString, connection);
+    //        command.Transaction = trans;
+    //        command.ExecuteNonQuery();
+    //        trans.Commit();
+    //}
+    //catch (Exception ex)
+    //{
+    //        trans.Rollback();
+    //        errMsg.Text = ex.Message;
+    //}
+    //finally
+    //{
+    //        if(connection != null)
+    //                connection.Close();
+    //}
+
+    public class CreateTables
     {
         private const string connectionString = "";
-        private string dbDir = "Data Source=C:\\Users\\a1203248\\Desktop\\omniBill\\appCS\\omniBill\\Data\\omniBillMsDb.sdf";
+        private string dbDir = (new DataAccessSpectrum()).ConnectionString;
 
         public void accessDB()
         {
             using (SqlCeConnection sn = new SqlCeConnection(dbDir))
             {
-                sn.Open();
+                sn.Open();        
                 SqlCeCommand cmd = sn.CreateCommand();
 
                 cmd.CommandText =
@@ -24,9 +52,9 @@ namespace omniBill.InnerComponents.DataAccessLayer
 	                    customerId		INTEGER			IDENTITY(1,1)		PRIMARY KEY,
 	                    customerName	NVARCHAR(100)	NOT NULL,
 	                    street			NVARCHAR(250)	NOT NULL,
-	                    postCode		NVARCHAR(25)		NOT NULL,
+	                    postCode		NVARCHAR(25)	NOT NULL,
 	                    city			NVARCHAR(30)	NOT NULL,
-	                    phoneNumber		NVARCHAR(15)			NULL,
+	                    phoneNumber		NVARCHAR(15)	NULL,
 	                    email			NVARCHAR(50)	NOT NULL
                     );";
                 cmd.ExecuteNonQuery();

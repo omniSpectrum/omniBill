@@ -53,7 +53,8 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="DataAcessDBTests.cs" />
+    <Compile Include="TestDataAcess.cs" />
+    <Compile Include="sp01_CreateTables.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
