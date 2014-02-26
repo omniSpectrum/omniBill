@@ -1,6 +1,19 @@
 CREATE PROCEDURE sp_01_createTables
 AS
 
+CREATE TABLE User
+(
+	userId			INTEGER			IDENTITY(1,1)		PRIMARY KEY,
+	companyName		VARCHAR(50)		NOT NULL,
+	contactName		VARCHAR(50)		NOT NULL,
+	street			VARCHAR(250)	NOT NULL,
+	bankName		VARCHAR(300)	NOT NULL,
+	bankAccount		VARCHAR(250)	NOT NULL,
+	businessId		VARCHAR(10)			NULL,
+	phoneNumber		VARCHAR(100)		NULL,
+	email			VARCHAR(150)	NOT	NULL,
+);
+
 CREATE TABLE Customer
 (
 	customerId		INTEGER			IDENTITY(1,1)		PRIMARY KEY,
@@ -8,18 +21,19 @@ CREATE TABLE Customer
 	street			VARCHAR(250)	NOT NULL,
 	postCode		VARCHAR(20)		NOT NULL,
 	city			VARCHAR(100)	NOT NULL,
-	phoneNumber		BIGINT			NOT NULL,
-	email			VARCHAR(50)		NOT NULL
+	phoneNumber		VARCHAR(50)			NULL,
+	email			VARCHAR(150)	NOT NULL
 );
 
 CREATE TABLE DraftInvoice
 (
 	invoiceId		INTEGER			IDENTITY(1,1)		PRIMARY KEY,		
-	ownerNumber		INTEGER			NOT NULL			default 1,
+	userId			INTEGER			NOT NULL			default 1,
 	customerid		INTEGER			NOT NULL,
 	dateT			DATETIME		NOT NULL
 
 	CONSTRAINT		FK_customerNumber		FOREIGN KEY(customerId)	REFERENCES Customer(customerId)
+	CONSTRAINT		FK_userId				FOREIGN KEY(userId)		REFERENCES User(userId)
 );
 
 CREATE TABLE InvoiceLine

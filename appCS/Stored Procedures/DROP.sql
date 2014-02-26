@@ -7,3 +7,4 @@ DROP TABLE VatGroup
 DROP TABLE InvoiceLine
 DROP TABLE DraftInvoice
 DROP TABLE Customer
+DROP TABLE User
