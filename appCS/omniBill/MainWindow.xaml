@@ -3,36 +3,54 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="omniBill" Height="350" Width="555" MinHeight="350" MinWidth="555" WindowStartupLocation="CenterScreen" Icon="50_cash_money_dollars_dollar_bill.ico" FontSize="16" FontFamily="Calibri">
 
+
+
+
     <Grid x:Name="mainGrid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*" />
             <ColumnDefinition Width="5*" />
-            <ColumnDefinition Width="3*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="2*" />
-            <RowDefinition Height="3*" />
-            <RowDefinition Height="3*" />
-            <RowDefinition Height="3*" />
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" Grid.Column="0" Foreground="Green" Text="Logo" Height="20" VerticalAlignment="Top" />
-        <TextBlock Grid.Row="1" Grid.Column="0" Foreground="Blue" Text="Nav" Height="20" VerticalAlignment="Top" />
-        <TextBlock Grid.Row="1" Grid.Column="1" Foreground="Red" VerticalAlignment="Top" ><Run Text="Content"/><Run Language="fi-fi" Text=" abcdefghijklmnopqrstuxyzåäö"/></TextBlock>
 
-        <Grid Grid.Column="1" Grid.Row="1" Grid.RowSpan="3" Grid.ColumnSpan="2" x:Name="contentGrid">
-
-
-        </Grid>
-        <Rectangle Grid.Column="0" Grid.Row="0" Grid.RowSpan="4" Margin="0,0,0,0" >
-            <Rectangle.Fill>
+        
+        
+        <Grid Grid.Column="0" Grid.Row="0" x:Name="menuGrid">
+            <Grid.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" SpreadMethod="Reflect">
                     <GradientStop Color="#015D5D5D" Offset="0"/>
                     <GradientStop Color="White" Offset="1"/>
                 </LinearGradientBrush>
-            </Rectangle.Fill>
-        </Rectangle>
+            </Grid.Background>
 
+            <Grid.RowDefinitions>
+                <RowDefinition Height="4*"/>
+                <RowDefinition Height="4*" />
+                <RowDefinition Height="4*" />
+                <RowDefinition Height="4*" />
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0" Foreground="Green" Text="Logo" Height="20" VerticalAlignment="Top" />
+            <TextBlock Grid.Row="1" Foreground="Blue" Text="Nav1" Height="20" VerticalAlignment="Top" />
+            <TextBlock Grid.Row="2" Foreground="Blue" Text="Nav2" Height="20" VerticalAlignment="Top" />
+            <TextBlock Grid.Row="3" Foreground="Blue" Text="Nav3" Height="20" VerticalAlignment="Top" />
+
+
+        </Grid>
+        <Grid Grid.Column="1" Grid.Row="0" x:Name="contentGrid">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*" />
+                <RowDefinition Height="10*" />
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Foreground="Red" VerticalAlignment="Top" ><Run Text="Content"/><Run Language="fi-fi" Text=" Context based menu"/></TextBlock>
+            <TextBlock Grid.Row="1" Foreground="Red" VerticalAlignment="Top" ><Run Text="Content"/><Run Language="fi-fi" Text=" abcdefghijklmnopqrstuxyzåäö"/></TextBlock>
+
+        </Grid>
+        
     </Grid>
+
 
 </Window>
