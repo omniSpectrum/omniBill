@@ -1,5 +1,6 @@
 ﻿using System;
 using omniBill.InnerComponents.Interfaces;
+using omniBill.InnerComponents.Models;
 
 namespace omniBill.InnerComponents.DataAccessLayer
 {
@@ -20,7 +21,7 @@ namespace omniBill.InnerComponents.DataAccessLayer
         private String connectionString;       
         private String dataDirectory;
         //DATA ACCESS FIELDS
-        private IBaseDAO customers;
+        private IGenericDAO<Customer> customers;
 
         //CONSTRUCTORS
         public DataAccessSpectrum(DataStorage storageToUse, String connectString)
@@ -33,7 +34,7 @@ namespace omniBill.InnerComponents.DataAccessLayer
         public DataAccessSpectrum() : this(DataStorage.MSSql, null) 
         {
             dataDirectory = dataDirectory.Replace("\\UnitTestOmniBill", "\\omniBill");
-            connectionString = dataDirectory + "omniBillMsDb.sdf";
+            connectionString = String.Format("Data Source={0}omniBillMsDb.sdf", dataDirectory);
         }
         
         //HELPER PROPERTIES
@@ -41,9 +42,9 @@ namespace omniBill.InnerComponents.DataAccessLayer
         { get { return connectionString; } set { connectionString = value; } }
 
         //DATA ACCESS PROPERTIES
-        public IBaseDAO Customers
+        public IGenericDAO<Customer> Customers
         {
-            get { return customers = (customers) ?? new CustomersMsDb(connectionString); }
+            get { return customers = (customers) ?? new CustomersSqlCE(connectionString); }
         }
     }
 }

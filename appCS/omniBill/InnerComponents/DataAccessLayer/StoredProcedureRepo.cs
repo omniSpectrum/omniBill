@@ -34,12 +34,12 @@ namespace omniBill.InnerComponents.DataAccessLayer
     //                connection.Close();
     //}
 
-    public class CreateTables
+    public class StoredProcedureRepo
     {
         private const string connectionString = "";
         private string dbDir = (new DataAccessSpectrum()).ConnectionString;
 
-        public void accessDB()
+        public void CreateTables()
         {
             using (SqlCeConnection sn = new SqlCeConnection(dbDir))
             {

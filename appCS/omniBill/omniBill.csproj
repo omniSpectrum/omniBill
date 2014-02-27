@@ -80,11 +80,11 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="InnerComponents\DataAccessLayer\StoredProcedures\CreateTables.cs" />
-    <Compile Include="InnerComponents\DataAccessLayer\IBaseDAO.cs" />
-    <Compile Include="InnerComponents\DataAccessLayer\CustomersMsDb.cs" />
+    <Compile Include="InnerComponents\DataAccessLayer\StoredProcedureRepo.cs" />
+    <Compile Include="InnerComponents\DataAccessLayer\IGenericDAO.cs" />
+    <Compile Include="InnerComponents\DataAccessLayer\CustomersSqlCE.cs" />
     <Compile Include="InnerComponents\DataAccessLayer\DataAccessSpectrum.cs" />
-    <Compile Include="InnerComponents\DataAccessLayer\MsDbBaseDAO.cs" />
+    <Compile Include="InnerComponents\DataAccessLayer\BaseProviderSqlCE.cs" />
     <Compile Include="InnerComponents\Interfaces\IDataAccessLayer.cs" />
     <Compile Include="InnerComponents\Models\BaseModel.cs" />
     <Compile Include="InnerComponents\Models\Customer.cs" />

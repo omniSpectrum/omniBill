@@ -10,6 +10,6 @@ namespace omniBill.InnerComponents.Interfaces
         String ConnectionString { get; set; }
 
         //DATA ACCESS 
-        IBaseDAO Customers { get; }
+        IGenericDAO<Customer> Customers { get; }
     }
 }

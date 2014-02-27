@@ -28,10 +28,10 @@ namespace UnitTestOmniBill
 
             //INSERT TEST
             Customer initialCustomer = new Customer(0, "Nokia", "katu", "00000", "Espoo", "156456", "dfd@mail.fi");
-            db.Customers.Create(initialCustomer);
+            //db.Customers.Create(initialCustomer);
 
-            List<BaseModel> myList = db.Customers.FindAll();
-            Customer retrievedCustomer = (Customer)myList[myList.Count - 1];
+            List<Customer> myList = db.Customers.FindAll();
+            Customer retrievedCustomer = myList[myList.Count - 1];
 
             string expected = "Nokia";
             string result = retrievedCustomer.CompanyName;
@@ -42,13 +42,13 @@ namespace UnitTestOmniBill
             retrievedCustomer.CompanyName = "Sunny";
             db.Customers.Edit(retrievedCustomer);
             
-            BaseModel findOne = db.Customers.FindById(retrievedCustomer.Key);
+            Customer findOne = db.Customers.FindById(retrievedCustomer.Key);
             Assert.AreEqual(retrievedCustomer.Key, findOne.Key);
-            Assert.AreEqual(expected, ((Customer)findOne).CompanyName);
+            Assert.AreEqual(expected, findOne.CompanyName);
 
             //DELETE TEST
             db.Customers.Delete(retrievedCustomer.Key);
-            BaseModel findTwo = db.Customers.FindById(retrievedCustomer.Key);
+            Customer findTwo = db.Customers.FindById(retrievedCustomer.Key);
             Assert.AreEqual(null, findTwo);
         }
     }

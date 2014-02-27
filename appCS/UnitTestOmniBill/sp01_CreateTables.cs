@@ -12,10 +12,10 @@ namespace UnitTestOmniBill.InvokeStoredProc
     public class sp01_CreateTables
     {
         [TestMethod]
-        public void Go()
+        public void GoCreateTables()
         {
-            CreateTables sq = new CreateTables();
-            sq.accessDB();
+            StoredProcedureRepo sq = new StoredProcedureRepo();
+            sq.CreateTables();
         }
     }
 }

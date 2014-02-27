@@ -4,12 +4,12 @@ using omniBill.InnerComponents.Models;
 
 namespace omniBill.InnerComponents.DataAccessLayer
 {
-    public interface IBaseDAO
+    public interface IGenericDAO<M>
     {
-        List<BaseModel> FindAll();
-        BaseModel FindById(int key);
-        void Create(BaseModel model);
-        void Edit(BaseModel model);
+        List<M> FindAll();
+        M FindById(int key);
+        void Create(M model);
+        void Edit(M model);
         void Delete(int key);
     }
 }
