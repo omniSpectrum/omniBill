@@ -44,7 +44,7 @@ namespace omniBill.InnerComponents.DataAccessLayer
         //DATA ACCESS PROPERTIES
         public IGenericDAO<Customer> Customers
         {
-            get { return customers = (customers) ?? new CustomersSqlCE(connectionString); }
+            get { return customers = (customers) ?? new GenericProviderSqlCE<Customer>(connectionString); }
         }
     }
 }

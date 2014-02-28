@@ -26,6 +26,8 @@ namespace UnitTestOmniBill
         {
             IDataAccessLayer db = new DataAccessSpectrum();
 
+            Assert.AreEqual("Customer", ((GenericProviderSqlCE<Customer>)db.Customers).tableName);
+
             //INSERT TEST
             Customer initialCustomer = new Customer(0, "Nokia", "katu", "00000", "Espoo", "156456", "dfd@mail.fi");
             //db.Customers.Create(initialCustomer);
