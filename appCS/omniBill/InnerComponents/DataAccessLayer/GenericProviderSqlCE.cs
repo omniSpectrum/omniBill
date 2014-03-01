@@ -9,7 +9,7 @@ namespace omniBill.InnerComponents.DataAccessLayer
     /// Class specificly for Microsoft SQL CE database
     /// Contains generic SELECT, INSERT, UPDATE and DELETE
     /// </summary>
-    public class GenericProviderSqlCE<M> : IGenericDAO<M>
+    public class GenericProviderSqlCE<M> : IGenericDAO<M> where M : new()
     {
         private String connectionString;
         public String tableName;
@@ -20,6 +20,7 @@ namespace omniBill.InnerComponents.DataAccessLayer
             this.tableName = typeof(M).Name.ToString();
         }
 
+        #region CRUD functions
         public virtual List<M> FindAll()
         {
             using (SqlCeConnection scn = new SqlCeConnection(connectionString))
@@ -33,15 +34,10 @@ namespace omniBill.InnerComponents.DataAccessLayer
                 List<M> genericList = new List<M>();
 
                 while (result.Read())
-                { 
-                    ///Logic for mapping             
-
-                    dynamic obj = null;
-                    //MapObject(result);
-                    if (tableName == "Customer")
-                         obj = MapObject(result);
-
-                    genericList.Add(obj);
+                {
+                    dynamic obj = new M();
+                    MapObject(result, obj);
+                    genericList.Add(obj);                    
                 }
 
                 scn.Close();
@@ -49,12 +45,53 @@ namespace omniBill.InnerComponents.DataAccessLayer
             }
         }
         public virtual M FindById(int key)
-        { 
-            throw new NotImplementedException();
+        {
+            using (SqlCeConnection scn = new SqlCeConnection(connectionString))
+            {
+                scn.Open();
+                SqlCeCommand command = scn.CreateCommand();
+
+                String keyProperty = String.Format("{0}Id", tableName.ToLower()); 
+
+                command.CommandText =
+                    String.Format("SELECT * FROM {0} WHERE {1} = {2}", tableName, keyProperty, key);
+                SqlCeDataReader result = command.ExecuteReader();
+
+                dynamic genericModel = null;
+
+                while (result.Read())
+                {
+                    genericModel = new M();
+                    MapObject(result, genericModel);
+                }
+
+                scn.Close();
+                return genericModel;
+            }
         }
         public virtual void Create(M model)
-        { 
-            throw new NotImplementedException();
+        {
+            using (SqlCeConnection scn = new SqlCeConnection(connectionString))
+            {
+                scn.Open();
+                SqlCeCommand command = scn.CreateCommand();
+
+                var here = typeof(M).GetProperties();
+
+                Dictionary<String, String> valueSet = new Dictionary<string, string>();
+
+                foreach (var item in here)
+                {
+                    valueSet.Add(item.Name.ToString(), item.GetValue(model, null).ToString());                 
+                }
+
+                command.CommandText =
+                    String.Format("INSERT INTO {0} VALUES()", tableName);
+
+                /////////////////////Doesn't work
+                
+                command.ExecuteNonQuery();
+            }
         }
         public virtual void Edit(M model)
         { 
@@ -64,8 +101,10 @@ namespace omniBill.InnerComponents.DataAccessLayer
         {
             throw new NotImplementedException();
         }
+        #endregion
 
-        public Customer MapObject(SqlCeDataReader reader)
+        #region MappingHelpers
+        private void MapObject(SqlCeDataReader reader, Customer customer)
         {
             /* customerId   INT
                 * companyName  NVARCHAR
@@ -76,17 +115,14 @@ namespace omniBill.InnerComponents.DataAccessLayer
                 * email        NVARCHAR
                 */
 
-            int id = reader.GetInt32(0);
-            String companyName = reader.GetString(1);
-            String street = reader.GetString(2);
-            String postCode = reader.GetString(3);
-            String city = reader.GetString(4);
-            String phoneNumber = reader.GetString(5);
-            String email = reader.GetString(6);
-
-            Customer customer = new Customer(id, companyName, street, postCode, city, phoneNumber, email);
-
-            return customer;
+            customer.Key = reader.GetInt32(0);
+            customer.CompanyName = reader.GetString(1);
+            customer.Street = reader.GetString(2);
+            customer.PostCode = reader.GetString(3);
+            customer.City = reader.GetString(4);
+            customer.PhoneNumber = reader.GetString(5);
+            customer.Email = reader.GetString(6);
         }
+        #endregion
     }
 }

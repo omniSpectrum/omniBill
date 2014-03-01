@@ -82,7 +82,6 @@
     </Compile>
     <Compile Include="InnerComponents\DataAccessLayer\StoredProcedureRepo.cs" />
     <Compile Include="InnerComponents\DataAccessLayer\IGenericDAO.cs" />
-    <Compile Include="InnerComponents\DataAccessLayer\MappingHelper.cs" />
     <Compile Include="InnerComponents\DataAccessLayer\DataAccessSpectrum.cs" />
     <Compile Include="InnerComponents\DataAccessLayer\GenericProviderSqlCE.cs" />
     <Compile Include="InnerComponents\Interfaces\IDataAccessLayer.cs" />
