@@ -5,16 +5,16 @@ using omniBill.InnerComponents.DataAccessLayer;
 using omniBill.InnerComponents.Interfaces;
 using omniBill.InnerComponents.Models;
 
-namespace UnitTestOmniBill.InvokeStoredProc
+namespace UnitTestOmniBill
 {
     [TestClass]
-    public class sp01_CreateTables
+    public class sp02_DropTables
     {
         [TestMethod]
-        public void GoCreateTables()
+        public void GoDropTables()
         {
             StoredProcedureRepo sq = new StoredProcedureRepo();
-            sq.CreateTables();
+            sq.DropTables();
         }
     }
 }

@@ -12,12 +12,14 @@ namespace omniBill.InnerComponents.DataAccessLayer
     public class GenericProviderSqlCE<M> : IGenericDAO<M> where M : new()
     {
         private String connectionString;
-        public String tableName;
+        private String tableName;
+        private String keyName;
 
-        public GenericProviderSqlCE(String connectionString)
+        public GenericProviderSqlCE(String connectionString, String keyName)
         {
             this.connectionString = connectionString;
             this.tableName = typeof(M).Name.ToString();
+            this.keyName = keyName;
         }
 
         #region CRUD functions
@@ -44,17 +46,16 @@ namespace omniBill.InnerComponents.DataAccessLayer
                 return genericList;
             }
         }
-        public virtual M FindById(int key)
+
+        public virtual M FindById(int keyValue)
         {
             using (SqlCeConnection scn = new SqlCeConnection(connectionString))
             {
                 scn.Open();
                 SqlCeCommand command = scn.CreateCommand();
 
-                String keyProperty = String.Format("{0}Id", tableName.ToLower()); 
-
                 command.CommandText =
-                    String.Format("SELECT * FROM {0} WHERE {1} = {2}", tableName, keyProperty, key);
+                    String.Format("SELECT * FROM {0} WHERE {1} = {2}", tableName, keyName, keyValue);
                 SqlCeDataReader result = command.ExecuteReader();
 
                 dynamic genericModel = null;
@@ -69,6 +70,7 @@ namespace omniBill.InnerComponents.DataAccessLayer
                 return genericModel;
             }
         }
+
         public virtual void Create(M model)
         {
             using (SqlCeConnection scn = new SqlCeConnection(connectionString))
@@ -76,30 +78,43 @@ namespace omniBill.InnerComponents.DataAccessLayer
                 scn.Open();
                 SqlCeCommand command = scn.CreateCommand();
 
-                var here = typeof(M).GetProperties();
-
-                Dictionary<String, String> valueSet = new Dictionary<string, string>();
-
-                foreach (var item in here)
-                {
-                    valueSet.Add(item.Name.ToString(), item.GetValue(model, null).ToString());                 
-                }
+                String querySuffix = MapInsertSuffix((dynamic)model);
 
                 command.CommandText =
-                    String.Format("INSERT INTO {0} VALUES()", tableName);
-
-                /////////////////////Doesn't work
+                    String.Format("INSERT INTO {0}{1}", tableName, querySuffix);
                 
                 command.ExecuteNonQuery();
             }
         }
+
         public virtual void Edit(M model)
-        { 
-            throw new NotImplementedException(); 
-        }
-        public virtual void Delete(int key)
         {
-            throw new NotImplementedException();
+            using (SqlCeConnection scn = new SqlCeConnection(connectionString))
+            {
+                scn.Open();
+                SqlCeCommand command = scn.CreateCommand();
+
+                String querySuffix = MapUpdateSuffix((dynamic)model);
+
+                command.CommandText =
+                    String.Format("UPDATE {0} SET {1}", tableName, querySuffix);
+
+                command.ExecuteNonQuery();
+            }
+        }
+
+        public virtual void Delete(int keyValue)
+        {
+            using (SqlCeConnection scn = new SqlCeConnection(connectionString))
+            {
+                scn.Open();
+                SqlCeCommand command = scn.CreateCommand();
+
+                command.CommandText =
+                    String.Format("DELETE FROM {0} WHERE {1}={2}", tableName, keyName, keyValue);
+
+                command.ExecuteNonQuery();
+            }
         }
         #endregion
 
@@ -122,6 +137,25 @@ namespace omniBill.InnerComponents.DataAccessLayer
             customer.City = reader.GetString(4);
             customer.PhoneNumber = reader.GetString(5);
             customer.Email = reader.GetString(6);
+        }
+        private String MapInsertSuffix(Customer customer)
+        {
+            String suffix = String.Format("(customerName, street, postCode, city, phoneNumber, email) VALUES"
+                                        + "(\'{0}\', \'{1}\', \'{2}\', \'{3}\', \'{4}\', \'{5}\')",
+                                        customer.CompanyName, customer.Street, customer.PostCode,
+                                        customer.City, customer.PhoneNumber, customer.Email);
+            return suffix;
+        }
+        private String MapUpdateSuffix(Customer customer)
+        {
+            String suffix = String.Format("customerName=\'{0}\', street=\'{1}\', postCode=\'{2}\', "
+                                        +"city=\'{3}\', phoneNumber=\'{4}\', email=\'{5}\' "
+                                        +"WHERE {6}={7}",
+                                        customer.CompanyName, customer.Street, customer.PostCode,
+                                        customer.City, customer.PhoneNumber, customer.Email,
+                                        keyName, customer.Key);
+
+            return suffix;
         }
         #endregion
     }

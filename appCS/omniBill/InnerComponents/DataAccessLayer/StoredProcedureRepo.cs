@@ -36,12 +36,11 @@ namespace omniBill.InnerComponents.DataAccessLayer
 
     public class StoredProcedureRepo
     {
-        private const string connectionString = "";
-        private string dbDir = (new DataAccessSpectrum()).ConnectionString;
+        private string connectionString = (new DataAccessSpectrum()).ConnectionString;
 
         public void CreateTables()
         {
-            using (SqlCeConnection sn = new SqlCeConnection(dbDir))
+            using (SqlCeConnection sn = new SqlCeConnection(connectionString))
             {
                 sn.Open();        
                 SqlCeCommand cmd = sn.CreateCommand();
@@ -117,6 +116,32 @@ namespace omniBill.InnerComponents.DataAccessLayer
                 
                 sn.Close();
             }
+        }
+
+        public void DropTables()
+        {
+            using(SqlCeConnection db = new SqlCeConnection(connectionString))
+            {
+                db.Open();
+                SqlCeCommand command = db.CreateCommand();
+
+                String[] tablesToDrop = 
+                    new String[] { "InvoiceLine", "DraftInvoice", "Item", "VatGroup", "UserTable", "Customer" };
+
+                foreach (var table in tablesToDrop)
+                {
+                    command.CommandText = 
+                        String.Format("drop table if exists {0}", table);
+                    command.ExecuteNonQuery();
+                }
+                
+                db.Close();
+            }
+        }
+
+        public void InsertData()
+        {
+            
         }
     }
 }

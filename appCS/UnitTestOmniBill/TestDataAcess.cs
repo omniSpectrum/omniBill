@@ -16,7 +16,7 @@ namespace UnitTestOmniBill
         {
             IDataAccessLayer my = new DataAccessSpectrum();
 
-            string expect = @"D:\x_HELIA\Projects\omniBill\appCS\omniBill\bin\Debug\Data\omniBillMsDb.sdf";
+            string expect = @"Data Source=D:\x_HELIA\Projects\omniBill\appCS\omniBill\bin\Debug\Data\omniBillMsDb.sdf";
 
             Assert.AreEqual(expect, my.ConnectionString);            
         }
@@ -44,7 +44,7 @@ namespace UnitTestOmniBill
             
             Customer findOne = db.Customers.FindById(retrievedCustomer.Key);
             Assert.AreEqual(retrievedCustomer.Key, findOne.Key);
-            Assert.AreEqual(expected, findOne.CompanyName);
+            Assert.AreEqual(retrievedCustomer.CompanyName, findOne.CompanyName);
 
             //DELETE TEST
             db.Customers.Delete(retrievedCustomer.Key);

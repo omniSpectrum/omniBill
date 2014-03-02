@@ -53,6 +53,8 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="sp02_DropTables.cs" />
+    <Compile Include="sp04_RebuildDB.cs" />
     <Compile Include="TestDataAcess.cs" />
     <Compile Include="sp01_CreateTables.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
