@@ -12,6 +12,51 @@
             <RowDefinition Height="2*" />
         </Grid.RowDefinitions>
 
+        <Grid Grid.Column="1" Grid.Row="0" x:Name="contentGrid" Background="#FFE5EAEE">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*" />
+                <RowDefinition Height="12*" />
+            </Grid.RowDefinitions>
+            
+            <Grid Grid.Row="1" x:Name="contentWrapper">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="8*" />
+                    <ColumnDefinition Width="6*" />
+                </Grid.ColumnDefinitions>
+
+                <!-- Left menu border shadow -->
+                <Border BorderThickness="2,0,0,0" BorderBrush="White" Grid.Column="0" Opacity="0.3">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="18" ShadowDepth="6" Direction="0" />
+                    </Border.Effect>
+                </Border>
+                <!-- /Left menu border shadow -->
+
+                <TextBlock VerticalAlignment="Top" ><Run Text="Content"/><Run Language="fi-fi" Text=" abcdefghijklmnopqrstuxyzåäö"/></TextBlock>
+            </Grid>
+            <!-- /contentWrapper -->
+
+            
+            
+            <Grid Grid.Row="0" Background="#FFFFFF" x:Name="contextMenu">
+                
+                <!-- Contex Menu border shadow -->
+                <Border BorderThickness="0,0,0,3" BorderBrush="White" Opacity="0.3">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="18" ShadowDepth="7" Direction="270" />
+                    </Border.Effect>
+                </Border>
+                <!-- /Contex Menu border shadow -->
+
+                <TextBlock VerticalAlignment="Top" ><Run Text="Content"/><Run Language="fi-fi" Text=" Context based menu"/></TextBlock>
+
+            </Grid>
+            <!-- /contextMenu -->
+
+        </Grid>
+        <!-- /contentGrid -->
+        
+        
         <Grid Grid.Column="0" Grid.Row="0" x:Name="menuGrid">
 
             <Grid.RowDefinitions>
@@ -20,38 +65,13 @@
                 <RowDefinition Height="4*" />
                 <RowDefinition Height="4*" />
             </Grid.RowDefinitions>
-
+            
             <TextBlock Grid.Row="0" Text="Logo" Height="20" VerticalAlignment="Top" />
             <TextBlock Grid.Row="1" Text="Invoice" Height="20" Margin="15,25,20,20" VerticalAlignment="Top" Name="lbInvoiceMenuItem" />
             <TextBlock Grid.Row="2" Text="Customer" Height="20" Margin="15,25,20,20" VerticalAlignment="Top" Name="lbCustomerMenuItem" />
             <TextBlock Grid.Row="3" Text="Item" Height="20" Margin="15,25,20,20" VerticalAlignment="Top" Name="lbItemMenuItem" />
         </Grid>
         <!-- /MENU GRID-->
-
-        <Grid Grid.Column="1" Grid.Row="0" x:Name="contentGrid">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="2*" />
-                <RowDefinition Height="12*" />
-            </Grid.RowDefinitions>
-
-            <Grid Grid.Row="0" Background="White" x:Name="contextMenu">
-
-            </Grid>
-            <!-- /contextMenu -->
-
-            <TextBlock VerticalAlignment="Top" ><Run Text="Content"/><Run Language="fi-fi" Text=" Context based menu"/></TextBlock>
-
-            <Grid Grid.Row="1" x:Name="contentWrapper" Background="#FFE5EAEE">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="8*" />
-                    <ColumnDefinition Width="6*" />
-                </Grid.ColumnDefinitions>
-                <TextBlock VerticalAlignment="Top" ><Run Text="Content"/><Run Language="fi-fi" Text=" abcdefghijklmnopqrstuxyzåäö"/></TextBlock>
-            </Grid>
-            <!-- /contentWrapper -->
-
-        </Grid>
-        <!-- /contentGrid -->
 
     </Grid>
     <!-- /mainGrid -->
