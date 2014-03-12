@@ -49,9 +49,11 @@
                     </Border.Effect>
                 </Border>
                 <!-- /Contex Menu border shadow -->
-
+                
                 <TextBlock VerticalAlignment="Top" ><Run Text="Content"/><Run Language="fi-fi" Text=" Context based menu"/></TextBlock>
 
+                <Image Height="40" Width="40" Margin="0,0,10,0" VerticalAlignment="Center" HorizontalAlignment="Right" Source="Resources/settings.png" Name="imgSettings"/>
+                
             </Grid>
             <!-- /contextMenu -->
 

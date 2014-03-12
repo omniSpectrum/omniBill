@@ -148,6 +148,7 @@
     <Content Include="Data\omniBillMsDb.sdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Resources\settings.png" />
     <Resource Include="Resources\invoice.png" />
     <Resource Include="Resources\item.png" />
     <Resource Include="ExternalComponents\dummyFileDeleteLater.txt" />
