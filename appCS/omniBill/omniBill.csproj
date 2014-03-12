@@ -87,7 +87,9 @@
     <Compile Include="InnerComponents\Interfaces\IDataAccessLayer.cs" />
     <Compile Include="InnerComponents\Models\BaseModel.cs" />
     <Compile Include="InnerComponents\Models\Customer.cs" />
+    <Compile Include="InnerComponents\Models\Item.cs" />
     <Compile Include="InnerComponents\Models\UserTable.cs" />
+    <Compile Include="InnerComponents\Models\VatGroup.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
