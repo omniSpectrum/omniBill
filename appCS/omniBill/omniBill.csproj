@@ -148,6 +148,8 @@
     <Content Include="Data\omniBillMsDb.sdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Resources\invoice.png" />
+    <Resource Include="Resources\item.png" />
     <Resource Include="ExternalComponents\dummyFileDeleteLater.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

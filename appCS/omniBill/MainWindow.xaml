@@ -5,7 +5,7 @@
 
     <Grid x:Name="mainGrid">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="2*" MaxWidth="450" />
             <ColumnDefinition Width="8*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -32,7 +32,9 @@
                 </Border>
                 <!-- /Left menu border shadow -->
 
-                <TextBlock VerticalAlignment="Top" ><Run Text="Content"/><Run Language="fi-fi" Text=" abcdefghijklmnopqrstuxyzåäö"/></TextBlock>
+                <TextBlock VerticalAlignment="Top" Padding="15,15,15,15" >
+                    <Run Text="Content"/><Run Language="fi-fi" Text=" abcdefghijklmnopqrstuxyzåäö"/>
+                </TextBlock>
             </Grid>
             <!-- /contentWrapper -->
 
@@ -67,9 +69,16 @@
             </Grid.RowDefinitions>
             
             <TextBlock Grid.Row="0" Text="Logo" Height="20" VerticalAlignment="Top" />
-            <TextBlock Grid.Row="1" Text="Invoice" Height="20" Margin="15,25,20,20" VerticalAlignment="Top" Name="lbInvoiceMenuItem" />
-            <TextBlock Grid.Row="2" Text="Customer" Height="20" Margin="15,25,20,20" VerticalAlignment="Top" Name="lbCustomerMenuItem" />
-            <TextBlock Grid.Row="3" Text="Item" Height="20" Margin="15,25,20,20" VerticalAlignment="Top" Name="lbItemMenuItem" />
+            <TextBlock Grid.Row="1" Text="Invoice" Height="20" Margin="0,0,0,10" VerticalAlignment="Bottom" HorizontalAlignment="Center" Name="lbInvoiceMenuItem" />
+            <TextBlock Grid.Row="2" Text="Customer" Height="20" Margin="0,0,0,10" VerticalAlignment="Bottom" HorizontalAlignment="Center" Name="lbCustomerMenuItem" />
+            <TextBlock Grid.Row="3" Text="Item" Height="20" Margin="0,0,0,10" VerticalAlignment="Bottom" HorizontalAlignment="Center" Name="lbItemMenuItem" />
+            
+
+            <!-- Adding images to grid -->
+            <Image Grid.Row="1" Height="50" Width="50" Margin="0,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" Source="Resources/invoice.png" Name="imgInvoice"/>
+            <Image Grid.Row="3" Height="50" Width="50" Margin="0,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" Source="Resources/item.png" Name="imgItem"/>
+            <!-- /Adding images to grid -->
+
         </Grid>
         <!-- /MENU GRID-->
 
