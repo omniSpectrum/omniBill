@@ -141,7 +141,7 @@ namespace omniBill.InnerComponents.DataAccessLayer
 
         public void InsertData()
         {
-            
+            // TODO insert procedure TEST DATA
         }
     }
 }

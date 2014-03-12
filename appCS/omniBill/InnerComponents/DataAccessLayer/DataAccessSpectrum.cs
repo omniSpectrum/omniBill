@@ -20,6 +20,9 @@ namespace omniBill.InnerComponents.DataAccessLayer
         private DataStorage storageInUse;
         private String connectionString;       
         private String dataDirectory;
+
+        private ProviderLanguage langProvider;
+
         //DATA ACCESS FIELDS
         private IGenericDAO<Customer> customers;
         private IGenericDAO<UserTable> users;
@@ -41,6 +44,11 @@ namespace omniBill.InnerComponents.DataAccessLayer
         //HELPER PROPERTIES
         public String ConnectionString
         { get { return connectionString; } set { connectionString = value; } }
+
+        public ProviderLanguage Language
+        {
+            get { return langProvider = (langProvider) ?? new ProviderLanguage(dataDirectory, "lang.xml"); }
+        }
 
         //DATA ACCESS PROPERTIES
         public IGenericDAO<Customer> Customers

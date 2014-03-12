@@ -54,5 +54,8 @@ namespace UnitTestOmniBill
             Customer findTwo = db.Customers.FindById(retrievedCustomer.Key);
             Assert.AreEqual(null, findTwo);
         }
+
+        // TODO UserTable tests
+        // TODO Item tests
     }
 }

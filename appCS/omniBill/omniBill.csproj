@@ -80,12 +80,14 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="InnerComponents\DataAccessLayer\ProviderLanguage.cs" />
     <Compile Include="InnerComponents\DataAccessLayer\StoredProcedureRepo.cs" />
     <Compile Include="InnerComponents\DataAccessLayer\IGenericDAO.cs" />
     <Compile Include="InnerComponents\DataAccessLayer\DataAccessSpectrum.cs" />
     <Compile Include="InnerComponents\DataAccessLayer\GenericProviderSqlCE.cs" />
     <Compile Include="InnerComponents\Interfaces\IDataAccessLayer.cs" />
     <Compile Include="InnerComponents\Models\BaseModel.cs" />
+    <Compile Include="InnerComponents\Models\LanguageRecord.cs" />
     <Compile Include="InnerComponents\Models\Customer.cs" />
     <Compile Include="InnerComponents\Models\Item.cs" />
     <Compile Include="InnerComponents\Models\UserTable.cs" />
@@ -147,6 +149,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Resource Include="Data\lang.xml" />
     <Content Include="Data\omniBillMsDb.sdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

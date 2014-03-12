@@ -195,6 +195,48 @@ namespace omniBill.InnerComponents.DataAccessLayer
 
             return myProperties;
         }
+
+        private void MapObject(SqlCeDataReader reader, UserTable user)
+        {
+            int i = 0;
+
+            user.Key = reader.GetInt32(i++);
+            user.CompanyName = reader.GetString(i++);
+            user.ContactName = reader.GetString(i++);
+            user.Street = reader.GetString(i++);
+
+            user.BankName = reader.GetString(i++);
+            user.BankAccount = reader.GetString(i++);
+            user.BusinessId = reader.GetString(i++);
+            user.PhoneNumber = reader.GetString(i++);
+            user.Email = reader.GetString(i++);
+        }
+        private String[][] MapProperties(UserTable user)
+        {
+            /* userId INTEGER
+	         * companyName		NVARCHAR(50)
+	         * contactName		NVARCHAR(50)
+	         * street			NVARCHAR(250)
+	         * bankName		NVARCHAR(300)
+	         * bankAccount		NVARCHAR(250)
+	         * businessId		NVARCHAR(10)
+	         * phoneNumber		NVARCHAR(100)
+	         * email			NVARCHAR(150)
+             */
+
+            String[][] myProperties =
+            {
+                //property NAMES
+                new string[]{keyName, "companyName", "contactName", "street", "bankName", 
+                    "bankAccount", "businessId", "phoneNumber", "email"},
+                //property VALUES
+                new string[]{String.Format("{0}", user.Key), String.Format("\'{0}\'", user.CompanyName), String.Format("\'{0}\'", user.ContactName), 
+                    String.Format("\'{0}\'", user.Street), String.Format("\'{0}\'", user.BankName), String.Format("\'{0}\'", user.BankAccount), 
+                    String.Format("\'{0}\'", user.BusinessId), String.Format("\'{0}\'", user.PhoneNumber), String.Format("\'{0}\'", user.Email)}
+            };
+
+            return myProperties;
+        }
         #endregion
     }
 }

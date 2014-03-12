@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE language [
+  <!ELEMENT language (record*)>
+  <!ELEMENT record (english, finnish, russian, portugese)>
+  <!ELEMENT english (#PCDATA)>
+  <!ELEMENT finnish (#PCDATA)>
+  <!ELEMENT russian (#PCDATA)>
+  <!ELEMENT portugese (#PCDATA)>
+]>
+<language>
+  <record>
+    <english>Invoice</english>
+    <finnish>Lasku</finnish>
+    <russian>Счет</russian>
+    <portugese>Fatura</portugese>
+  </record>
+  <record>
+    <english>Customer</english>
+    <finnish>Asiakas</finnish>
+    <russian>Клиент</russian>
+    <portugese>Cliente</portugese>
+  </record>
+  <record>
+    <english>Item</english>
+    <finnish>Tavaranimike</finnish>
+    <russian>Предмет</russian>
+    <portugese>Item</portugese>
+  </record>
+</language>
