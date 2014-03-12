@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SqlServerCe;
 using omniBill.InnerComponents.Models;
+using System.Text;
 
 namespace omniBill.InnerComponents.DataAccessLayer
 {
@@ -78,10 +79,25 @@ namespace omniBill.InnerComponents.DataAccessLayer
                 scn.Open();
                 SqlCeCommand command = scn.CreateCommand();
 
-                String querySuffix = MapInsertSuffix((dynamic)model);
+                String[][] propertyMap = MapProperties((dynamic)model);
+                int PROPERTY_NAME_SubArrayIndex = 0;
+                int PROPERTY_VALUE_SubArrayIndex = 1;
 
-                command.CommandText =
-                    String.Format("INSERT INTO {0}{1}", tableName, querySuffix);
+                StringBuilder myBuilder = new StringBuilder("INSERT INTO " + tableName + "(");
+
+                //column names
+                myBuilder.Append(string.Join(", ", propertyMap[PROPERTY_NAME_SubArrayIndex], 
+                    1, propertyMap[PROPERTY_NAME_SubArrayIndex].Length - 1));
+
+                myBuilder.Append(") VALUES(");
+
+                //row values
+                myBuilder.Append(string.Join(", ", propertyMap[PROPERTY_VALUE_SubArrayIndex], 
+                    1, propertyMap[PROPERTY_VALUE_SubArrayIndex].Length - 1));
+
+                myBuilder.Append(")");
+
+                command.CommandText = myBuilder.ToString();
                 
                 command.ExecuteNonQuery();
             }
@@ -94,11 +110,28 @@ namespace omniBill.InnerComponents.DataAccessLayer
                 scn.Open();
                 SqlCeCommand command = scn.CreateCommand();
 
-                String querySuffix = MapUpdateSuffix((dynamic)model);
+                String[][] propertyMap = MapProperties((dynamic)model);
+                int PROPERTY_NAME = 0;
+                int PROPERTY_VALUE = 1;
 
-                command.CommandText =
-                    String.Format("UPDATE {0} SET {1}", tableName, querySuffix);
+                StringBuilder myBuilder = new StringBuilder("UPDATE " + tableName + " SET ");
 
+                /*
+                 * UPDATE Customer 
+                 * SET propertyName1 = propertyValue1, propertyName2 = propertyValue2, ....
+                 * WHERE customerId = 12
+                 */
+                String[] propertyPair = new string[propertyMap[PROPERTY_NAME].Length - 1];
+
+                for (int i = 1; i < propertyMap[PROPERTY_NAME].Length; i++)
+                {
+                    propertyPair[i - 1] = String.Format("{0} = {1}", propertyMap[PROPERTY_NAME][i], propertyMap[PROPERTY_VALUE][i]);
+                }
+
+                myBuilder.Append(string.Join(", ", propertyPair));
+                myBuilder.Append(String.Format(" WHERE {0} = {1}", propertyMap[PROPERTY_NAME][0], propertyMap[PROPERTY_VALUE][0]));
+
+                command.CommandText = myBuilder.ToString();
                 command.ExecuteNonQuery();
             }
         }
@@ -138,24 +171,29 @@ namespace omniBill.InnerComponents.DataAccessLayer
             customer.PhoneNumber = reader.GetString(5);
             customer.Email = reader.GetString(6);
         }
-        private String MapInsertSuffix(Customer customer)
+        private String[][] MapProperties(Customer customer)
         {
-            String suffix = String.Format("(customerName, street, postCode, city, phoneNumber, email) VALUES"
-                                        + "(\'{0}\', \'{1}\', \'{2}\', \'{3}\', \'{4}\', \'{5}\')",
-                                        customer.CompanyName, customer.Street, customer.PostCode,
-                                        customer.City, customer.PhoneNumber, customer.Email);
-            return suffix;
-        }
-        private String MapUpdateSuffix(Customer customer)
-        {
-            String suffix = String.Format("customerName=\'{0}\', street=\'{1}\', postCode=\'{2}\', "
-                                        +"city=\'{3}\', phoneNumber=\'{4}\', email=\'{5}\' "
-                                        +"WHERE {6}={7}",
-                                        customer.CompanyName, customer.Street, customer.PostCode,
-                                        customer.City, customer.PhoneNumber, customer.Email,
-                                        keyName, customer.Key);
+            /* customerId   INT
+            * companyName  NVARCHAR
+            * street       NVARCHAR
+            * postCode     NVARCHAR
+            * city         NVARCHAR
+            * phoneNumber  NVARCHAR
+            * email        NVARCHAR
+            */
 
-            return suffix;
+            String[][] myProperties = 
+            {
+                //property NAMES
+                new string[]{keyName, "customerName", "street", "postCode", "city", "phoneNumber", "email"},
+                //property VALUES
+                new string[]{String.Format("{0}", customer.Key), String.Format("\'{0}\'", customer.CompanyName), 
+                    String.Format("\'{0}\'", customer.Street), String.Format("\'{0}\'", customer.PostCode),
+                    String.Format("\'{0}\'", customer.City), String.Format("\'{0}\'", customer.PhoneNumber),
+                    String.Format("\'{0}\'", customer.Email)}
+            };
+
+            return myProperties;
         }
         #endregion
     }

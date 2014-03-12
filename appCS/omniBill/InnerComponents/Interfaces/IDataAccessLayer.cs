@@ -11,5 +11,6 @@ namespace omniBill.InnerComponents.Interfaces
 
         //DATA ACCESS 
         IGenericDAO<Customer> Customers { get; }
+        IGenericDAO<UserTable> Users { get; }
     }
 }

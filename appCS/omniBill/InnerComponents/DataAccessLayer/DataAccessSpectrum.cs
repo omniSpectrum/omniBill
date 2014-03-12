@@ -22,6 +22,7 @@ namespace omniBill.InnerComponents.DataAccessLayer
         private String dataDirectory;
         //DATA ACCESS FIELDS
         private IGenericDAO<Customer> customers;
+        private IGenericDAO<UserTable> users;
 
         //CONSTRUCTORS
         public DataAccessSpectrum(DataStorage storageToUse, String connectString)
@@ -45,6 +46,10 @@ namespace omniBill.InnerComponents.DataAccessLayer
         public IGenericDAO<Customer> Customers
         {
             get { return customers = (customers) ?? new GenericProviderSqlCE<Customer>(connectionString, "customerId"); }
+        }
+        public IGenericDAO<UserTable> Users
+        {
+            get { return users = (users) ?? new GenericProviderSqlCE<UserTable>(connectionString, "userId"); }
         }
     }
 }
