@@ -11,15 +11,21 @@ namespace omniBill.InnerComponents.Models
     {
         public LanguageRecord(String english, String finnish, String russian, String portugese)
         {
-            English = english;
-            Finnish = finnish;
-            Russian = russian;
-            Portugese = portugese;
+            Language = new string[4];
+            int i = 0;
+
+            Language[i++] = english;
+            Language[i++] = finnish;
+            Language[i++] = russian;
+            Language[i++] = portugese;
         }
 
-        public String English { get; set; }
-        public String Finnish { get; set; }
-        public String Russian { get; set; }
-        public String Portugese { get; set; }
+        public String[] Language { get; set; } //English, Finnish, Russian, Portugese
+
+        public String this[int index]
+        {
+            get { return Language[index]; }
+            set { Language[index] = value; }
+        }
     }
 }

@@ -149,7 +149,9 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Resource Include="Data\lang.xml" />
+    <Content Include="Data\lang.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Data\omniBillMsDb.sdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
