@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using omniBill.InnerComponents.Models;
 using omniBill.InnerComponents.Interfaces;
 using omniBill.InnerComponents.DataAccessLayer;
+using System.Diagnostics;
 
 namespace omniBill
 {
@@ -33,6 +34,11 @@ namespace omniBill
         }
 
         #region UI General functions
+        private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e) 
+        {
+            Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri));
+            e.Handled = true;
+        }
         #endregion
 
         #region DataToModel functions
