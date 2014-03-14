@@ -31,40 +31,6 @@
                     </Border.Effect>
                 </Border>
                 <!-- /Left menu border shadow -->
-                 <!--About Page Grid Start-->
-                <Grid Grid.Column="0" Grid.ColumnSpan="2" x:Name="aboutpage_Grid" Background="#FFE5EAEE">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="1*" />
-                        <RowDefinition Height="5*" />
-                        <RowDefinition Height="1.5*" />
-                    </Grid.RowDefinitions>
-                    <TextBlock VerticalAlignment="Top" Padding="15,15,15,15" TextWrapping="Wrap" Grid.Row="0" FontSize="21">
-                        <Bold>omniBill</Bold>
-                    </TextBlock>
-                    <TextBlock VerticalAlignment="Top" Padding="15,15,15,15" TextWrapping="Wrap" Grid.Row="1">
-                    <Run  Text="omniBill is a simple standalone, lightweight and modular invoicing desktop app designed by omniSpectrum." />
-                        <LineBreak /> 
-                    <Run Text="omniBill will save you, just like Jesus." />
-                    </TextBlock>
-                    
-                    <!--Footer grid start-->
-                    <Grid x:Name="footerAboutPage_grid" Grid.Row="2">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="1*" />
-                            <ColumnDefinition Width="1.8*" />
-                            <ColumnDefinition Width="1*" />
-                        </Grid.ColumnDefinitions>
-                        <TextBlock VerticalAlignment="Top" Padding="15,15,15,15" TextWrapping="Wrap" Grid.Column="0">
-                            <Hyperlink NavigateUri="https://www.github.com/omniSpectrum" RequestNavigate="Hyperlink_RequestNavigate">Github</Hyperlink>
-                        </TextBlock>
-                        <TextBlock VerticalAlignment="Top" Padding="15,15,15,15" TextWrapping="Wrap" Grid.Column="1">
-                            <Hyperlink NavigateUri="https://www.github.com/omniSpectrum/omniBill/blob/master/LICENSE" RequestNavigate="Hyperlink_RequestNavigate">License Information</Hyperlink>
-                        </TextBlock>
-                        <TextBlock VerticalAlignment="Top" Padding="15,15,15,15" TextWrapping="Wrap" Grid.Column="2">
-                            <Hyperlink NavigateUri="mailto:omnispectrum@outlook.com" RequestNavigate="Hyperlink_RequestNavigate">Contact Us</Hyperlink>
-                        </TextBlock>
-                    </Grid> <!--Footer grid end-->
-                </Grid> <!--About Page Grid end-->
             </Grid>
             <!-- /contentWrapper -->
 

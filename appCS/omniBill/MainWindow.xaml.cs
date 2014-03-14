@@ -31,6 +31,7 @@ namespace omniBill
         {
             InitializeComponent();
             changeLanguage();
+            displayAboutPage();
         }
 
         #region UI General functions
@@ -39,6 +40,119 @@ namespace omniBill
             Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri));
             e.Handled = true;
         }
+        private void displayAboutPage()
+        {   
+            
+            Grid myGrid = new Grid();
+
+            myGrid.Name = "aboutpage_Grid";
+            Grid.SetColumn(myGrid, 0);
+            Grid.SetColumnSpan(myGrid, 2);
+            contentWrapper.Children.Add(myGrid);
+
+            /* Setting up row definitions*/
+            RowDefinition[] rowArray ={
+                                          new RowDefinition(),
+                                          new RowDefinition(),
+                                          new RowDefinition()
+                                      };
+            rowArray[0].Height = new GridLength(1, GridUnitType.Star);
+            rowArray[1].Height = new GridLength(5, GridUnitType.Star);
+            rowArray[2].Height = new GridLength(1.5, GridUnitType.Star);
+
+            foreach (var row in rowArray) 
+            {
+                myGrid.RowDefinitions.Add(row);
+            }
+            /*END row definitions settings*/
+
+            /*Setting up header*/
+            TextBlock header = new TextBlock();
+            header.VerticalAlignment = System.Windows.VerticalAlignment.Top;
+            header.Padding = new Thickness(15);
+            header.TextWrapping = TextWrapping.Wrap;
+            header.FontSize = 21;
+            header.FontWeight = FontWeights.Bold;
+            header.Text = "omniBill";
+            Grid.SetRow(header, 0);
+            
+            myGrid.Children.Add(header);
+
+            /*Setting up body */
+            TextBlock body = new TextBlock();
+            body.VerticalAlignment = System.Windows.VerticalAlignment.Top;
+            body.Padding = new Thickness(15);
+            body.TextWrapping = TextWrapping.Wrap;
+            body.Inlines.Add("omniBill is a simple standalone, lightweight and modular invoicing desktop app designed by omniSpectrum.");
+            body.Inlines.Add(new LineBreak());
+            body.Inlines.Add("omniBill will save you, just like Jesus.");
+            Grid.SetRow(body, 1);
+
+            myGrid.Children.Add(body);
+
+            /*Setting footer grid */
+            Grid footerGrid = new Grid();
+
+            footerGrid.Name = "footerAboutPage_Grid";
+            Grid.SetRow(footerGrid, 2);
+            myGrid.Children.Add(footerGrid);
+
+            /*Setting up column definitions for footer grid */
+            ColumnDefinition[] columns = 
+            {
+                new ColumnDefinition(),
+                new ColumnDefinition(),
+                new ColumnDefinition()
+            };
+
+            columns[0].Width = new GridLength(1, GridUnitType.Star);
+            columns[1].Width = new GridLength(1.8, GridUnitType.Star);
+            columns[2].Width = new GridLength(1, GridUnitType.Star);
+
+            foreach (var column in columns) 
+            {
+                footerGrid.ColumnDefinitions.Add(column);
+            }
+
+            /*Setting up footer content */
+            TextBlock[] footerLinks_TB =
+            {
+                new TextBlock(),
+                new TextBlock(),
+                new TextBlock()
+            };
+
+            Hyperlink[] links = {
+                                          new Hyperlink(new Run("Github")),
+                                          new Hyperlink(new Run("License Information")),
+                                          new Hyperlink(new Run("Contact Us"))
+                                      };
+
+            links[0].NavigateUri = new Uri("https://www.github.com/omniSpectrum");
+            links[1].NavigateUri = new Uri("https://www.github.com/omniSpectrum/omniBill/blob/master/LICENSE");
+            links[2].NavigateUri = new Uri("mailto:omnispectrum@outlook.com");
+
+            for (int index = 0; index < 3; index++ )
+            {
+                footerLinks_TB[index].VerticalAlignment = System.Windows.VerticalAlignment.Top;
+                footerLinks_TB[index].Padding = new Thickness(15);
+                footerLinks_TB[index].TextWrapping = TextWrapping.Wrap;
+
+                footerLinks_TB[index].Background = Brushes.Pink;
+
+
+                Grid.SetColumn(footerLinks_TB[index], index);
+                footerGrid.Children.Add(footerLinks_TB[index]);
+
+                /* Setting up links*/
+                links[index].RequestNavigate += Hyperlink_RequestNavigate;
+                footerLinks_TB[index].Inlines.Add(links[index]);
+
+
+            }
+
+        }
+
         #endregion
 
         #region DataToModel functions
