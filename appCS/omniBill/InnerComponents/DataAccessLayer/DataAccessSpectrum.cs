@@ -33,7 +33,7 @@ namespace omniBill.InnerComponents.DataAccessLayer
             //by initial idea connection strings and Storage to use should be stored in and retrived from Setting 
             this.storageInUse = storageToUse;
             this.connectionString = connectString;           
-            this.dataDirectory = AppDomain.CurrentDomain.BaseDirectory + "Data\\";
+            this.dataDirectory = AppDomain.CurrentDomain.BaseDirectory + "\\Data\\";
         }
         public DataAccessSpectrum() : this(DataStorage.MSSql, null) 
         {

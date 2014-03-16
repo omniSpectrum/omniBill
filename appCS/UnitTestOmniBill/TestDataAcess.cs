@@ -56,6 +56,36 @@ namespace UnitTestOmniBill
         }
 
         // TODO UserTable tests
+        public void TestUserDao()
+        {
+            IDataAccessLayer db = new DataAccessSpectrum();
+            //INSERT TEST
+            UserTable initialUser = new UserTable(0, "omniSpectrum", "Daniel", "Random", "Nordea", "123455", 
+                "A32432", "2344242", "dana@gmail.com");
+
+            db.Users.Create(initialUser);
+
+            List<UserTable> myUserList = db.Users.FindAll();
+            UserTable myUser = myUserList[myUserList.Count - 1];
+
+            string expected = "Daniel";
+            string actual = myUser.ContactName;
+
+            Assert.AreEqual(expected, actual);
+
+            //UPDATE TEST
+            myUser.ContactName = "Niko";
+            db.Users.Edit(myUser);
+
+            const string expectedName = "Niko";
+            var retrievedUser = db.Users.FindById(myUser.Key);
+
+            Assert.AreEqual(expectedName, retrievedUser.ContactName);
+
+            //DELETE TEST
+            db.Users.Delete(myUser.Key);
+            Assert.IsNull(db.Users.FindById(myUser.Key));
+        }
         // TODO Item tests
     }
 }
