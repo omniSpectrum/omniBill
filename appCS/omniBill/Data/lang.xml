@@ -26,4 +26,28 @@
     <russian>Предмет</russian>
     <portugese>Item</portugese>
   </record>
+  <record>
+    <english>omniBill is a simple standalone, lightweight and modular invoicing desktop app designed by omniSpectrum.</english>
+    <finnish>omniBill on yksinkertainen, kevyt ja modulaarinen laskutus sovellus. Ohjelman on toteuttanut omniSpectrum.</finnish>
+    <russian>omniBill простое, независимое, занимающее мало места и модульное настольное приложение для работы с инвойсами разработанное omniSpectrum</russian>
+    <portugese>omniBill é um autônomo simples, app de desktop faturamento leve e modular projetado por omniSpectrum.</portugese>
+  </record>
+  <record>
+    <english>omniBill will save you, just like Jesus.</english>
+    <finnish>omniBill säästää, aivan kuten Jeesus.</finnish>
+    <russian>omniBill спасет вас, так же, как Иисус.</russian>
+    <portugese>omniBill você vai economizar, assim como Jesus.</portugese>
+  </record>
+  <record>
+    <english>License Information</english>
+    <finnish>Lisenssi Tiedot</finnish>
+    <russian>Информация о лицензии</russian>
+    <portugese>Informações sobre a licença</portugese>
+  </record>
+  <record>
+    <english>Contact Us</english>
+    <finnish>Ota yhteyttä</finnish>
+    <russian>Связаться с нами</russian>
+    <portugese>Fale Conosco</portugese>
+  </record>
 </language>

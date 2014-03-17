@@ -83,16 +83,20 @@ namespace omniBill
             body.VerticalAlignment = System.Windows.VerticalAlignment.Top;
             body.Padding = new Thickness(15);
             body.TextWrapping = TextWrapping.Wrap;
-            body.Inlines.Add("omniBill is a simple standalone, lightweight and modular invoicing desktop app designed by omniSpectrum.");
+
+            String aboutPageFirstLineOfDescription = 
+                langSet["omniBill is a simple standalone, lightweight and modular invoicing desktop app designed by omniSpectrum."][currentLanguage];
+            body.Inlines.Add(aboutPageFirstLineOfDescription);
             body.Inlines.Add(new LineBreak());
-            body.Inlines.Add("omniBill will save you, just like Jesus.");
+            String aboutPageSecondLineOfDescription = langSet["omniBill will save you, just like Jesus."][currentLanguage];
+            body.Inlines.Add(aboutPageSecondLineOfDescription);
             Grid.SetRow(body, 1);
 
             myGrid.Children.Add(body);
 
             /*Setting footer grid */
             Grid footerGrid = new Grid();
-
+            footerGrid.Background = Brushes.Pink;
             footerGrid.Name = "footerAboutPage_Grid";
             Grid.SetRow(footerGrid, 2);
             myGrid.Children.Add(footerGrid);
@@ -122,10 +126,13 @@ namespace omniBill
                 new TextBlock()
             };
 
+            String aboutPageLicenseInfoString = langSet["License Information"][currentLanguage];
+            String aboutPageContactUsString = langSet["Contact Us"][currentLanguage];
+
             Hyperlink[] links = {
                                           new Hyperlink(new Run("Github")),
-                                          new Hyperlink(new Run("License Information")),
-                                          new Hyperlink(new Run("Contact Us"))
+                                          new Hyperlink(new Run(aboutPageLicenseInfoString)),
+                                          new Hyperlink(new Run(aboutPageContactUsString))
                                       };
 
             links[0].NavigateUri = new Uri("https://www.github.com/omniSpectrum");
@@ -137,9 +144,6 @@ namespace omniBill
                 footerLinks_TB[index].VerticalAlignment = System.Windows.VerticalAlignment.Top;
                 footerLinks_TB[index].Padding = new Thickness(15);
                 footerLinks_TB[index].TextWrapping = TextWrapping.Wrap;
-
-                footerLinks_TB[index].Background = Brushes.Pink;
-
 
                 Grid.SetColumn(footerLinks_TB[index], index);
                 footerGrid.Children.Add(footerLinks_TB[index]);
@@ -163,14 +167,14 @@ namespace omniBill
         {
             //FindOut language in Use from settings
             // currentLanguage = Settings.LanguageToUse;
-            currentLanguage = (int)LanguageInUse.Russian;
+            currentLanguage = (int)LanguageInUse.Finnish;
 
             //Get Language Set         
             langSet = db.Language.FindAll();
 
             //Change basic Menu Items
-            lbInvoiceMenuItem.Text = langSet["Invoice"].Language[currentLanguage];
-            lbCustomerMenuItem.Text = langSet["Customer"].Language[currentLanguage];
+            lbInvoiceMenuItem.Text = langSet["Invoice"][currentLanguage];
+            lbCustomerMenuItem.Text = langSet["Customer"][currentLanguage];
 
             lbItemMenuItem.Text = langSet["Item"][currentLanguage];
         }

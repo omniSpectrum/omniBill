@@ -9,23 +9,23 @@ namespace omniBill.InnerComponents.Models
 
     public class LanguageRecord
     {
+        private String[] language;
+
         public LanguageRecord(String english, String finnish, String russian, String portugese)
         {
-            Language = new string[4];
+            language = new string[4];
             int i = 0;
 
-            Language[i++] = english;
-            Language[i++] = finnish;
-            Language[i++] = russian;
-            Language[i++] = portugese;
+            language[i++] = english;
+            language[i++] = finnish;
+            language[i++] = russian;
+            language[i++] = portugese;
         }
-
-        public String[] Language { get; set; } //English, Finnish, Russian, Portugese
 
         public String this[int index]
         {
-            get { return Language[index]; }
-            set { Language[index] = value; }
+            get { return language[index]; }
+            set { language[index] = value; }
         }
     }
 }
