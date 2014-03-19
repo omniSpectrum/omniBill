@@ -86,6 +86,8 @@
     <Compile Include="InnerComponents\DataAccessLayer\DataAccessSpectrum.cs" />
     <Compile Include="InnerComponents\DataAccessLayer\GenericProviderSqlCE.cs" />
     <Compile Include="InnerComponents\Interfaces\IDataAccessLayer.cs" />
+    <Compile Include="InnerComponents\Interfaces\IHandler.cs" />
+    <Compile Include="InnerComponents\LogicLayer\UserHandler.cs" />
     <Compile Include="InnerComponents\Models\BaseModel.cs" />
     <Compile Include="InnerComponents\Models\DraftInvoice.cs" />
     <Compile Include="InnerComponents\Models\LanguageRecord.cs" />

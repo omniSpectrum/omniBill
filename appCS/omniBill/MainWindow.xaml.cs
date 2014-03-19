@@ -15,6 +15,7 @@ using omniBill.InnerComponents.Models;
 using omniBill.InnerComponents.Interfaces;
 using omniBill.InnerComponents.DataAccessLayer;
 using System.Diagnostics;
+using omniBill.InnerComponents.LogicLayer;
 
 namespace omniBill
 {
@@ -26,22 +27,34 @@ namespace omniBill
         IDataAccessLayer db = new DataAccessSpectrum(); // TODO Remove later when Handler is implemented
         Dictionary<String, LanguageRecord> langSet; //Need to be in memory for until app is closed
         int currentLanguage; // Finnish is default
+        IHandler<UserTable> userHandler;
 
         public MainWindow()
         {
             InitializeComponent();
             changeLanguage();
             displayAboutPage();
+
+            userHandler = new UserHandler();
         }
 
-        #region UI General functions
-        private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e) 
+        #region Event handlers
+        private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e)
         {
             Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri));
             e.Handled = true;
         }
+        #endregion
+
+        #region UI General functions
+        private void cleanContentWrapper()
+        {
+            contentWrapper.Children.Clear();
+        }
+
         private void displayAboutPage()
-        {   
+        {
+            cleanContentWrapper();
             
             Grid myGrid = new Grid();
 
