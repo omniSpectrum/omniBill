@@ -5,8 +5,8 @@
 
     <Grid x:Name="mainGrid">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*" MaxWidth="450" />
-            <ColumnDefinition Width="8*" />
+            <ColumnDefinition Width="100" /><!-- Max size problem needs to be fixed -->
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="2*" />
@@ -67,17 +67,25 @@
             </Grid.RowDefinitions>
             
             <TextBlock Grid.Row="0" Text="Logo" Height="20" VerticalAlignment="Top" />
-            <TextBlock Grid.Row="1" Text="Invoice" Height="20" Margin="0,0,0,10" VerticalAlignment="Bottom" HorizontalAlignment="Center" Name="lbInvoiceMenuItem" />
-            <TextBlock Grid.Row="2" Text="Customer" Height="20" Margin="0,0,0,10" VerticalAlignment="Bottom" HorizontalAlignment="Center" Name="lbCustomerMenuItem" />
-            <TextBlock Grid.Row="3" Text="Item" Height="20" Margin="0,0,0,10" VerticalAlignment="Bottom" HorizontalAlignment="Center" Name="lbItemMenuItem" />
-            
+            <TextBlock Grid.Row="1" Text="Invoice" Height="20" Margin="0,30,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" Name="lbInvoiceMenuItem" />
+            <TextBlock Grid.Row="2" Text="Customer" Height="20" Margin="0,35,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" Name="lbCustomerMenuItem" />
+            <TextBlock Grid.Row="3" Text="Item" Height="20" Margin="0,30,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" Name="lbItemMenuItem" />
 
             <!-- Adding images to grid -->
-            <Image Grid.Row="1" RenderOptions.BitmapScalingMode="Fant" Height="50" Width="50" Margin="0,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" Source="Resources/invoice.png" Name="imgInvoice"/>
-            <Image Grid.Row="3" RenderOptions.BitmapScalingMode="Fant" Height="50" Width="50" Margin="0,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" Source="Resources/item.png" Name="imgItem"/>
+            <Image Grid.Row="1" RenderOptions.BitmapScalingMode="Fant" Height="50" Width="50" Margin="0,0,0,20" VerticalAlignment="Center" HorizontalAlignment="Center" Source="Resources/invoice.png" Name="imgInvoice"/>
+            <Image Grid.Row="2" RenderOptions.BitmapScalingMode="Fant" Height="50" Width="50" Margin="0,0,0,20" VerticalAlignment="Center" HorizontalAlignment="Center" Source="Resources/customer.png" Name="imgCustomer"/>
+            <Image Grid.Row="3" RenderOptions.BitmapScalingMode="Fant" Height="50" Width="50" Margin="0,0,0,20" VerticalAlignment="Center" HorizontalAlignment="Center" Source="Resources/item.png" Name="imgItem"/>
             <!-- /Adding images to grid -->
 
+            <!-- Buttons to grid -->
+
+
+
+
+            <!-- /Buttons to grid -->
+            
         </Grid>
+        
         <!-- /MENU GRID-->
 
     </Grid>
