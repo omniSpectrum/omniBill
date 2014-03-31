@@ -1,4 +1,5 @@
-﻿using System;
+﻿using omniBill.InnerComponents.Models;
+using System;
 using System.Data.SqlServerCe;
 
 namespace omniBill.InnerComponents.DataAccessLayer
@@ -62,14 +63,16 @@ namespace omniBill.InnerComponents.DataAccessLayer
                     @"CREATE TABLE UserTable
                     (
 	                    userId			INTEGER			IDENTITY(1,1)		PRIMARY KEY,
-	                    companyName		NVARCHAR(50)	NOT NULL,
+	                    companyName		NVARCHAR(50)	    NULL,
 	                    contactName		NVARCHAR(50)	NOT NULL,
-	                    street			NVARCHAR(250)	NOT NULL,
-	                    bankName		NVARCHAR(300)	NOT NULL,
-	                    bankAccount		NVARCHAR(250)	NOT NULL,
+	                    street			NVARCHAR(250)	    NULL,
+                        postCode        NVARCHAR(25)        NULL,
+                        city            NVARCHAR(75)        NULL,
+	                    bankName		NVARCHAR(140)	    NULL,
+	                    bankAccount		NVARCHAR(140)	    NULL,
 	                    businessId		NVARCHAR(10)		NULL,
 	                    phoneNumber		NVARCHAR(100)		NULL,
-	                    email			NVARCHAR(150)	NOT	NULL
+	                    email			NVARCHAR(100)	NOT	NULL
                     );";
                 cmd.ExecuteNonQuery();
 
@@ -126,13 +129,13 @@ namespace omniBill.InnerComponents.DataAccessLayer
                 SqlCeCommand command = db.CreateCommand();
 
                 String[] tablesToDrop = 
-                    new String[] { "InvoiceLine", "DraftInvoice", "Item", "VatGroup", "UserTable", "Customer" };
+                    new String[] {"InvoiceLine" , "DraftInvoice", "Item", "VatGroup", "UserTable", "Customer" };
 
                 foreach (var table in tablesToDrop)
                 {
                     command.CommandText = 
-                        String.Format("drop table if exists {0}", table);
-                    command.ExecuteNonQuery();
+                        String.Format("drop table {0};", table);
+                    int test = command.ExecuteNonQuery();
                 }
                 
                 db.Close();
@@ -141,7 +144,8 @@ namespace omniBill.InnerComponents.DataAccessLayer
 
         public void InsertData()
         {
-            // TODO insert procedure TEST DATA
+            DataAccessSpectrum db = new DataAccessSpectrum();
+            db.Users.Create(new UserTable());
         }
     }
 }

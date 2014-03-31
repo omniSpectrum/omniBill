@@ -44,6 +44,60 @@ namespace omniBill
             Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri));
             e.Handled = true;
         }
+
+
+        private void settingsDropDownMenuUserItemClick(object sender, RoutedEventArgs e)
+        {
+            cleanContentWrapper();
+
+            Grid userGrid = new Grid();
+            userGrid.Name = "UserTabGrid";
+            Grid.SetColumn(userGrid, 0);
+            Grid.SetColumnSpan(userGrid, 2);
+            userGrid.Background = Brushes.White;
+            userGrid.Margin = new Thickness(10);
+
+            contentWrapper.Children.Add(userGrid);
+
+            RowDefinition[] rows = new RowDefinition[10];
+
+            for (int i = 0; i < 10; i++) 
+            {
+                rows[i] = new RowDefinition();
+                rows[i].Height = new GridLength(1, GridUnitType.Star);
+                userGrid.RowDefinitions.Add(rows[i]);
+            }
+
+            ColumnDefinition[] columns = {
+                                             new ColumnDefinition(),
+                                             new ColumnDefinition()
+                                         };
+
+
+            columns[0].Width = new GridLength(1, GridUnitType.Star);
+            userGrid.ColumnDefinitions.Add(columns[0]);
+            columns[1].Width = new GridLength(2, GridUnitType.Star);
+            userGrid.ColumnDefinitions.Add(columns[1]); 
+
+
+            //TODO put textboxes in array
+
+            TextBlock lbCompanyName = new TextBlock();
+            // TODO lbCompanyName = fetch from lang.xml
+            lbCompanyName.Text = "Company Name";
+            //lbCompanyName.Margin = new Thickness(10);
+            Grid.SetRow(lbCompanyName, 0);
+            Grid.SetColumn(lbCompanyName, 0);
+            userGrid.Children.Add(lbCompanyName);
+
+
+            TextBox tbCompanyName = new TextBox();
+            //TODO tbCompanyName.text = fetch single user from db
+            //tbCompanyName.Margin = new Thickness(10);
+            Grid.SetRow(tbCompanyName, 0);
+            Grid.SetColumn(tbCompanyName, 1);
+            userGrid.Children.Add(tbCompanyName);
+        }
         #endregion
 
         #region UI General functions
@@ -123,7 +177,7 @@ namespace omniBill
             };
 
             columns[0].Width = new GridLength(1, GridUnitType.Star);
-            columns[1].Width = new GridLength(1.8, GridUnitType.Star);
+            columns[1].Width = new GridLength(1, GridUnitType.Star);
             columns[2].Width = new GridLength(1, GridUnitType.Star);
 
             foreach (var column in columns) 
@@ -155,6 +209,7 @@ namespace omniBill
             for (int index = 0; index < 3; index++ )
             {
                 footerLinks_TB[index].VerticalAlignment = System.Windows.VerticalAlignment.Top;
+                footerLinks_TB[index].HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
                 footerLinks_TB[index].Padding = new Thickness(15);
                 footerLinks_TB[index].TextWrapping = TextWrapping.Wrap;
 
@@ -180,7 +235,7 @@ namespace omniBill
         {
             //FindOut language in Use from settings
             // currentLanguage = Settings.LanguageToUse;
-            currentLanguage = (int)LanguageInUse.Finnish;
+            currentLanguage = (int)LanguageInUse.Portugese;
 
             //Get Language Set         
             langSet = db.Language.FindAll();
@@ -192,5 +247,10 @@ namespace omniBill
             lbItemMenuItem.Text = langSet["Item"][currentLanguage];
         }
         #endregion
+
+
+
+
+        
     }
 }

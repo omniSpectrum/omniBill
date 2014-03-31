@@ -17,7 +17,7 @@ namespace UnitTestOmniBill
 
             sq.DropTables();
             sq.CreateTables();
-            sq.InsertData();
+            //sq.InsertData();
         }
     }
 }

@@ -15,13 +15,13 @@ namespace UnitTestOmniBill
         public void TestConnectionString()
         {
             String HARD_CODED_WORKING_DIRECTORY = 
-                "C:\\Users\\a1203246\\Desktop\\omniBill\\appCS\\omniBill" + "\\bin\\Debug"+ "\\Data\\omniBillMsDb.sdf";
+                "C:\\Users\\a1203248\\Desktop\\omniBill\\appCS\\omniBill" + "\\bin\\Debug"+ "\\Data\\omniBillMsDb.sdf";
 
             IDataAccessLayer my = new DataAccessSpectrum();
 
             string expect = "Data Source=" + HARD_CODED_WORKING_DIRECTORY;
 
-            Assert.AreEqual(expect, my.ConnectionString);            
+            Assert.AreEqual(expect, my.ConnectionString);
         }
 
         [TestMethod]

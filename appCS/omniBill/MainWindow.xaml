@@ -31,6 +31,7 @@
                     </Border.Effect>
                 </Border>
                 <!-- /Left menu border shadow -->
+
             </Grid>
             <!-- /contentWrapper -->
 
@@ -48,11 +49,21 @@
                 
                 <TextBlock VerticalAlignment="Top" ><Run Text="Content"/><Run Language="fi-fi" Text=" Context based menu"/></TextBlock>
 
-                <Image RenderOptions.BitmapScalingMode="Fant" Height="40" Width="40" Margin="0,0,10,0" VerticalAlignment="Center" HorizontalAlignment="Right" Source="Resources/settings.png" Name="imgSettings"/>
-                
+                <Menu HorizontalAlignment="Right" Background="White">
+                    
+                    <MenuItem>
+                        <MenuItem.Header>
+                            <Image RenderOptions.BitmapScalingMode="Fant" Height="40" Width="40" Source="Resources/settings.png" Name="imgSettings" />
+                        </MenuItem.Header>
+                        
+                        <MenuItem Header="User" Click="settingsDropDownMenuUserItemClick"/>
+                        <MenuItem Header="About"/>
+                        <MenuItem Header="Settings"/>
+                    </MenuItem>
+               </Menu>
+
             </Grid>
             <!-- /contextMenu -->
-
         </Grid>
         <!-- /contentGrid -->
         
