@@ -204,6 +204,8 @@ namespace omniBill.InnerComponents.DataAccessLayer
             user.CompanyName = reader.GetString(i++);
             user.ContactName = reader.GetString(i++);
             user.Street = reader.GetString(i++);
+            user.PostCode = reader.GetString(i++);
+            user.City = reader.GetString(i++);
 
             user.BankName = reader.GetString(i++);
             user.BankAccount = reader.GetString(i++);
@@ -217,7 +219,9 @@ namespace omniBill.InnerComponents.DataAccessLayer
 	         * companyName		NVARCHAR(50)
 	         * contactName		NVARCHAR(50)
 	         * street			NVARCHAR(250)
-	         * bankName		NVARCHAR(300)
+             * postCode         NVARCHAR(25)
+             * city             NVARCHAR(75)
+	         * bankName		    NVARCHAR(300)
 	         * bankAccount		NVARCHAR(250)
 	         * businessId		NVARCHAR(10)
 	         * phoneNumber		NVARCHAR(100)
@@ -227,12 +231,20 @@ namespace omniBill.InnerComponents.DataAccessLayer
             String[][] myProperties =
             {
                 //property NAMES
-                new string[]{keyName, "companyName", "contactName", "street", "bankName", 
-                    "bankAccount", "businessId", "phoneNumber", "email"},
+                new string[]
+                {
+                    keyName, "companyName", "contactName", "street", "postCode", "city",
+                    "bankName", "bankAccount", "businessId", "phoneNumber", "email"
+                },
+
                 //property VALUES
-                new string[]{String.Format("{0}", user.Key), String.Format("\'{0}\'", user.CompanyName), String.Format("\'{0}\'", user.ContactName), 
-                    String.Format("\'{0}\'", user.Street), String.Format("\'{0}\'", user.BankName), String.Format("\'{0}\'", user.BankAccount), 
-                    String.Format("\'{0}\'", user.BusinessId), String.Format("\'{0}\'", user.PhoneNumber), String.Format("\'{0}\'", user.Email)}
+                new string[]
+                {
+                    String.Format("{0}", user.Key), String.Format("\'{0}\'", user.CompanyName), String.Format("\'{0}\'", user.ContactName), 
+                    String.Format("\'{0}\'", user.Street), String.Format("\'{0}\'", user.PostCode),String.Format("\'{0}\'", user.City),
+                    String.Format("\'{0}\'", user.BankName), String.Format("\'{0}\'", user.BankAccount), 
+                    String.Format("\'{0}\'", user.BusinessId), String.Format("\'{0}\'", user.PhoneNumber), String.Format("\'{0}\'", user.Email)
+                }
             };
 
             return myProperties;

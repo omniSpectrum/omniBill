@@ -1,6 +1,8 @@
 ﻿using omniBill.InnerComponents.Models;
 using System;
 using System.Data.SqlServerCe;
+using System.Data;
+using omniBill.InnerComponents.Interfaces;
 
 namespace omniBill.InnerComponents.DataAccessLayer
 {
@@ -37,13 +39,21 @@ namespace omniBill.InnerComponents.DataAccessLayer
 
     public class StoredProcedureRepo
     {
-        private string connectionString = (new DataAccessSpectrum()).ConnectionString;
+        private string connectionString;
+
+        public StoredProcedureRepo()
+        {
+            string binaryFolderConnectionString = (new DataAccessSpectrum()).ConnectionString;
+            connectionString = binaryFolderConnectionString.Replace("\\bin\\Debug", "");
+        }
 
         public void CreateTables()
         {
             using (SqlCeConnection sn = new SqlCeConnection(connectionString))
             {
-                sn.Open();        
+                if (sn.State == ConnectionState.Closed)
+                    sn.Open(); 
+                       
                 SqlCeCommand cmd = sn.CreateCommand();
 
                 cmd.CommandText =
@@ -116,7 +126,7 @@ namespace omniBill.InnerComponents.DataAccessLayer
                     	PRIMARY KEY(invoiceId, itemId)
                     )";
                 cmd.ExecuteNonQuery();
-                
+
                 sn.Close();
             }
         }
@@ -144,8 +154,9 @@ namespace omniBill.InnerComponents.DataAccessLayer
 
         public void InsertData()
         {
-            DataAccessSpectrum db = new DataAccessSpectrum();
-            db.Users.Create(new UserTable());
+            
+            IDataAccessLayer db = new DataAccessSpectrum(DataStorage.MSSql, connectionString);
+            //db.Users.Create(new UserTable());
         }
     }
 }

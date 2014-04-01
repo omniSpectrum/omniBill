@@ -98,6 +98,11 @@ namespace omniBill
             Grid.SetColumn(tbCompanyName, 1);
             userGrid.Children.Add(tbCompanyName);
         }
+
+        private void settingsDropDownMenuAboutItemClick(object sender, RoutedEventArgs e)
+        {
+            displayAboutPage();
+        }
         #endregion
 
         #region UI General functions
@@ -248,9 +253,5 @@ namespace omniBill
         }
         #endregion
 
-
-
-
-        
     }
 }

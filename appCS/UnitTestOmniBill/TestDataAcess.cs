@@ -60,8 +60,8 @@ namespace UnitTestOmniBill
         {
             IDataAccessLayer db = new DataAccessSpectrum();
             //INSERT TEST
-            UserTable initialUser = new UserTable(0, "omniSpectrum", "Daniel", "Random", "Nordea", "123455", 
-                "A32432", "2344242", "dana@gmail.com");
+            UserTable initialUser = new UserTable(0, "omniSpectrum", "Daniel", "Random", "598", 
+                "Espoo", "Nordea", "123455", "A32432", "2344242", "dana@gmail.com");
 
             db.Users.Create(initialUser);
 

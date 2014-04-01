@@ -49,16 +49,18 @@
                 
                 <TextBlock VerticalAlignment="Top" ><Run Text="Content"/><Run Language="fi-fi" Text=" Context based menu"/></TextBlock>
 
-                <Menu HorizontalAlignment="Right" Background="White">
+                <Menu HorizontalAlignment="Right" Background="White" VerticalAlignment="Center">
                     
                     <MenuItem>
                         <MenuItem.Header>
                             <Image RenderOptions.BitmapScalingMode="Fant" Height="40" Width="40" Source="Resources/settings.png" Name="imgSettings" />
                         </MenuItem.Header>
-                        
-                        <MenuItem Header="User" Click="settingsDropDownMenuUserItemClick"/>
-                        <MenuItem Header="About"/>
-                        <MenuItem Header="Settings"/>
+
+                        <MenuItem Header="User" Click="settingsDropDownMenuUserItemClick" Background="White"/>
+                        <MenuItem Height="1" Background="LightGray"/><!--Separator-->
+                        <MenuItem Header="About" Click="settingsDropDownMenuAboutItemClick" Background="White" />
+                        <MenuItem Height="1" Background="LightGray"/><!--Separator-->
+                        <MenuItem Header="Settings" Background="White"/>
                     </MenuItem>
                </Menu>
 
