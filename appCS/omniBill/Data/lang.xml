@@ -50,4 +50,64 @@
     <russian>Связаться с нами</russian>
     <portugese>Fale Conosco</portugese>
   </record>
+  <record>
+    <english>Company Name</english>
+    <finnish>Yrityksen nimi</finnish>
+    <russian>Название компании</russian>
+    <portugese>Nome da companhia</portugese>
+  </record>
+  <record>
+    <english>Contact Name</english>
+    <finnish>Kontakti</finnish>
+    <russian>Имя контакта</russian>
+    <portugese>Nome do Contato</portugese>
+  </record>
+  <record>
+    <english>Street</english>
+    <finnish>Osoite</finnish>
+    <russian>Адрес</russian>
+    <portugese>Rua</portugese>
+  </record>
+  <record>
+    <english>Post Code</english>
+    <finnish>Postinumero</finnish>
+    <russian>Почтовый индекс</russian>
+    <portugese>CEP</portugese>
+  </record>
+  <record>
+    <english>City</english>
+    <finnish>Postitoimipaikka</finnish>
+    <russian>Город</russian>
+    <portugese>Cidade</portugese>
+  </record>
+  <record>
+    <english>Bank Name</english>
+    <finnish>Pankki</finnish>
+    <russian>Название банка</russian>
+    <portugese>Banco</portugese>
+  </record>
+  <record>
+    <english>Bank Account</english>
+    <finnish>Tilinumero</finnish>
+    <russian>Номер счета</russian>
+    <portugese>Número da Conta</portugese>
+  </record>
+  <record>
+    <english>Business ID</english>
+    <finnish>Y-tunnus</finnish>
+    <russian>ИНН</russian>
+    <portugese>Número da Empresa</portugese>
+  </record>
+  <record>
+    <english>Phone Number</english>
+    <finnish>Puhelinnumero</finnish>
+    <russian>Номер телефона</russian>
+    <portugese>Telefone</portugese>
+  </record>
+  <record>
+    <english>E-mail</english>
+    <finnish>E-mail</finnish>
+    <russian>E-mail</russian>
+    <portugese>E-mail</portugese>
+  </record>
 </language>

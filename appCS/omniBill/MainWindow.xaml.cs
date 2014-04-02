@@ -59,9 +59,9 @@ namespace omniBill
 
             contentWrapper.Children.Add(userGrid);
 
-            RowDefinition[] rows = new RowDefinition[10];
+            RowDefinition[] rows = new RowDefinition[11];
 
-            for (int i = 0; i < 10; i++) 
+            for (int i = 0; i < rows.Length; i++) 
             {
                 rows[i] = new RowDefinition();
                 rows[i].Height = new GridLength(1, GridUnitType.Star);
@@ -81,22 +81,76 @@ namespace omniBill
 
 
             //TODO put textboxes in array
+            TextBox[] userTextBoxes = new TextBox[10];
+            TextBlock[] userLabels = new TextBlock[10];
 
-            TextBlock lbCompanyName = new TextBlock();
-            // TODO lbCompanyName = fetch from lang.xml
-            lbCompanyName.Text = "Company Name";
-            //lbCompanyName.Margin = new Thickness(10);
-            Grid.SetRow(lbCompanyName, 0);
-            Grid.SetColumn(lbCompanyName, 0);
-            userGrid.Children.Add(lbCompanyName);
+            for (int i = 0; i < userTextBoxes.Length; i++)
+            {
+                userTextBoxes[i] = new TextBox();
+                userLabels[i] = new TextBlock();
+            }
 
+            int x = 0;
+            //0
+            userLabels[x].Text = langSet["Company Name"][currentLanguage];
+            userTextBoxes[x++].Name = "tbCompanyName";
 
-            TextBox tbCompanyName = new TextBox();
-            //TODO tbCompanyName.text = fetch single user from db
-            //tbCompanyName.Margin = new Thickness(10);
-            Grid.SetRow(tbCompanyName, 0);
-            Grid.SetColumn(tbCompanyName, 1);
-            userGrid.Children.Add(tbCompanyName);
+            userLabels[x].Text = langSet["Contact Name"][currentLanguage];
+            userTextBoxes[x++].Name = "tbContactName";
+
+            userLabels[x].Text = langSet["Street"][currentLanguage];
+            userTextBoxes[x++].Name = "tbStreet";
+
+            userLabels[x].Text = langSet["Post Code"][currentLanguage];
+            userTextBoxes[x++].Name = "tbPostCode";
+
+            userLabels[x].Text = langSet["City"][currentLanguage];
+            userTextBoxes[x++].Name = "tbCity";
+            //5
+            userLabels[x].Text = langSet["Bank Name"][currentLanguage];
+            userTextBoxes[x++].Name = "tbBankName";
+
+            userLabels[x].Text = langSet["Bank Account"][currentLanguage];
+            userTextBoxes[x++].Name = "tbBankAccount";
+
+            userLabels[x].Text = langSet["Business ID"][currentLanguage];
+            userTextBoxes[x++].Name = "tbBusinessId";
+
+            userLabels[x].Text = langSet["Phone Number"][currentLanguage];
+            userTextBoxes[x++].Name = "tbPhoneNumber";
+
+            userLabels[x].Text = langSet["E-mail"][currentLanguage];
+            userTextBoxes[x++].Name = "tbEmail";
+
+            // TODO for loop
+            for (int i = 0; i < userTextBoxes.Length; i++)
+            {
+                Grid.SetRow(userLabels[i], i);
+                Grid.SetColumn(userLabels[i], 0);
+
+                userGrid.Children.Add(userLabels[i]);
+
+                Grid.SetRow(userTextBoxes[i], i);
+                Grid.SetColumn(userTextBoxes[i], 1);
+
+                userGrid.Children.Add(userTextBoxes[i]);
+            }
+
+            Button button = new Button();
+            button.Name = "btSaveUser";
+            button.Content = "Save bitch";
+            //button.Click+=button_SaveUserData;
+            Grid.SetRow(button, 10);
+            Grid.SetColumn(button, 1);
+            userGrid.Children.Add(button);
+
+            //userModelToDisplay();
+            
+        }
+
+        private void button_SaveUserData(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         private void settingsDropDownMenuAboutItemClick(object sender, RoutedEventArgs e)
@@ -232,7 +286,21 @@ namespace omniBill
 
         #endregion
 
+
         #region DataToModel functions
+
+        private void userModelToDisplay()
+        {
+            List<UserTable> userTable = userHandler.ItemList();
+
+            if (userTable.Count > 0)
+            {
+                UserTable user = userTable[0];
+                
+
+            }
+        }
+
         #endregion
 
         #region Setting functions
