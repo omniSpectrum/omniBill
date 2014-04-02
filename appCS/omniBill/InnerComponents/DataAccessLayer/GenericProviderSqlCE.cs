@@ -198,20 +198,21 @@ namespace omniBill.InnerComponents.DataAccessLayer
 
         private void MapObject(SqlCeDataReader reader, UserTable user)
         {
-            int i = 0;
+            user.Key = reader.GetInt32(0);
 
-            user.Key = reader.GetInt32(i++);
-            user.CompanyName = reader.GetString(i++);
-            user.ContactName = reader.GetString(i++);
-            user.Street = reader.GetString(i++);
-            user.PostCode = reader.GetString(i++);
-            user.City = reader.GetString(i++);
+            user.CompanyName = reader.IsDBNull(1) ? null : reader.GetString(1); 
+            user.ContactName = reader.GetString(2);
+            user.Street = reader.IsDBNull(3) ? null : reader.GetString(3); 
 
-            user.BankName = reader.GetString(i++);
-            user.BankAccount = reader.GetString(i++);
-            user.BusinessId = reader.GetString(i++);
-            user.PhoneNumber = reader.GetString(i++);
-            user.Email = reader.GetString(i++);
+            user.PostCode = reader.IsDBNull(4) ? null : reader.GetString(4);
+            user.City = reader.IsDBNull(5) ? null : reader.GetString(5);
+            user.BankName = reader.IsDBNull(6) ? null : reader.GetString(6);
+
+            user.BankAccount = reader.IsDBNull(7) ? null : reader.GetString(7);
+            user.BusinessId = reader.IsDBNull(8) ? null : reader.GetString(8);
+            user.PhoneNumber = reader.IsDBNull(9) ? null : reader.GetString(9);
+
+            user.Email = reader.GetString(10);
         }
         private String[][] MapProperties(UserTable user)
         {

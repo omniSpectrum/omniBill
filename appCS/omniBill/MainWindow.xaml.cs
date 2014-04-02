@@ -48,20 +48,33 @@ namespace omniBill
 
         private void settingsDropDownMenuUserItemClick(object sender, RoutedEventArgs e)
         {
+            //Clear ContentWrapper
             cleanContentWrapper();
 
+            //ScrollViewer create
+            ScrollViewer userTabScrollView = new ScrollViewer();
+            userTabScrollView.HorizontalScrollBarVisibility = ScrollBarVisibility.Auto;
+            userTabScrollView.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
+            userTabScrollView.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
+            userTabScrollView.VerticalAlignment = System.Windows.VerticalAlignment.Stretch;
+
+            //ScrollViewer place into ContentWrapper
+            Grid.SetColumn(userTabScrollView, 0);
+            Grid.SetColumnSpan(userTabScrollView, 2);
+            contentWrapper.Children.Add(userTabScrollView);
+
+            //Create user GRID
             Grid userGrid = new Grid();
             userGrid.Name = "UserTabGrid";
-            Grid.SetColumn(userGrid, 0);
-            Grid.SetColumnSpan(userGrid, 2);
             userGrid.Background = Brushes.White;
             userGrid.Margin = new Thickness(10);
 
-            contentWrapper.Children.Add(userGrid);
+            userTabScrollView.Content = userGrid;
 
+            //DEFINE rows and columns
             RowDefinition[] rows = new RowDefinition[11];
 
-            for (int i = 0; i < rows.Length; i++) 
+            for (int i = 0; i < rows.Length; i++)
             {
                 rows[i] = new RowDefinition();
                 rows[i].Height = new GridLength(1, GridUnitType.Star);
@@ -76,11 +89,10 @@ namespace omniBill
 
             columns[0].Width = new GridLength(1, GridUnitType.Star);
             userGrid.ColumnDefinitions.Add(columns[0]);
-            columns[1].Width = new GridLength(2, GridUnitType.Star);
-            userGrid.ColumnDefinitions.Add(columns[1]); 
-
-
-            //TODO put textboxes in array
+            columns[1].Width = new GridLength(3, GridUnitType.Star);
+            userGrid.ColumnDefinitions.Add(columns[1]);
+            
+            //Create TextBoxes and labels
             TextBox[] userTextBoxes = new TextBox[10];
             TextBlock[] userLabels = new TextBlock[10];
 
@@ -122,16 +134,24 @@ namespace omniBill
             userLabels[x].Text = langSet["E-mail"][currentLanguage];
             userTextBoxes[x++].Name = "tbEmail";
 
+            var commonMargin = new Thickness(18, 4, 18, 4);
+
             // TODO for loop
             for (int i = 0; i < userTextBoxes.Length; i++)
             {
                 Grid.SetRow(userLabels[i], i);
                 Grid.SetColumn(userLabels[i], 0);
+                userLabels[i].TextWrapping = TextWrapping.Wrap;
+                userLabels[i].Margin = commonMargin;
+                userLabels[i].VerticalAlignment = System.Windows.VerticalAlignment.Center;
 
                 userGrid.Children.Add(userLabels[i]);
 
                 Grid.SetRow(userTextBoxes[i], i);
                 Grid.SetColumn(userTextBoxes[i], 1);
+                userTextBoxes[i].Margin = commonMargin;
+                userTextBoxes[i].MaxHeight = 30;
+                userTextBoxes[i].VerticalAlignment = System.Windows.VerticalAlignment.Center;
 
                 userGrid.Children.Add(userTextBoxes[i]);
             }
@@ -140,11 +160,17 @@ namespace omniBill
             button.Name = "btSaveUser";
             button.Content = "Save bitch";
             //button.Click+=button_SaveUserData;
+
             Grid.SetRow(button, 10);
             Grid.SetColumn(button, 1);
+            button.Margin = commonMargin;
+            button.HorizontalAlignment = System.Windows.HorizontalAlignment.Right;
+            button.MaxHeight = 30;
+            button.Width = 150;
+
             userGrid.Children.Add(button);
 
-            //userModelToDisplay();
+            userModelToDisplay(userTextBoxes);
             
         }
 
@@ -289,15 +315,26 @@ namespace omniBill
 
         #region DataToModel functions
 
-        private void userModelToDisplay()
+        private void userModelToDisplay(TextBox[] tbUser)
         {
             List<UserTable> userTable = userHandler.ItemList();
 
             if (userTable.Count > 0)
             {
                 UserTable user = userTable[0];
-                
 
+                int i = 0;
+
+                tbUser[i++].Text = user.CompanyName;
+                tbUser[i++].Text = user.ContactName;
+                tbUser[i++].Text = user.Street;
+                tbUser[i++].Text = user.PostCode;
+                tbUser[i++].Text = user.City;
+                tbUser[i++].Text = user.BankName;
+                tbUser[i++].Text = user.BankAccount;
+                tbUser[i++].Text = user.BusinessId;
+                tbUser[i++].Text = user.PhoneNumber;
+                tbUser[i++].Text = user.Email;
             }
         }
 
