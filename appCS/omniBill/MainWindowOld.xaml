@@ -1,4 +1,4 @@
-﻿<Window x:Class="omniBill.MainWindow"
+﻿<Window x:Class="omniBill.MainWindowOld"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="omniBill" Height="350" Width="555" MinHeight="350" MinWidth="555" WindowStartupLocation="CenterScreen" Icon="50_cash_money_dollars_dollar_bill.ico" FontSize="16" FontFamily="Calibri" Foreground="#FF8F99A0">

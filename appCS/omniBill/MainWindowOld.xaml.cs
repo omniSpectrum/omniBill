@@ -17,18 +17,17 @@ using omniBill.InnerComponents.Localization;
 using omniBill.InnerComponents.DataAccessLayer;
 using System.Threading;
 using System.Globalization;
-using FirstFloor.ModernUI.Windows.Controls;
 
 namespace omniBill
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindowOld : Window
     {   
         IHandler<UserTable> userHandler;
 
-        public MainWindow()
+        public MainWindowOld()
         {
             InitializeComponent();
             changeLanguage();

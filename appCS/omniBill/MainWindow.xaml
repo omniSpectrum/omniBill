@@ -1,18 +1,25 @@
-﻿<mui:ModernWindow x:Class="omniBill.TestDrive"
+﻿<controls:MetroWindow x:Class="omniBill.MainWindow"
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-  xmlns:mui="http://firstfloorsoftware.com/ModernUI"
-  Title="MainWindow" Height="350" Width="525">
-    <mui:ModernWindow.MenuLinkGroups>
-        <mui:LinkGroup DisplayName="Group 1">
-            <mui:LinkGroup.Links>
-                <mui:Link DisplayName="xhamster" />
-                <mui:Link DisplayName="xvideo" />
-                <mui:Link DisplayName="pornhub" />
-            </mui:LinkGroup.Links>
-        </mui:LinkGroup>
-    </mui:ModernWindow.MenuLinkGroups>
-    <mui:ModernTab>
-        
-    </mui:ModernTab>
-</mui:ModernWindow>
+  xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+  Title="omniBill MOFO!" Height="350" Width="525">
+    <controls:MetroWindow.WindowCommands>
+        <controls:WindowCommands>
+            <Button Content="settings" />
+            <Button>
+                <StackPanel Orientation="Horizontal">
+                    <Rectangle Width="20" Height="20"
+                   Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                        <Rectangle.OpacityMask>
+                            <VisualBrush Stretch="Fill" />
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                    <TextBlock Margin="4 0 0 0"
+                   VerticalAlignment="Center"
+                   Text="deploy cupcakes" />
+                </StackPanel>
+            </Button>
+        </controls:WindowCommands>
+    </controls:MetroWindow.WindowCommands>
+</controls:MetroWindow>
+
