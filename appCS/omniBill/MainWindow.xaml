@@ -7,9 +7,12 @@
         <mui:LinkGroup DisplayName="Group 1">
             <mui:LinkGroup.Links>
                 <mui:Link DisplayName="xhamster" />
-                <mui:Link DisplayName="xhamster" />
-                <mui:Link DisplayName="xhamster" />
+                <mui:Link DisplayName="xvideo" />
+                <mui:Link DisplayName="pornhub" />
             </mui:LinkGroup.Links>
         </mui:LinkGroup>
     </mui:ModernWindow.MenuLinkGroups>
+    <mui:ModernTab>
+        
+    </mui:ModernTab>
 </mui:ModernWindow>
