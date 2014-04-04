@@ -1,0 +1,424 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="omniBillMsDbModel.Store" Alias="Self" Provider="System.Data.SqlServerCe.4.0" ProviderManifestToken="4.0" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="omniBillMsDbModelStoreContainer">
+          <EntitySet Name="Customer" EntityType="omniBillMsDbModel.Store.Customer" store:Type="Tables" />
+          <EntitySet Name="DraftInvoice" EntityType="omniBillMsDbModel.Store.DraftInvoice" store:Type="Tables" />
+          <EntitySet Name="InvoiceLine" EntityType="omniBillMsDbModel.Store.InvoiceLine" store:Type="Tables" />
+          <EntitySet Name="Item" EntityType="omniBillMsDbModel.Store.Item" store:Type="Tables" />
+          <EntitySet Name="UserTable" EntityType="omniBillMsDbModel.Store.UserTable" store:Type="Tables" />
+          <EntitySet Name="VatGroup" EntityType="omniBillMsDbModel.Store.VatGroup" store:Type="Tables" />
+          <AssociationSet Name="FK__DraftInvoice__0000000000000352" Association="omniBillMsDbModel.Store.FK__DraftInvoice__0000000000000352">
+            <End Role="UserTable" EntitySet="UserTable" />
+            <End Role="DraftInvoice" EntitySet="DraftInvoice" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DraftInvoice__0000000000000356" Association="omniBillMsDbModel.Store.FK__DraftInvoice__0000000000000356">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="DraftInvoice" EntitySet="DraftInvoice" />
+          </AssociationSet>
+          <AssociationSet Name="FK__InvoiceLine__0000000000000368" Association="omniBillMsDbModel.Store.FK__InvoiceLine__0000000000000368">
+            <End Role="DraftInvoice" EntitySet="DraftInvoice" />
+            <End Role="InvoiceLine" EntitySet="InvoiceLine" />
+          </AssociationSet>
+          <AssociationSet Name="FK__InvoiceLine__000000000000036C" Association="omniBillMsDbModel.Store.FK__InvoiceLine__000000000000036C">
+            <End Role="Item" EntitySet="Item" />
+            <End Role="InvoiceLine" EntitySet="InvoiceLine" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Item__0000000000000340" Association="omniBillMsDbModel.Store.FK__Item__0000000000000340">
+            <End Role="VatGroup" EntitySet="VatGroup" />
+            <End Role="Item" EntitySet="Item" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="customerId" />
+          </Key>
+          <Property Name="customerId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="customerName" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="street" Type="nvarchar" Nullable="false" MaxLength="250" />
+          <Property Name="postCode" Type="nvarchar" Nullable="false" MaxLength="25" />
+          <Property Name="city" Type="nvarchar" Nullable="false" MaxLength="30" />
+          <Property Name="phoneNumber" Type="nvarchar" MaxLength="15" />
+          <Property Name="email" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="DraftInvoice">
+          <Key>
+            <PropertyRef Name="invoiceId" />
+          </Key>
+          <Property Name="invoiceId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="userId" Type="int" Nullable="false" />
+          <Property Name="customerid" Type="int" Nullable="false" />
+          <Property Name="dateT" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="InvoiceLine">
+          <Key>
+            <PropertyRef Name="invoiceId" />
+            <PropertyRef Name="itemId" />
+          </Key>
+          <Property Name="invoiceId" Type="int" Nullable="false" />
+          <Property Name="itemId" Type="int" Nullable="false" />
+          <Property Name="quantity" Type="int" Nullable="false" />
+          <Property Name="comment" Type="nvarchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="Item">
+          <Key>
+            <PropertyRef Name="itemId" />
+          </Key>
+          <Property Name="itemId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="itemName" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="descr" Type="nvarchar" Nullable="false" MaxLength="2000" />
+          <Property Name="price" Type="money" Nullable="false" />
+          <Property Name="vatId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserTable">
+          <Key>
+            <PropertyRef Name="userId" />
+          </Key>
+          <Property Name="userId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="companyName" Type="nvarchar" MaxLength="50" />
+          <Property Name="contactName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="street" Type="nvarchar" MaxLength="250" />
+          <Property Name="postCode" Type="nvarchar" MaxLength="25" />
+          <Property Name="city" Type="nvarchar" MaxLength="75" />
+          <Property Name="bankName" Type="nvarchar" MaxLength="140" />
+          <Property Name="bankAccount" Type="nvarchar" MaxLength="140" />
+          <Property Name="businessId" Type="nvarchar" MaxLength="10" />
+          <Property Name="phoneNumber" Type="nvarchar" MaxLength="100" />
+          <Property Name="email" Type="nvarchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="VatGroup">
+          <Key>
+            <PropertyRef Name="vatId" />
+          </Key>
+          <Property Name="vatId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="percentage" Type="float" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__DraftInvoice__0000000000000352">
+          <End Role="UserTable" Type="omniBillMsDbModel.Store.UserTable" Multiplicity="1" />
+          <End Role="DraftInvoice" Type="omniBillMsDbModel.Store.DraftInvoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserTable">
+              <PropertyRef Name="userId" />
+            </Principal>
+            <Dependent Role="DraftInvoice">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DraftInvoice__0000000000000356">
+          <End Role="Customer" Type="omniBillMsDbModel.Store.Customer" Multiplicity="1" />
+          <End Role="DraftInvoice" Type="omniBillMsDbModel.Store.DraftInvoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="customerId" />
+            </Principal>
+            <Dependent Role="DraftInvoice">
+              <PropertyRef Name="customerid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__InvoiceLine__0000000000000368">
+          <End Role="DraftInvoice" Type="omniBillMsDbModel.Store.DraftInvoice" Multiplicity="1" />
+          <End Role="InvoiceLine" Type="omniBillMsDbModel.Store.InvoiceLine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DraftInvoice">
+              <PropertyRef Name="invoiceId" />
+            </Principal>
+            <Dependent Role="InvoiceLine">
+              <PropertyRef Name="invoiceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__InvoiceLine__000000000000036C">
+          <End Role="Item" Type="omniBillMsDbModel.Store.Item" Multiplicity="1" />
+          <End Role="InvoiceLine" Type="omniBillMsDbModel.Store.InvoiceLine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="itemId" />
+            </Principal>
+            <Dependent Role="InvoiceLine">
+              <PropertyRef Name="itemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Item__0000000000000340">
+          <End Role="VatGroup" Type="omniBillMsDbModel.Store.VatGroup" Multiplicity="1" />
+          <End Role="Item" Type="omniBillMsDbModel.Store.Item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VatGroup">
+              <PropertyRef Name="vatId" />
+            </Principal>
+            <Dependent Role="Item">
+              <PropertyRef Name="vatId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="omniBillMsDbModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="omniBillMsDbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Customers" EntityType="omniBillMsDbModel.Customer" />
+          <EntitySet Name="DraftInvoices" EntityType="omniBillMsDbModel.DraftInvoice" />
+          <EntitySet Name="InvoiceLines" EntityType="omniBillMsDbModel.InvoiceLine" />
+          <EntitySet Name="Items" EntityType="omniBillMsDbModel.Item" />
+          <EntitySet Name="UserTables" EntityType="omniBillMsDbModel.UserTable" />
+          <EntitySet Name="VatGroups" EntityType="omniBillMsDbModel.VatGroup" />
+          <AssociationSet Name="FK__DraftInvoice__0000000000000356" Association="omniBillMsDbModel.FK__DraftInvoice__0000000000000356">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="DraftInvoice" EntitySet="DraftInvoices" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DraftInvoice__0000000000000352" Association="omniBillMsDbModel.FK__DraftInvoice__0000000000000352">
+            <End Role="UserTable" EntitySet="UserTables" />
+            <End Role="DraftInvoice" EntitySet="DraftInvoices" />
+          </AssociationSet>
+          <AssociationSet Name="FK__InvoiceLine__0000000000000368" Association="omniBillMsDbModel.FK__InvoiceLine__0000000000000368">
+            <End Role="DraftInvoice" EntitySet="DraftInvoices" />
+            <End Role="InvoiceLine" EntitySet="InvoiceLines" />
+          </AssociationSet>
+          <AssociationSet Name="FK__InvoiceLine__000000000000036C" Association="omniBillMsDbModel.FK__InvoiceLine__000000000000036C">
+            <End Role="Item" EntitySet="Items" />
+            <End Role="InvoiceLine" EntitySet="InvoiceLines" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Item__0000000000000340" Association="omniBillMsDbModel.FK__Item__0000000000000340">
+            <End Role="VatGroup" EntitySet="VatGroups" />
+            <End Role="Item" EntitySet="Items" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="customerId" />
+          </Key>
+          <Property Name="customerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="customerName" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="street" Type="String" Nullable="false" MaxLength="250" Unicode="true" FixedLength="false" />
+          <Property Name="postCode" Type="String" Nullable="false" MaxLength="25" Unicode="true" FixedLength="false" />
+          <Property Name="city" Type="String" Nullable="false" MaxLength="30" Unicode="true" FixedLength="false" />
+          <Property Name="phoneNumber" Type="String" MaxLength="15" Unicode="true" FixedLength="false" />
+          <Property Name="email" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="DraftInvoices" Relationship="omniBillMsDbModel.FK__DraftInvoice__0000000000000356" FromRole="Customer" ToRole="DraftInvoice" />
+        </EntityType>
+        <EntityType Name="DraftInvoice">
+          <Key>
+            <PropertyRef Name="invoiceId" />
+          </Key>
+          <Property Name="invoiceId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="userId" Type="Int32" Nullable="false" />
+          <Property Name="customerid" Type="Int32" Nullable="false" />
+          <Property Name="dateT" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Customer" Relationship="omniBillMsDbModel.FK__DraftInvoice__0000000000000356" FromRole="DraftInvoice" ToRole="Customer" />
+          <NavigationProperty Name="UserTable" Relationship="omniBillMsDbModel.FK__DraftInvoice__0000000000000352" FromRole="DraftInvoice" ToRole="UserTable" />
+          <NavigationProperty Name="InvoiceLines" Relationship="omniBillMsDbModel.FK__InvoiceLine__0000000000000368" FromRole="DraftInvoice" ToRole="InvoiceLine" />
+        </EntityType>
+        <EntityType Name="InvoiceLine">
+          <Key>
+            <PropertyRef Name="invoiceId" />
+            <PropertyRef Name="itemId" />
+          </Key>
+          <Property Name="invoiceId" Type="Int32" Nullable="false" />
+          <Property Name="itemId" Type="Int32" Nullable="false" />
+          <Property Name="quantity" Type="Int32" Nullable="false" />
+          <Property Name="comment" Type="String" MaxLength="1000" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="DraftInvoice" Relationship="omniBillMsDbModel.FK__InvoiceLine__0000000000000368" FromRole="InvoiceLine" ToRole="DraftInvoice" />
+          <NavigationProperty Name="Item" Relationship="omniBillMsDbModel.FK__InvoiceLine__000000000000036C" FromRole="InvoiceLine" ToRole="Item" />
+        </EntityType>
+        <EntityType Name="Item">
+          <Key>
+            <PropertyRef Name="itemId" />
+          </Key>
+          <Property Name="itemId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="itemName" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="descr" Type="String" Nullable="false" MaxLength="2000" Unicode="true" FixedLength="false" />
+          <Property Name="price" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="vatId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="InvoiceLines" Relationship="omniBillMsDbModel.FK__InvoiceLine__000000000000036C" FromRole="Item" ToRole="InvoiceLine" />
+          <NavigationProperty Name="VatGroup" Relationship="omniBillMsDbModel.FK__Item__0000000000000340" FromRole="Item" ToRole="VatGroup" />
+        </EntityType>
+        <EntityType Name="UserTable">
+          <Key>
+            <PropertyRef Name="userId" />
+          </Key>
+          <Property Name="userId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="companyName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="contactName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="street" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
+          <Property Name="postCode" Type="String" MaxLength="25" Unicode="true" FixedLength="false" />
+          <Property Name="city" Type="String" MaxLength="75" Unicode="true" FixedLength="false" />
+          <Property Name="bankName" Type="String" MaxLength="140" Unicode="true" FixedLength="false" />
+          <Property Name="bankAccount" Type="String" MaxLength="140" Unicode="true" FixedLength="false" />
+          <Property Name="businessId" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="phoneNumber" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="email" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="DraftInvoices" Relationship="omniBillMsDbModel.FK__DraftInvoice__0000000000000352" FromRole="UserTable" ToRole="DraftInvoice" />
+        </EntityType>
+        <EntityType Name="VatGroup">
+          <Key>
+            <PropertyRef Name="vatId" />
+          </Key>
+          <Property Name="vatId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="percentage" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Items" Relationship="omniBillMsDbModel.FK__Item__0000000000000340" FromRole="VatGroup" ToRole="Item" />
+        </EntityType>
+        <Association Name="FK__DraftInvoice__0000000000000356">
+          <End Role="Customer" Type="omniBillMsDbModel.Customer" Multiplicity="1" />
+          <End Role="DraftInvoice" Type="omniBillMsDbModel.DraftInvoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="customerId" />
+            </Principal>
+            <Dependent Role="DraftInvoice">
+              <PropertyRef Name="customerid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DraftInvoice__0000000000000352">
+          <End Role="UserTable" Type="omniBillMsDbModel.UserTable" Multiplicity="1" />
+          <End Role="DraftInvoice" Type="omniBillMsDbModel.DraftInvoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserTable">
+              <PropertyRef Name="userId" />
+            </Principal>
+            <Dependent Role="DraftInvoice">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__InvoiceLine__0000000000000368">
+          <End Role="DraftInvoice" Type="omniBillMsDbModel.DraftInvoice" Multiplicity="1" />
+          <End Role="InvoiceLine" Type="omniBillMsDbModel.InvoiceLine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DraftInvoice">
+              <PropertyRef Name="invoiceId" />
+            </Principal>
+            <Dependent Role="InvoiceLine">
+              <PropertyRef Name="invoiceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__InvoiceLine__000000000000036C">
+          <End Role="Item" Type="omniBillMsDbModel.Item" Multiplicity="1" />
+          <End Role="InvoiceLine" Type="omniBillMsDbModel.InvoiceLine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="itemId" />
+            </Principal>
+            <Dependent Role="InvoiceLine">
+              <PropertyRef Name="itemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Item__0000000000000340">
+          <End Role="VatGroup" Type="omniBillMsDbModel.VatGroup" Multiplicity="1" />
+          <End Role="Item" Type="omniBillMsDbModel.Item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VatGroup">
+              <PropertyRef Name="vatId" />
+            </Principal>
+            <Dependent Role="Item">
+              <PropertyRef Name="vatId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="omniBillMsDbModelStoreContainer" CdmEntityContainer="omniBillMsDbEntities">
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="omniBillMsDbModel.Customer">
+              <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="customerId" ColumnName="customerId" />
+                <ScalarProperty Name="customerName" ColumnName="customerName" />
+                <ScalarProperty Name="street" ColumnName="street" />
+                <ScalarProperty Name="postCode" ColumnName="postCode" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="phoneNumber" ColumnName="phoneNumber" />
+                <ScalarProperty Name="email" ColumnName="email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DraftInvoices">
+            <EntityTypeMapping TypeName="omniBillMsDbModel.DraftInvoice">
+              <MappingFragment StoreEntitySet="DraftInvoice">
+                <ScalarProperty Name="invoiceId" ColumnName="invoiceId" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="customerid" ColumnName="customerid" />
+                <ScalarProperty Name="dateT" ColumnName="dateT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InvoiceLines">
+            <EntityTypeMapping TypeName="omniBillMsDbModel.InvoiceLine">
+              <MappingFragment StoreEntitySet="InvoiceLine">
+                <ScalarProperty Name="invoiceId" ColumnName="invoiceId" />
+                <ScalarProperty Name="itemId" ColumnName="itemId" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="comment" ColumnName="comment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Items">
+            <EntityTypeMapping TypeName="omniBillMsDbModel.Item">
+              <MappingFragment StoreEntitySet="Item">
+                <ScalarProperty Name="itemId" ColumnName="itemId" />
+                <ScalarProperty Name="itemName" ColumnName="itemName" />
+                <ScalarProperty Name="descr" ColumnName="descr" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="vatId" ColumnName="vatId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserTables">
+            <EntityTypeMapping TypeName="omniBillMsDbModel.UserTable">
+              <MappingFragment StoreEntitySet="UserTable">
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="companyName" ColumnName="companyName" />
+                <ScalarProperty Name="contactName" ColumnName="contactName" />
+                <ScalarProperty Name="street" ColumnName="street" />
+                <ScalarProperty Name="postCode" ColumnName="postCode" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="bankName" ColumnName="bankName" />
+                <ScalarProperty Name="bankAccount" ColumnName="bankAccount" />
+                <ScalarProperty Name="businessId" ColumnName="businessId" />
+                <ScalarProperty Name="phoneNumber" ColumnName="phoneNumber" />
+                <ScalarProperty Name="email" ColumnName="email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VatGroups">
+            <EntityTypeMapping TypeName="omniBillMsDbModel.VatGroup">
+              <MappingFragment StoreEntitySet="VatGroup">
+                <ScalarProperty Name="vatId" ColumnName="vatId" />
+                <ScalarProperty Name="percentage" ColumnName="percentage" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

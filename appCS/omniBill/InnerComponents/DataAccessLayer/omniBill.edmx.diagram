@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e2a43f9b1d8247798169d83f5e788db2" Name="Diagram1">
+        <EntityTypeShape EntityType="omniBillMsDbModel.Customer" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="omniBillMsDbModel.DraftInvoice" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="omniBillMsDbModel.InvoiceLine" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="omniBillMsDbModel.Item" Width="1.5" PointX="3" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="omniBillMsDbModel.UserTable" Width="1.5" PointX="0.75" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="omniBillMsDbModel.VatGroup" Width="1.5" PointX="0.75" PointY="11.375" IsExpanded="true" />
+        <AssociationConnector Association="omniBillMsDbModel.FK__DraftInvoice__0000000000000356" ManuallyRouted="false" />
+        <AssociationConnector Association="omniBillMsDbModel.FK__DraftInvoice__0000000000000352" ManuallyRouted="false" />
+        <AssociationConnector Association="omniBillMsDbModel.FK__InvoiceLine__0000000000000368" ManuallyRouted="false" />
+        <AssociationConnector Association="omniBillMsDbModel.FK__InvoiceLine__000000000000036C" ManuallyRouted="false" />
+        <AssociationConnector Association="omniBillMsDbModel.FK__Item__0000000000000340" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

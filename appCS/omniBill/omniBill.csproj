@@ -13,6 +13,7 @@
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -25,7 +26,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -52,9 +52,19 @@
     <ApplicationIcon>50_cash_money_dollars_dollar_bill.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Dapper">
+      <HintPath>packages\Dapper.1.13\lib\net40\Dapper.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>packages\EntityFramework.5.0.0\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Data.SqlServerCe, Version=4.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -80,21 +90,61 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="InnerComponents\DataAccessLayer\ProviderLanguage.cs" />
-    <Compile Include="InnerComponents\DataAccessLayer\StoredProcedureRepo.cs" />
-    <Compile Include="InnerComponents\DataAccessLayer\IGenericDAO.cs" />
-    <Compile Include="InnerComponents\DataAccessLayer\DataAccessSpectrum.cs" />
-    <Compile Include="InnerComponents\DataAccessLayer\GenericProviderSqlCE.cs" />
-    <Compile Include="InnerComponents\Interfaces\IDataAccessLayer.cs" />
-    <Compile Include="InnerComponents\Interfaces\IHandler.cs" />
+    <Compile Include="InnerComponents\Localization\omniLang.Designer.cs">
+      <DependentUpon>omniLang.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="InnerComponents\Localization\omniLang.fi-fi.Designer.cs">
+      <DependentUpon>omniLang.fi-fi.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="InnerComponents\Localization\omniLang.ru-ru.Designer.cs">
+      <DependentUpon>omniLang.ru-ru.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="InnerComponents\Localization\omniLang.pt-br.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>omniLang.pt-br.resx</DependentUpon>
+    </Compile>
+    <Compile Include="InnerComponents\DataAccessLayer\Customer.cs">
+      <DependentUpon>omniBill.tt</DependentUpon>
+    </Compile>
+    <Compile Include="InnerComponents\DataAccessLayer\DraftInvoice.cs">
+      <DependentUpon>omniBill.tt</DependentUpon>
+    </Compile>
+    <Compile Include="InnerComponents\DataAccessLayer\InvoiceLine.cs">
+      <DependentUpon>omniBill.tt</DependentUpon>
+    </Compile>
+    <Compile Include="InnerComponents\DataAccessLayer\Item.cs">
+      <DependentUpon>omniBill.tt</DependentUpon>
+    </Compile>
+    <Compile Include="InnerComponents\DataAccessLayer\omniBill.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>omniBill.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="InnerComponents\DataAccessLayer\omniBill.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>omniBill.tt</DependentUpon>
+    </Compile>
+    <Compile Include="InnerComponents\DataAccessLayer\omniBill.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>omniBill.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="InnerComponents\DataAccessLayer\UserTable.cs">
+      <DependentUpon>omniBill.tt</DependentUpon>
+    </Compile>
+    <Compile Include="InnerComponents\DataAccessLayer\VatGroup.cs">
+      <DependentUpon>omniBill.tt</DependentUpon>
+    </Compile>
+    <Compile Include="InnerComponents\LogicLayer\IHandler.cs" />
     <Compile Include="InnerComponents\LogicLayer\UserHandler.cs" />
-    <Compile Include="InnerComponents\Models\BaseModel.cs" />
-    <Compile Include="InnerComponents\Models\DraftInvoice.cs" />
-    <Compile Include="InnerComponents\Models\LanguageRecord.cs" />
-    <Compile Include="InnerComponents\Models\Customer.cs" />
-    <Compile Include="InnerComponents\Models\Item.cs" />
-    <Compile Include="InnerComponents\Models\UserTable.cs" />
-    <Compile Include="InnerComponents\Models\VatGroup.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -114,11 +164,45 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="InnerComponents\Localization\omniLang.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>omniLang.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InnerComponents\Localization\omniLang.fi-fi.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>omniLang.fi-fi.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InnerComponents\Localization\omniLang.ru-ru.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>omniLang.ru-ru.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InnerComponents\Localization\omniLang.pt-br.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>omniLang.pt-br.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="app.config" />
+    <EntityDeploy Include="InnerComponents\DataAccessLayer\omniBill.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>omniBill.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="InnerComponents\DataAccessLayer\omniBill.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>omniBill.edmx</DependentUpon>
+      <LastGenOutput>omniBill.Context.cs</LastGenOutput>
+    </None>
+    <None Include="InnerComponents\DataAccessLayer\omniBill.edmx.diagram">
+      <DependentUpon>omniBill.edmx</DependentUpon>
+    </None>
+    <None Include="InnerComponents\DataAccessLayer\omniBill.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>omniBill.edmx</DependentUpon>
+      <LastGenOutput>omniBill.cs</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -144,19 +228,23 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.SQL.Server.Compact.4.0">
+      <Visible>False</Visible>
+      <ProductName>SQL Server Compact 4.0 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Windows.Installer.4.5">
       <Visible>False</Visible>
       <ProductName>Windows Installer 4.5</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <Content Include="Data\lang.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Data\omniBillMsDb.sdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="omniBillMsDb.sdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Resource Include="Resources\customer.png" />
     <Resource Include="Resources\settings.png" />
@@ -164,6 +252,7 @@
     <Resource Include="Resources\item.png" />
     <Resource Include="ExternalComponents\dummyFileDeleteLater.txt" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

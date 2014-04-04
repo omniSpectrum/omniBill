@@ -2,34 +2,33 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using omniBill.InnerComponents.Models;
-using omniBill.InnerComponents.Interfaces;
 using omniBill.InnerComponents.DataAccessLayer;
 
 namespace omniBill.InnerComponents.LogicLayer
 {
     public class UserHandler : IHandler<UserTable>
     {
-        IDataAccessLayer db;
+        omniBillMsDbEntities db;
 
         public UserHandler()
         {
-            db = new DataAccessSpectrum();
+            db = new omniBillMsDbEntities();
         }
 
         public List<UserTable> ItemList()
         {
-            return db.Users.FindAll();
+            return db.UserTables.ToList();
         }
         public UserTable ItemSingle(int id)
         {
-            return db.Users.FindById(id);
+            return db.UserTables.Find(id);
         }
         public bool CreateItem(UserTable user)
         {
             try
             {
-                db.Users.Create(user);
+                db.UserTables.Add(user);
+                db.SaveChanges();
                 return true;
             }
             catch (Exception)
@@ -41,7 +40,8 @@ namespace omniBill.InnerComponents.LogicLayer
         {
             try
             {
-                db.Users.Edit(user);
+                db.Entry(user).State = System.Data.EntityState.Modified;
+                db.SaveChanges();
                 return true;
             }
             catch (Exception)
@@ -53,7 +53,9 @@ namespace omniBill.InnerComponents.LogicLayer
         {
             try
             {
-                db.Users.Delete(id);
+                UserTable userToBeDeleted = db.UserTables.Find(id);
+                db.UserTables.Remove(userToBeDeleted);
+                db.SaveChanges();
                 return true;
             }
             catch (Exception)

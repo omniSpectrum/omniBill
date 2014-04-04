@@ -11,11 +11,12 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using omniBill.InnerComponents.Models;
-using omniBill.InnerComponents.Interfaces;
-using omniBill.InnerComponents.DataAccessLayer;
 using System.Diagnostics;
 using omniBill.InnerComponents.LogicLayer;
+using omniBill.InnerComponents.Localization;
+using omniBill.InnerComponents.DataAccessLayer;
+using System.Threading;
+using System.Globalization;
 
 namespace omniBill
 {
@@ -23,10 +24,7 @@ namespace omniBill
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
-    {
-        IDataAccessLayer db = new DataAccessSpectrum(); // TODO Remove later when Handler is implemented
-        Dictionary<String, LanguageRecord> langSet; //Need to be in memory for until app is closed
-        int currentLanguage; // Finnish is default
+    {   
         IHandler<UserTable> userHandler;
 
         public MainWindow()
@@ -104,34 +102,34 @@ namespace omniBill
 
             int x = 0;
             //0
-            userLabels[x].Text = langSet["Company Name"][currentLanguage];
+            userLabels[x].Text = omniLang.CompanyName;
             userTextBoxes[x++].Name = "tbCompanyName";
 
-            userLabels[x].Text = langSet["Contact Name"][currentLanguage];
+            userLabels[x].Text = omniLang.ContactName;
             userTextBoxes[x++].Name = "tbContactName";
 
-            userLabels[x].Text = langSet["Street"][currentLanguage];
+            userLabels[x].Text =omniLang.Street;
             userTextBoxes[x++].Name = "tbStreet";
 
-            userLabels[x].Text = langSet["Post Code"][currentLanguage];
+            userLabels[x].Text = omniLang.PostCode;
             userTextBoxes[x++].Name = "tbPostCode";
 
-            userLabels[x].Text = langSet["City"][currentLanguage];
+            userLabels[x].Text = omniLang.City;
             userTextBoxes[x++].Name = "tbCity";
             //5
-            userLabels[x].Text = langSet["Bank Name"][currentLanguage];
+            userLabels[x].Text = omniLang.BankName;
             userTextBoxes[x++].Name = "tbBankName";
 
-            userLabels[x].Text = langSet["Bank Account"][currentLanguage];
+            userLabels[x].Text = omniLang.BankAccount;
             userTextBoxes[x++].Name = "tbBankAccount";
 
-            userLabels[x].Text = langSet["Business ID"][currentLanguage];
+            userLabels[x].Text = omniLang.BussinessId;
             userTextBoxes[x++].Name = "tbBusinessId";
 
-            userLabels[x].Text = langSet["Phone Number"][currentLanguage];
+            userLabels[x].Text = omniLang.PhoneNumber;
             userTextBoxes[x++].Name = "tbPhoneNumber";
 
-            userLabels[x].Text = langSet["E-mail"][currentLanguage];
+            userLabels[x].Text = omniLang.Email;
             userTextBoxes[x++].Name = "tbEmail";
 
             var commonMargin = new Thickness(18, 4, 18, 4);
@@ -236,11 +234,10 @@ namespace omniBill
             body.Padding = new Thickness(15);
             body.TextWrapping = TextWrapping.Wrap;
 
-            String aboutPageFirstLineOfDescription = 
-                langSet["omniBill is a simple standalone, lightweight and modular invoicing desktop app designed by omniSpectrum."][currentLanguage];
+            String aboutPageFirstLineOfDescription = omniLang.aboutFirstLine;
             body.Inlines.Add(aboutPageFirstLineOfDescription);
             body.Inlines.Add(new LineBreak());
-            String aboutPageSecondLineOfDescription = langSet["omniBill will save you, just like Jesus."][currentLanguage];
+            String aboutPageSecondLineOfDescription = omniLang.aboutSecondLine;
             body.Inlines.Add(aboutPageSecondLineOfDescription);
             Grid.SetRow(body, 1);
 
@@ -278,8 +275,8 @@ namespace omniBill
                 new TextBlock()
             };
 
-            String aboutPageLicenseInfoString = langSet["License Information"][currentLanguage];
-            String aboutPageContactUsString = langSet["Contact Us"][currentLanguage];
+            String aboutPageLicenseInfoString = omniLang.LicenseInfo;
+            String aboutPageContactUsString = omniLang.ContactUs;
 
             Hyperlink[] links = {
                                           new Hyperlink(new Run("Github")),
@@ -304,10 +301,7 @@ namespace omniBill
                 /* Setting up links*/
                 links[index].RequestNavigate += Hyperlink_RequestNavigate;
                 footerLinks_TB[index].Inlines.Add(links[index]);
-
-
             }
-
         }
 
         #endregion
@@ -325,36 +319,33 @@ namespace omniBill
 
                 int i = 0;
 
-                tbUser[i++].Text = user.CompanyName;
-                tbUser[i++].Text = user.ContactName;
-                tbUser[i++].Text = user.Street;
-                tbUser[i++].Text = user.PostCode;
-                tbUser[i++].Text = user.City;
-                tbUser[i++].Text = user.BankName;
-                tbUser[i++].Text = user.BankAccount;
-                tbUser[i++].Text = user.BusinessId;
-                tbUser[i++].Text = user.PhoneNumber;
-                tbUser[i++].Text = user.Email;
+                tbUser[i++].Text = user.companyName;
+                tbUser[i++].Text = user.contactName;
+                tbUser[i++].Text = user.street;
+                tbUser[i++].Text = user.postCode;
+                tbUser[i++].Text = user.city;
+                tbUser[i++].Text = user.bankName;
+                tbUser[i++].Text = user.bankAccount;
+                tbUser[i++].Text = user.businessId;
+                tbUser[i++].Text = user.phoneNumber;
+                tbUser[i++].Text = user.email;
             }
         }
 
         #endregion
 
         #region Setting functions
-        private void changeLanguage()
+        private void changeLanguage(String langCode = "en-us")
         {
-            //FindOut language in Use from settings
-            // currentLanguage = Settings.LanguageToUse;
-            currentLanguage = (int)LanguageInUse.Portugese;
 
-            //Get Language Set         
-            langSet = db.Language.FindAll();
+            //TODO: Find out how to change language
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(langCode);
 
             //Change basic Menu Items
-            lbInvoiceMenuItem.Text = langSet["Invoice"][currentLanguage];
-            lbCustomerMenuItem.Text = langSet["Customer"][currentLanguage];
+            lbInvoiceMenuItem.Text = omniLang.Invoice;
+            lbCustomerMenuItem.Text = omniLang.Customer;
 
-            lbItemMenuItem.Text = langSet["Item"][currentLanguage];
+            lbItemMenuItem.Text = omniLang.Item;
         }
         #endregion
 
