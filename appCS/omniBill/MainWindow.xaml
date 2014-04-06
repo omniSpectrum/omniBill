@@ -1,22 +1,18 @@
 ﻿<controls:MetroWindow x:Class="omniBill.MainWindow"
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-  xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-  Title="omniBill MOFO!" Height="350" Width="525">
+  xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro" 
+  Icon="/Resources/dollarBill.ico"
+  Height="350" Width="525" MinHeight="350" MinWidth="525"
+  Title="omniBill MOFO!" >
     <controls:MetroWindow.WindowCommands>
         <controls:WindowCommands>
-            <Button Content="settings" />
             <Button>
                 <StackPanel Orientation="Horizontal">
-                    <Rectangle Width="20" Height="20"
-                   Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
-                        <Rectangle.OpacityMask>
-                            <VisualBrush Stretch="Fill" />
-                        </Rectangle.OpacityMask>
-                    </Rectangle>
+                    <Image RenderOptions.BitmapScalingMode="Fant" Source="/Resources/settings.png"/>
                     <TextBlock Margin="4 0 0 0"
                    VerticalAlignment="Center"
-                   Text="deploy cupcakes" />
+                   Text="settings" />
                 </StackPanel>
             </Button>
         </controls:WindowCommands>
