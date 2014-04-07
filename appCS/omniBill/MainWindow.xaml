@@ -24,7 +24,7 @@
     </controls:MetroWindow.WindowCommands>
 	<Grid x:Name="MainGrid" >
 		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="137*"/>
+			<ColumnDefinition Width="137*"  />
 			<ColumnDefinition Width="380*"/>
 		</Grid.ColumnDefinitions>
 		<Grid Grid.Column="0" x:Name="MenuGrid" Background="#FF58CADC">
@@ -44,14 +44,14 @@
 			</Menu>
 			<TextBlock TextWrapping="Wrap" Text="OmniSpectrum" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18.667"/>
 		</Grid>
-		<Grid Grid.Column="1" x:Name="ContentGrid" Background="#FFF3F3F3">
+		<Grid Grid.Column="1" x:Name="ContentGrid">
 			<Grid.RowDefinitions>
-				<RowDefinition Height="57*"/>
-				<RowDefinition Height="232*"/>
-				<RowDefinition Height="30*"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="6*"/>
+				<RowDefinition Height="1*"/>
 			</Grid.RowDefinitions>
 			<TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="About" FontSize="33.333" FontWeight="Bold" />
-			<TextBlock Margin="10,10,0,0" Grid.Row="1" TextWrapping="Wrap" Text="omniBill is a simple standalone and modular     invoicing application developed by a group of competent students from haaga-helia"/>
+			<TextBlock Margin="10,10,0,0" Grid.Row="1" TextWrapping="Wrap" Text="omniBill is a simple standalone and modular invoicing application developed by a group of competent students from haaga-helia"/>
 			<ResizeGrip HorizontalAlignment="Right" Grid.Row="2" VerticalAlignment="Bottom    "/>
 		</Grid>
 	</Grid>
