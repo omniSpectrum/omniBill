@@ -8,14 +8,12 @@
 	Width="640" Height="480"
 	WindowWidth="640" WindowHeight="480">
 
-<Grid Grid.Column="1" x:Name="ContentGrid">
+<Grid Grid.Column="1" x:Name="AboutGrid">
 			<Grid.RowDefinitions>
 				<RowDefinition Height="Auto"/>
 				<RowDefinition Height="6*"/>
-				<RowDefinition Height="1*"/>
 			</Grid.RowDefinitions>
 			<TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="About" FontSize="33.333" FontWeight="Bold" />
-			<TextBlock Margin="10,10,0,0" Grid.Row="1" TextWrapping="Wrap" Text="omniBill is a simple standalone and modular invoicing application developed by a group of competent students from haaga-helia"/>
-			<ResizeGrip HorizontalAlignment="Right" Grid.Row="2" VerticalAlignment="Bottom"/>
+			<TextBlock Margin="10,10,0,0" Grid.Row="1" TextWrapping="Wrap" Text="omniBill is a simple standalone and modular invoicing application developed by a group of competent students from haaga-helia" HorizontalAlignment="Left" VerticalAlignment="Top"/>
 		</Grid>
 </Page>

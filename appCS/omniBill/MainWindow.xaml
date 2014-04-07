@@ -2,47 +2,60 @@
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro" 
-  xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="omniBill.MainWindow" 
+  xmlns:Behaviours="clr-namespace:MahApps.Metro.Behaviours;assembly=MahApps.Metro"
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:Custom="http://metro.mahapps.com/winfx/xaml/shared" mc:Ignorable="d" x:Class="omniBill.MainWindow" 
   Icon="/Resources/dollarBill.ico"
   Height="350" Width="525" MinHeight="350" MinWidth="525"
-  Title="omniBill MOFO!" >
+  Title="omniBill" >
     <controls:MetroWindow.WindowCommands>
         <controls:WindowCommands>
+
               <Button Click="settingsDropDownButton_Click">
-                    <StackPanel Orientation="Horizontal">
-                        <Image RenderOptions.BitmapScalingMode="Fant" Source="/Resources/settings.png"/>
-                </StackPanel>
 				<Button.ContextMenu>
                     <ContextMenu >
                         <MenuItem Header="User" Background="White"/>
                         <MenuItem Header="About" Background="White"/>
                         <MenuItem Header="Settings" Background="White"/>
                     </ContextMenu>
-                </Button.ContextMenu> 
+                </Button.ContextMenu>
+                    <StackPanel Orientation="Horizontal">
+                        <Image RenderOptions.BitmapScalingMode="Fant" Source="/Resources/settings.png"/>
+                </StackPanel> 
             </Button>
         </controls:WindowCommands>
     </controls:MetroWindow.WindowCommands>
+	
 	<Grid x:Name="MainGrid" >
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="137*"  />
 			<ColumnDefinition Width="380*"/>
 		</Grid.ColumnDefinitions>
-		<Grid Grid.Column="0" x:Name="MenuGrid" Background="#FF58CADC">
+		<Grid Grid.Column="0" x:Name="MenuGrid" Background="#FF58CADC" ShowGridLines="True" UseLayoutRounding="True">
 			<Grid.RowDefinitions>
 				<RowDefinition Height="Auto" MaxHeight="50"/>
 				<RowDefinition Height="51*"/>
 			</Grid.RowDefinitions>
-		    <TextBlock Grid.Row="0" TextWrapping="Wrap" Text="omniSpectrum" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18.667"/>
-			<Menu x:Name="NavMenu" Background="#FF58CADC" ItemContainerStyle="{DynamicResource SimpleMenuItem}" Grid.Row="1" Margin="0,0,0,70" VerticalAlignment="Center">
+			<TextBlock Grid.Row="0" TextWrapping="Wrap" Text="omniSpectrum" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18.667"/>
+			<Menu x:Name="NavMenu" Background="#FF58CADC" ItemContainerStyle="{DynamicResource SimpleMenuItem}" Grid.Row="1" HorizontalContentAlignment="Center">
 				<Menu.ItemsPanel>
 					<ItemsPanelTemplate>
 						<VirtualizingStackPanel Orientation="Vertical" />
 					</ItemsPanelTemplate>
 				</Menu.ItemsPanel>
-				<MenuItem Header="Customer" FontSize="18.667" Foreground="White" Margin="0,3"/>
-				<MenuItem Header="Invoices" FontSize="18.667" Foreground="White" Margin="0,3"/>
-				<MenuItem Header="Items" FontSize="18.667" Foreground="White" Margin="0,3"/>
+				<MenuItem Header="Customer" FontSize="18.667" Foreground="White" Margin="0,0,0,3" Padding="10,15"/>
+				<MenuItem Header="Invoices" FontSize="18.667" Foreground="White" Margin="0,3" Padding="10,15" VerticalAlignment="Center"/>
+				<MenuItem Header="Items" FontSize="18.667" Foreground="White" Margin="0,3" Padding="10,15"/>
 			</Menu>
+		</Grid>
+		<Grid x:Name="ContentGrid" Grid.Column="1">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="298*"/>
+				<RowDefinition Height="21*"/>
+			</Grid.RowDefinitions>
+			<DockPanel Grid.Row="0">
+				<Frame NavigationUIVisibility="Hidden" Source="/omniBill;component/Pages/AboutPage.xaml" DockPanel.Dock="Top" HorizontalAlignment="Left" VerticalAlignment="Top" />
+			</DockPanel>
+			<ResizeGrip Grid.Row="1"/>
 		</Grid>
 	</Grid>
 </controls:MetroWindow>
