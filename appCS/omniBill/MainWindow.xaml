@@ -29,30 +29,20 @@
 		</Grid.ColumnDefinitions>
 		<Grid Grid.Column="0" x:Name="MenuGrid" Background="#FF58CADC">
 			<Grid.RowDefinitions>
-				<RowDefinition Height="13*"/>
+				<RowDefinition Height="Auto" MaxHeight="50"/>
 				<RowDefinition Height="51*"/>
 			</Grid.RowDefinitions>
-			<Menu x:Name="NavMenu" Background="#FF58CADC" ItemContainerStyle="{DynamicResource SimpleMenuItem}" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Margin="0,0,0,70">
+		    <TextBlock Grid.Row="0" TextWrapping="Wrap" Text="omniSpectrum" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18.667"/>
+			<Menu x:Name="NavMenu" Background="#FF58CADC" ItemContainerStyle="{DynamicResource SimpleMenuItem}" Grid.Row="1" Margin="0,0,0,70" VerticalAlignment="Center">
 				<Menu.ItemsPanel>
 					<ItemsPanelTemplate>
 						<VirtualizingStackPanel Orientation="Vertical" />
 					</ItemsPanelTemplate>
 				</Menu.ItemsPanel>
-				<MenuItem Header="Customer" FontSize="18.667" Foreground="White"/>
-				<MenuItem Header="Invoices" FontSize="18.667" Foreground="White"/>
-				<MenuItem Header="Items" FontSize="18.667" Foreground="White"/>
+				<MenuItem Header="Customer" FontSize="18.667" Foreground="White" Margin="0,3"/>
+				<MenuItem Header="Invoices" FontSize="18.667" Foreground="White" Margin="0,3"/>
+				<MenuItem Header="Items" FontSize="18.667" Foreground="White" Margin="0,3"/>
 			</Menu>
-			<TextBlock TextWrapping="Wrap" Text="OmniSpectrum" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18.667"/>
-		</Grid>
-		<Grid Grid.Column="1" x:Name="ContentGrid">
-			<Grid.RowDefinitions>
-				<RowDefinition Height="Auto"/>
-				<RowDefinition Height="6*"/>
-				<RowDefinition Height="1*"/>
-			</Grid.RowDefinitions>
-			<TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="About" FontSize="33.333" FontWeight="Bold" />
-			<TextBlock Margin="10,10,0,0" Grid.Row="1" TextWrapping="Wrap" Text="omniBill is a simple standalone and modular invoicing application developed by a group of competent students from haaga-helia"/>
-			<ResizeGrip HorizontalAlignment="Right" Grid.Row="2" VerticalAlignment="Bottom    "/>
 		</Grid>
 	</Grid>
 </controls:MetroWindow>
