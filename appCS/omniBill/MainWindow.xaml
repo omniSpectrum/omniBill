@@ -1,19 +1,24 @@
-﻿<controls:MetroWindow x:Class="omniBill.MainWindow"
+﻿<controls:MetroWindow
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro" 
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="omniBill.MainWindow" 
   Icon="/Resources/dollarBill.ico"
   Height="350" Width="525" MinHeight="350" MinWidth="525"
   Title="omniBill MOFO!" >
     <controls:MetroWindow.WindowCommands>
         <controls:WindowCommands>
-            <Button>
-                <StackPanel Orientation="Horizontal">
-                    <Image RenderOptions.BitmapScalingMode="Fant" Source="/Resources/settings.png"/>
-                    <TextBlock Margin="4 0 0 0"
-                   VerticalAlignment="Center"
-                   Text="Settings" />
+              <Button Click="settingsDropDownButton_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <Image RenderOptions.BitmapScalingMode="Fant" Source="/Resources/settings.png"/>
                 </StackPanel>
+				<Button.ContextMenu>
+                    <ContextMenu >
+                        <MenuItem Header="User" Background="White"/>
+                        <MenuItem Header="About" Background="White"/>
+                        <MenuItem Header="Settings" Background="White"/>
+                    </ContextMenu>
+                </Button.ContextMenu> 
             </Button>
         </controls:WindowCommands>
     </controls:MetroWindow.WindowCommands>
@@ -22,18 +27,32 @@
 			<ColumnDefinition Width="137*"/>
 			<ColumnDefinition Width="380*"/>
 		</Grid.ColumnDefinitions>
-		<Grid x:Name="MenuGrid" Grid.Column="0" />
-		<Grid Grid.Column="1" x:Name="ContentGrid">
+		<Grid Grid.Column="0" x:Name="MenuGrid" Background="#FF58CADC">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="13*"/>
+				<RowDefinition Height="51*"/>
+			</Grid.RowDefinitions>
+			<Menu x:Name="NavMenu" Background="#FF58CADC" ItemContainerStyle="{DynamicResource SimpleMenuItem}" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Margin="0,0,0,70">
+				<Menu.ItemsPanel>
+					<ItemsPanelTemplate>
+						<VirtualizingStackPanel Orientation="Vertical" />
+					</ItemsPanelTemplate>
+				</Menu.ItemsPanel>
+				<MenuItem Header="Customer" FontSize="18.667" Foreground="White"/>
+				<MenuItem Header="Invoices" FontSize="18.667" Foreground="White"/>
+				<MenuItem Header="Items" FontSize="18.667" Foreground="White"/>
+			</Menu>
+			<TextBlock TextWrapping="Wrap" Text="OmniSpectrum" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18.667"/>
+		</Grid>
+		<Grid Grid.Column="1" x:Name="ContentGrid" Background="#FFF3F3F3">
 			<Grid.RowDefinitions>
 				<RowDefinition Height="57*"/>
 				<RowDefinition Height="232*"/>
 				<RowDefinition Height="30*"/>
 			</Grid.RowDefinitions>
-			<TextBlock HorizontalAlignment="Left" Margin="0,10,0,0" TextWrapping="Wrap" Text="About" FontSize="33.333" FontWeight="Bold" />
-			<TextBlock Margin="0,10,0,0" Grid.Row="1" TextWrapping="Wrap" Text="omniBill is a simple standalone and modular 
-			invoicing application developed by a group of competent students from haaga-helia"/>
-			<ResizeGrip HorizontalAlignment="Right" Grid.Row="2" VerticalAlignment="Bottom
-			"/>
+			<TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="About" FontSize="33.333" FontWeight="Bold" />
+			<TextBlock Margin="10,10,0,0" Grid.Row="1" TextWrapping="Wrap" Text="omniBill is a simple standalone and modular     invoicing application developed by a group of competent students from haaga-helia"/>
+			<ResizeGrip HorizontalAlignment="Right" Grid.Row="2" VerticalAlignment="Bottom    "/>
 		</Grid>
 	</Grid>
 </controls:MetroWindow>

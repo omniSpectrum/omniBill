@@ -4,7 +4,8 @@
         Title="omniBill" Height="350" Width="555" MinHeight="350" MinWidth="555" WindowStartupLocation="CenterScreen" Icon="/Resources/dollarBill.ico" FontSize="16" FontFamily="Calibri" Foreground="#FF8F99A0">
     <Grid x:Name="mainGrid">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="100" /><!-- Max size problem needs to be fixed -->
+            <ColumnDefinition Width="100" />
+            <!-- Max size problem needs to be fixed -->
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -15,7 +16,7 @@
                 <RowDefinition Height="2*" />
                 <RowDefinition Height="12*" />
             </Grid.RowDefinitions>
-            
+
             <Grid Grid.Row="1" x:Name="contentWrapper">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="8*" />
@@ -33,10 +34,10 @@
             </Grid>
             <!-- /contentWrapper -->
 
-            
-            
+
+
             <Grid Grid.Row="0" Background="#FFFFFF" x:Name="contextMenu">
-                
+
                 <!-- Contex Menu border shadow -->
                 <Border BorderThickness="0,0,0,3" BorderBrush="White" Opacity="0.3">
                     <Border.Effect>
@@ -44,30 +45,32 @@
                     </Border.Effect>
                 </Border>
                 <!-- /Contex Menu border shadow -->
-                
+
                 <TextBlock VerticalAlignment="Top" ><Run Text="Content"/><Run Language="fi-fi" Text=" Context based menu"/></TextBlock>
 
                 <Menu HorizontalAlignment="Right" Background="White" VerticalAlignment="Center">
-                    
+
                     <MenuItem>
                         <MenuItem.Header>
                             <Image RenderOptions.BitmapScalingMode="Fant" Height="40" Width="40" Source="Resources/settings.png" Name="imgSettings" />
                         </MenuItem.Header>
 
                         <MenuItem Header="User" Click="settingsDropDownMenuUserItemClick" Background="White"/>
-                        <MenuItem Height="1" Background="LightGray"/><!--Separator-->
+                        <MenuItem Height="1" Background="LightGray"/>
+                        <!--Separator-->
                         <MenuItem Header="About" Click="settingsDropDownMenuAboutItemClick" Background="White" />
-                        <MenuItem Height="1" Background="LightGray"/><!--Separator-->
+                        <MenuItem Height="1" Background="LightGray"/>
+                        <!--Separator-->
                         <MenuItem Header="Settings" Background="White"/>
                     </MenuItem>
-               </Menu>
+                </Menu>
 
             </Grid>
             <!-- /contextMenu -->
         </Grid>
         <!-- /contentGrid -->
-        
-        
+
+
         <Grid Grid.Column="0" Grid.Row="0" x:Name="menuGrid">
 
             <Grid.RowDefinitions>
@@ -76,7 +79,7 @@
                 <RowDefinition Height="4*" />
                 <RowDefinition Height="4*" />
             </Grid.RowDefinitions>
-            
+
             <TextBlock Grid.Row="0" Text="Logo" Height="20" VerticalAlignment="Top" />
             <TextBlock Grid.Row="1" Text="Invoice" Height="20" Margin="0,30,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" Name="lbInvoiceMenuItem" />
             <TextBlock Grid.Row="2" Text="Customer" Height="20" Margin="0,35,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" Name="lbCustomerMenuItem" />
@@ -94,9 +97,9 @@
 
 
             <!-- /Buttons to grid -->
-            
+
         </Grid>
-        
+
         <!-- /MENU GRID-->
 
     </Grid>
