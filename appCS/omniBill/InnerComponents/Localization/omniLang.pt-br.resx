@@ -177,4 +177,7 @@
   <data name="User" xml:space="preserve">
     <value>Usuário</value>
   </data>
+  <data name="Language" xml:space="preserve">
+    <value>Língua</value>
+  </data>
 </root>

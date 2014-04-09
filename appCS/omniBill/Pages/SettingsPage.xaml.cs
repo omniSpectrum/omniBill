@@ -11,6 +11,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using omniBill.Properties;
+using omniBill;
+using omniBill.InnerComponents.Localization;
 
 namespace omniBill.pages
 {
@@ -21,22 +24,33 @@ namespace omniBill.pages
     {
         private MainWindow mainWindow;
 
-        public SettingsPage()
+        public SettingsPage(MainWindow mainWindow)
         {
             InitializeComponent();
+            this.mainWindow = mainWindow;
         }
 
-        // TODO Event Handler for List Item selected
+        private void cbLanguages_Loaded(object sender, RoutedEventArgs e)
+        {
+            int currentLang = Settings.Default.LanguageInUse;
+            cbLanguages.SelectedIndex = currentLang;
+        }
 
-        /*
-         * Pseudo code:
-         * 
-         * var UserSelectionFromList = (integer) List.Blabla;
-         * 
-         * Resources.Language = UserSelectionFromList.toString();
-         * 
-         * mainWindow((omniLanguages)UserSelectionFromList);
-         * 
-         */
+        private void cbLanguages_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            int userSelection = cbLanguages.SelectedIndex;
+
+            Settings.Default.LanguageInUse = userSelection;
+
+            Settings.Default.Save();
+
+            mainWindow.changeLanguage((omniBill.MainWindow.omniLanguages) userSelection);
+
+            lbLangs.Text = omniLang.Language;
+
+        }
+
+
+
     }
 }

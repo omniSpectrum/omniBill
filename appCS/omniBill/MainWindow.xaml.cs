@@ -15,6 +15,7 @@ using System.Threading;
 using System.Globalization;
 using omniBill.pages;
 using omniBill.InnerComponents.Localization;
+using omniBill.Properties;
 namespace omniBill
 {
     /// <summary>
@@ -28,7 +29,7 @@ namespace omniBill
         public MainWindow()
         {
             InitializeComponent();
-            changeLanguage(omniLanguages.finnish); // TODO later change to | changeLanguage((omniLanguages)Resource.LangToUse) |
+            changeLanguage((omniLanguages)Settings.Default.LanguageInUse);
             navigation(new UserPage(this));
         }
 
@@ -49,6 +50,12 @@ namespace omniBill
             navigation(new UserPage(this));
         }
 
+        private void ddmSettings_Click(object sender, RoutedEventArgs e)
+        {
+            navigation(new SettingsPage(this));
+        }
+
+
         public void navigation(Page destinationPage)
         {
             ContentFrame.Navigate(destinationPage);
@@ -65,6 +72,7 @@ namespace omniBill
             ddmAbout.Header = omniLang.About;
             ddmSettings.Header = omniLang.Settings;
         }
+
 
         
     }

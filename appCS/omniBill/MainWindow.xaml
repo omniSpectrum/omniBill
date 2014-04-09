@@ -16,7 +16,7 @@
                     <ContextMenu >
                         <MenuItem Header="{x:Static resx:omniLang.User}" Background="White" Click="dropDownUserMenuItem_Click" Name="ddmUser"/>
                         <MenuItem Header="{x:Static resx:omniLang.About}" Background="White" Click="dropDownAboutMenuItem_Click" Name="ddmAbout"/>
-                        <MenuItem Header="{x:Static resx:omniLang.Settings}" Background="White" Name="ddmSettings"/>
+                        <MenuItem Header="{x:Static resx:omniLang.Settings}" Background="White" Click="ddmSettings_Click" Name="ddmSettings"/>
                     </ContextMenu>
                 </Button.ContextMenu>
                     <StackPanel Orientation="Horizontal">

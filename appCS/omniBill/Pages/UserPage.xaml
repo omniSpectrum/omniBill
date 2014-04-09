@@ -56,16 +56,16 @@
                 <TextBlock Grid.Column="0" Grid.Row="9" Margin="10" VerticalAlignment="Center"><Run Text="{x:Static resx:omniLang.Email}" /></TextBlock>
                 
                 <!--TextBoxes-->
-                <TextBox Grid.Column="1" Grid.Row="0" Name="tbCompanyName" Margin="10" MaxHeight="26" />
-                <TextBox Grid.Column="1" Grid.Row="1" Name="tbContactName" Margin="10" MaxHeight="26"/>
-                <TextBox Grid.Column="1" Grid.Row="2" Name="tbStreet" Margin="10" MaxHeight="26"/>
-                <TextBox Grid.Column="1" Grid.Row="3" Name="tbPostCode" Margin="10" MaxHeight="26"/>
-                <TextBox Grid.Column="1" Grid.Row="4" Name="tbCity" Margin="10" MaxHeight="26"/>
-                <TextBox Grid.Column="1" Grid.Row="5" Name="tbBankName" Margin="10" MaxHeight="26"/>
-                <TextBox Grid.Column="1" Grid.Row="6" Name="tbBankAccount" Margin="10" MaxHeight="26"/>
-                <TextBox Grid.Column="1" Grid.Row="7" Name="tbBusinessId" Margin="10" MaxHeight="26"/>
-                <TextBox Grid.Column="1" Grid.Row="8" Name="tbPhoneNumber" Margin="10" MaxHeight="26"/>
-                <TextBox Grid.Column="1" Grid.Row="9" Name="tbEmail" Margin="10" MaxHeight="26"/>
+                <TextBox Grid.Column="1" Grid.Row="0" Name="tbCompanyName" Margin="10" MaxHeight="26" Style="{DynamicResource SimpleTextBox}" />
+                <TextBox Grid.Column="1" Grid.Row="1" Name="tbContactName" Margin="10" MaxHeight="26" Style="{DynamicResource SimpleTextBox}"/>
+                <TextBox Grid.Column="1" Grid.Row="2" Name="tbStreet" Margin="10" MaxHeight="26" Style="{DynamicResource SimpleTextBox}"/>
+                <TextBox Grid.Column="1" Grid.Row="3" Name="tbPostCode" Margin="10" MaxHeight="26" Style="{DynamicResource SimpleTextBox}"/>
+                <TextBox Grid.Column="1" Grid.Row="4" Name="tbCity" Margin="10" MaxHeight="26" Style="{DynamicResource SimpleTextBox}"/>
+                <TextBox Grid.Column="1" Grid.Row="5" Name="tbBankName" Margin="10" MaxHeight="26" Style="{DynamicResource SimpleTextBox}"/>
+                <TextBox Grid.Column="1" Grid.Row="6" Name="tbBankAccount" Margin="10" MaxHeight="26" Style="{DynamicResource SimpleTextBox}"/>
+                <TextBox Grid.Column="1" Grid.Row="7" Name="tbBusinessId" Margin="10" MaxHeight="26" Style="{DynamicResource SimpleTextBox}"/>
+                <TextBox Grid.Column="1" Grid.Row="8" Name="tbPhoneNumber" Margin="10" MaxHeight="26" Style="{DynamicResource SimpleTextBox}"/>
+                <TextBox Grid.Column="1" Grid.Row="9" Name="tbEmail" Margin="10" MaxHeight="26" Style="{DynamicResource SimpleTextBox}"/>
                 
                 <!--Hidden to keep ID value-->
                 <TextBlock Visibility="Hidden" Name="tbId" />
