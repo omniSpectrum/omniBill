@@ -129,7 +129,7 @@
   <data name="BankName" xml:space="preserve">
     <value>Pankki</value>
   </data>
-  <data name="BussinessId" xml:space="preserve">
+  <data name="BusinessId" xml:space="preserve">
     <value>Y-tunnus</value>
   </data>
   <data name="City" xml:space="preserve">

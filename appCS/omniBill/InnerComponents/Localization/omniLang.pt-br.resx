@@ -129,7 +129,7 @@
   <data name="BankName" xml:space="preserve">
     <value>Banco</value>
   </data>
-  <data name="BussinessId" xml:space="preserve">
+  <data name="BusinessId" xml:space="preserve">
     <value>Número da Empresa</value>
   </data>
   <data name="City" xml:space="preserve">

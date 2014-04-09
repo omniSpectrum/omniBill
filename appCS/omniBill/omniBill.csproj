@@ -163,9 +163,13 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\AboutPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
+    <Page Include="pages\AboutPage.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="pages\UserPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Simple Styles.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -173,8 +177,11 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Pages\AboutPage.xaml.cs">
+    <Compile Include="pages\AboutPage.xaml.cs">
       <DependentUpon>AboutPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pages\UserPage.xaml.cs">
+      <DependentUpon>UserPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -190,19 +197,19 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <EmbeddedResource Include="InnerComponents\Localization\omniLang.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>omniLang.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="InnerComponents\Localization\omniLang.fi-fi.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>omniLang.fi-fi.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="InnerComponents\Localization\omniLang.ru-ru.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>omniLang.ru-ru.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="InnerComponents\Localization\omniLang.pt-br.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>omniLang.pt-br.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

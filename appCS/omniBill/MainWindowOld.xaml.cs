@@ -122,7 +122,7 @@ namespace omniBill
             userLabels[x].Text = omniLang.BankAccount;
             userTextBoxes[x++].Name = "tbBankAccount";
 
-            userLabels[x].Text = omniLang.BussinessId;
+            userLabels[x].Text = omniLang.BusinessId;
             userTextBoxes[x++].Name = "tbBusinessId";
 
             userLabels[x].Text = omniLang.PhoneNumber;

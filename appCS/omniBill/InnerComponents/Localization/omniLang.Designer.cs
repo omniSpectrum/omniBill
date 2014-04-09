@@ -22,7 +22,7 @@ namespace omniBill.InnerComponents.Localization {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class omniLang {
+    public class omniLang {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace omniBill.InnerComponents.Localization {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("omniBill.InnerComponents.Localization.omniLang", typeof(omniLang).Assembly);
@@ -51,7 +51,7 @@ namespace omniBill.InnerComponents.Localization {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace omniBill.InnerComponents.Localization {
         /// <summary>
         ///   Looks up a localized string similar to omniBill is a simple standalone, lightweight and modular invoicing desktop app designed by omniSpectrum..
         /// </summary>
-        internal static string aboutFirstLine {
+        public static string aboutFirstLine {
             get {
                 return ResourceManager.GetString("aboutFirstLine", resourceCulture);
             }
@@ -72,7 +72,7 @@ namespace omniBill.InnerComponents.Localization {
         /// <summary>
         ///   Looks up a localized string similar to omniBill will save you, just like Jesus..
         /// </summary>
-        internal static string aboutSecondLine {
+        public static string aboutSecondLine {
             get {
                 return ResourceManager.GetString("aboutSecondLine", resourceCulture);
             }
@@ -81,7 +81,7 @@ namespace omniBill.InnerComponents.Localization {
         /// <summary>
         ///   Looks up a localized string similar to Bank Account.
         /// </summary>
-        internal static string BankAccount {
+        public static string BankAccount {
             get {
                 return ResourceManager.GetString("BankAccount", resourceCulture);
             }
@@ -90,7 +90,7 @@ namespace omniBill.InnerComponents.Localization {
         /// <summary>
         ///   Looks up a localized string similar to Bank Name.
         /// </summary>
-        internal static string BankName {
+        public static string BankName {
             get {
                 return ResourceManager.GetString("BankName", resourceCulture);
             }
@@ -99,16 +99,16 @@ namespace omniBill.InnerComponents.Localization {
         /// <summary>
         ///   Looks up a localized string similar to Business ID.
         /// </summary>
-        internal static string BussinessId {
+        public static string BusinessId {
             get {
-                return ResourceManager.GetString("BussinessId", resourceCulture);
+                return ResourceManager.GetString("BusinessId", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to City.
         /// </summary>
-        internal static string City {
+        public static string City {
             get {
                 return ResourceManager.GetString("City", resourceCulture);
             }
@@ -117,7 +117,7 @@ namespace omniBill.InnerComponents.Localization {
         /// <summary>
         ///   Looks up a localized string similar to Company Name.
         /// </summary>
-        internal static string CompanyName {
+        public static string CompanyName {
             get {
                 return ResourceManager.GetString("CompanyName", resourceCulture);
             }
@@ -126,7 +126,7 @@ namespace omniBill.InnerComponents.Localization {
         /// <summary>
         ///   Looks up a localized string similar to Contact Name.
         /// </summary>
-        internal static string ContactName {
+        public static string ContactName {
             get {
                 return ResourceManager.GetString("ContactName", resourceCulture);
             }
@@ -135,7 +135,7 @@ namespace omniBill.InnerComponents.Localization {
         /// <summary>
         ///   Looks up a localized string similar to Contact Us.
         /// </summary>
-        internal static string ContactUs {
+        public static string ContactUs {
             get {
                 return ResourceManager.GetString("ContactUs", resourceCulture);
             }
@@ -144,7 +144,7 @@ namespace omniBill.InnerComponents.Localization {
         /// <summary>
         ///   Looks up a localized string similar to Customer.
         /// </summary>
-        internal static string Customer {
+        public static string Customer {
             get {
                 return ResourceManager.GetString("Customer", resourceCulture);
             }
@@ -153,7 +153,7 @@ namespace omniBill.InnerComponents.Localization {
         /// <summary>
         ///   Looks up a localized string similar to E-mail.
         /// </summary>
-        internal static string Email {
+        public static string Email {
             get {
                 return ResourceManager.GetString("Email", resourceCulture);
             }
@@ -162,7 +162,7 @@ namespace omniBill.InnerComponents.Localization {
         /// <summary>
         ///   Looks up a localized string similar to Invoice.
         /// </summary>
-        internal static string Invoice {
+        public static string Invoice {
             get {
                 return ResourceManager.GetString("Invoice", resourceCulture);
             }
@@ -171,7 +171,7 @@ namespace omniBill.InnerComponents.Localization {
         /// <summary>
         ///   Looks up a localized string similar to Item.
         /// </summary>
-        internal static string Item {
+        public static string Item {
             get {
                 return ResourceManager.GetString("Item", resourceCulture);
             }
@@ -180,7 +180,7 @@ namespace omniBill.InnerComponents.Localization {
         /// <summary>
         ///   Looks up a localized string similar to License Information.
         /// </summary>
-        internal static string LicenseInfo {
+        public static string LicenseInfo {
             get {
                 return ResourceManager.GetString("LicenseInfo", resourceCulture);
             }
@@ -189,7 +189,7 @@ namespace omniBill.InnerComponents.Localization {
         /// <summary>
         ///   Looks up a localized string similar to Phone Number.
         /// </summary>
-        internal static string PhoneNumber {
+        public static string PhoneNumber {
             get {
                 return ResourceManager.GetString("PhoneNumber", resourceCulture);
             }
@@ -198,7 +198,7 @@ namespace omniBill.InnerComponents.Localization {
         /// <summary>
         ///   Looks up a localized string similar to Post Code.
         /// </summary>
-        internal static string PostCode {
+        public static string PostCode {
             get {
                 return ResourceManager.GetString("PostCode", resourceCulture);
             }
@@ -207,7 +207,7 @@ namespace omniBill.InnerComponents.Localization {
         /// <summary>
         ///   Looks up a localized string similar to Street.
         /// </summary>
-        internal static string Street {
+        public static string Street {
             get {
                 return ResourceManager.GetString("Street", resourceCulture);
             }

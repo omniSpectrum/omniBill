@@ -11,6 +11,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using MahApps.Metro.Controls;
+using System.Threading;
+using System.Globalization;
+using omniBill.pages;
 namespace omniBill
 {
     /// <summary>
@@ -18,9 +21,13 @@ namespace omniBill
     /// </summary>
     public partial class MainWindow
     {
+        readonly String[] langCodes = { "en-us", "fi-fi", "ru-ru", "pt-br" };
+        enum omniLanguages { english, finnish, russian, portuguese }
         public MainWindow()
         {
             InitializeComponent();
+            changeLanguage(omniLanguages.finnish);
+            navigation(new UserPage());
         }
 
         private void settingsDropDownButton_Click(object sender, RoutedEventArgs e)
@@ -30,5 +37,25 @@ namespace omniBill
             (sender as Button).ContextMenu.Placement = System.Windows.Controls.Primitives.PlacementMode.Bottom;
             (sender as Button).ContextMenu.IsOpen = true;
         }
+
+        private void dropDownAboutMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            navigation(new AboutPage());
+        }
+        private void dropDownUserMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            navigation(new UserPage());
+        }
+
+        private void navigation(Page destinationPage)
+        {
+            ContentFrame.Navigate(destinationPage);
+        }
+
+        private void changeLanguage(omniLanguages langToUse = omniLanguages.english) {
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(langCodes[(int)langToUse]);
+        }
+
+        
     }
 }

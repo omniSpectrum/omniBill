@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -12,24 +11,23 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using omniBill.InnerComponents.Localization;
 
 namespace omniBill.pages
 {
     /// <summary>
-    /// Interaction logic for AboutPage.xaml
+    /// Interaction logic for UserPage.xaml
     /// </summary>
-    public partial class AboutPage : Page
+    public partial class UserPage : Page
     {
-        public AboutPage()
+        public UserPage()
         {
             InitializeComponent();
         }
 
-        private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e)
-        {
-            Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri));
-            e.Handled = true;
-        }
+        //TODO method called in constructor to fetch record from DB
+
+        // TODO Event handler Save bitch to save record to DB
+
+        // TODO Event handler for Cancel Bitch for Redirecting to About page
     }
 }

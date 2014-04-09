@@ -13,8 +13,8 @@
               <Button Click="settingsDropDownButton_Click">
 				<Button.ContextMenu>
                     <ContextMenu >
-                        <MenuItem Header="User" Background="White"/>
-                        <MenuItem Header="About" Background="White"/>
+                        <MenuItem Header="User" Background="White" Click="dropDownUserMenuItem_Click"/>
+                        <MenuItem Header="About" Background="White" Click="dropDownAboutMenuItem_Click"/>
                         <MenuItem Header="Settings" Background="White"/>
                     </ContextMenu>
                 </Button.ContextMenu>
@@ -47,16 +47,18 @@
 				<MenuItem Header="Items" FontSize="18.667" Foreground="White" Margin="0,3" Padding="10,15"/>
 			</Menu>
 		</Grid>
-		<Grid x:Name="ContentGrid" Grid.Column="1">
+		<!--<Grid x:Name="ContentGrid" Grid.Column="1">
 			<Grid.RowDefinitions>
 				<RowDefinition Height="298*"/>
 				<RowDefinition Height="21*"/>
 			</Grid.RowDefinitions>
-			<DockPanel Grid.Row="0">
-				<Frame NavigationUIVisibility="Hidden" Source="/omniBill;component/Pages/AboutPage.xaml" DockPanel.Dock="Top" HorizontalAlignment="Left" VerticalAlignment="Top" />
-			</DockPanel>
+			<DockPanel Grid.Row="0">-->
+
+            <Frame Name="ContentFrame"  NavigationUIVisibility="Hidden" DockPanel.Dock="Top" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1"/>
+
+			<!--</DockPanel>
 			<ResizeGrip Grid.Row="1"/>
-		</Grid>
+		</Grid>-->
 	</Grid>
 </controls:MetroWindow>
 
