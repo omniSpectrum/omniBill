@@ -14,6 +14,7 @@ using MahApps.Metro.Controls;
 using System.Threading;
 using System.Globalization;
 using omniBill.pages;
+using omniBill.InnerComponents.Localization;
 namespace omniBill
 {
     /// <summary>
@@ -22,12 +23,13 @@ namespace omniBill
     public partial class MainWindow
     {
         readonly String[] langCodes = { "en-us", "fi-fi", "ru-ru", "pt-br" };
-        enum omniLanguages { english, finnish, russian, portuguese }
+        public enum omniLanguages { english, finnish, russian, portuguese }
+        
         public MainWindow()
         {
             InitializeComponent();
-            changeLanguage(omniLanguages.finnish);
-            navigation(new UserPage());
+            changeLanguage(omniLanguages.finnish); // TODO later change to | changeLanguage((omniLanguages)Resource.LangToUse) |
+            navigation(new UserPage(this));
         }
 
         private void settingsDropDownButton_Click(object sender, RoutedEventArgs e)
@@ -44,16 +46,24 @@ namespace omniBill
         }
         private void dropDownUserMenuItem_Click(object sender, RoutedEventArgs e)
         {
-            navigation(new UserPage());
+            navigation(new UserPage(this));
         }
 
-        private void navigation(Page destinationPage)
+        public void navigation(Page destinationPage)
         {
             ContentFrame.Navigate(destinationPage);
         }
 
-        private void changeLanguage(omniLanguages langToUse = omniLanguages.english) {
+        public void changeLanguage(omniLanguages langToUse = omniLanguages.english) {
             Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(langCodes[(int)langToUse]);
+
+            mmInvoice.Header = omniLang.Invoice;
+            mmCustomer.Header = omniLang.Customer;
+            mmItem.Header = omniLang.Item;
+
+            ddmUser.Header = omniLang.User;
+            ddmAbout.Header = omniLang.About;
+            ddmSettings.Header = omniLang.Settings;
         }
 
         

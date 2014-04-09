@@ -14,13 +14,14 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         
-        <Grid Name="UserContextMenu" >
+        <Grid Name="UserContextMenu" Margin="5,5,0,0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button Content="Save Bitch" Grid.Column="0"/>
-            <Button Content="Cancel Bitch" Grid.Column="1"/>
+            <Button Content="Save Bitch" Grid.Column="0" Margin="5, 0" Style="{DynamicResource SquareButtonStyle}" Click="SaveButton_Click" />
+            <Button Content="Cancel Bitch" Grid.Column="1" Margin="5, 0" Style="{DynamicResource SquareButtonStyle}" Click="CancelButton_Click" />
         </Grid>
         
         <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1">
@@ -65,6 +66,10 @@
                 <TextBox Grid.Column="1" Grid.Row="7" Name="tbBusinessId" Margin="10" MaxHeight="26"/>
                 <TextBox Grid.Column="1" Grid.Row="8" Name="tbPhoneNumber" Margin="10" MaxHeight="26"/>
                 <TextBox Grid.Column="1" Grid.Row="9" Name="tbEmail" Margin="10" MaxHeight="26"/>
+                
+                <!--Hidden to keep ID value-->
+                <TextBlock Visibility="Hidden" Name="tbId" />
+                
             </Grid><!--This is parent for ten Rows and two Columns (labels & TextBoxes)-->
         </ScrollViewer>
         

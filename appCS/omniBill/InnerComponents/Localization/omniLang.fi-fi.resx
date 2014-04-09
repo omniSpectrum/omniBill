@@ -168,4 +168,13 @@
   <data name="Street" xml:space="preserve">
     <value>Osoite</value>
   </data>
+  <data name="About" xml:space="preserve">
+    <value>Tietoa</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Asetukset</value>
+  </data>
+  <data name="User" xml:space="preserve">
+    <value>Käyttäjä</value>
+  </data>
 </root>

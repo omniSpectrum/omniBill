@@ -3,6 +3,7 @@
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro" 
   xmlns:Behaviours="clr-namespace:MahApps.Metro.Behaviours;assembly=MahApps.Metro"
+  xmlns:resx="clr-namespace:omniBill.InnerComponents.Localization"
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:Custom="http://metro.mahapps.com/winfx/xaml/shared" mc:Ignorable="d" x:Class="omniBill.MainWindow" 
   Icon="/Resources/dollarBill.ico"
   Height="350" Width="525" MinHeight="350" MinWidth="525"
@@ -13,9 +14,9 @@
               <Button Click="settingsDropDownButton_Click">
 				<Button.ContextMenu>
                     <ContextMenu >
-                        <MenuItem Header="User" Background="White" Click="dropDownUserMenuItem_Click"/>
-                        <MenuItem Header="About" Background="White" Click="dropDownAboutMenuItem_Click"/>
-                        <MenuItem Header="Settings" Background="White"/>
+                        <MenuItem Header="{x:Static resx:omniLang.User}" Background="White" Click="dropDownUserMenuItem_Click" Name="ddmUser"/>
+                        <MenuItem Header="{x:Static resx:omniLang.About}" Background="White" Click="dropDownAboutMenuItem_Click" Name="ddmAbout"/>
+                        <MenuItem Header="{x:Static resx:omniLang.Settings}" Background="White" Name="ddmSettings"/>
                     </ContextMenu>
                 </Button.ContextMenu>
                     <StackPanel Orientation="Horizontal">
@@ -42,9 +43,9 @@
 						<VirtualizingStackPanel Orientation="Vertical" />
 					</ItemsPanelTemplate>
 				</Menu.ItemsPanel>
-				<MenuItem Header="Customer" FontSize="18.667" Foreground="White" Margin="0,0,0,3" Padding="10,15"/>
-				<MenuItem Header="Invoices" FontSize="18.667" Foreground="White" Margin="0,3" Padding="10,15" VerticalAlignment="Center"/>
-				<MenuItem Header="Items" FontSize="18.667" Foreground="White" Margin="0,3" Padding="10,15"/>
+				<MenuItem Header="{x:Static resx:omniLang.Invoice}" FontSize="18.667" Foreground="White" Margin="0,0,0,3" Padding="10,15" Name="mmInvoice"/>
+                <MenuItem Header="{x:Static resx:omniLang.Customer}" FontSize="18.667" Foreground="White" Margin="0,3" Padding="10,15" VerticalAlignment="Center" Name="mmCustomer"/>
+                <MenuItem Header="{x:Static resx:omniLang.Item}" FontSize="18.667" Foreground="White" Margin="0,3" Padding="10,15" Name="mmItem"/>
 			</Menu>
 		</Grid>
 		<!--<Grid x:Name="ContentGrid" Grid.Column="1">

@@ -168,4 +168,13 @@
   <data name="Street" xml:space="preserve">
     <value>Адрес</value>
   </data>
+  <data name="About" xml:space="preserve">
+    <value>О проекте</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Настройки</value>
+  </data>
+  <data name="User" xml:space="preserve">
+    <value>Пользователь</value>
+  </data>
 </root>
