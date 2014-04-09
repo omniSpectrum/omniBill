@@ -14,7 +14,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         
-        <Grid Name="UserContextMenu" Margin="5,5,0,0">
+        <Grid Name="UserContextMenu" Margin="5,5,0,0" Grid.Row="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>

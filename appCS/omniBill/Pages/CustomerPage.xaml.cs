@@ -1,4 +1,6 @@
-﻿using System;
+﻿using omniBill.InnerComponents.DataAccessLayer;
+using omniBill.InnerComponents.LogicLayer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +21,27 @@ namespace omniBill.pages
     /// </summary>
     public partial class CustomerPage : Page
     {
-        public CustomerPage()
+        MainWindow mainWindow;
+        IHandler<Customer> customerHandler;
+
+        public CustomerPage(MainWindow mainWindow)
         {
             InitializeComponent();
+            customerHandler = new CustomerHandler();
+            this.mainWindow = mainWindow;
         }
+
+        private void customerListGrid_Loaded(object sender, RoutedEventArgs e)
+        {
+            customerListGrid.ItemsSource = customerHandler.ItemList();
+
+            //TODO Data Annotations for Customer object
+        }
+
+        private void NewCustomerButton_Click(object sender, RoutedEventArgs e)
+        {
+            // TODO Create
+        }
+
     }
 }

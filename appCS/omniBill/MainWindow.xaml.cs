@@ -30,7 +30,7 @@ namespace omniBill
         {
             InitializeComponent();
             changeLanguage((omniLanguages)Settings.Default.LanguageInUse);
-            navigation(new UserPage(this));
+            navigation(new CustomerPage());
         }
 
         private void settingsDropDownButton_Click(object sender, RoutedEventArgs e)

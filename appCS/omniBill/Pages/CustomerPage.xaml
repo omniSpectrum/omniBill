@@ -4,10 +4,35 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" 
-      d:DesignHeight="300" d:DesignWidth="300"
+      d:DesignHeight="300" d:DesignWidth="500"
 	Title="CustomerPage">
 
-    <Grid>
-        
+    <Grid Name="mainCustomerPageGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="37*"/>
+            <RowDefinition Height="263*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Name="CustomerContextMenu" Margin="5,5,0,0" Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button Content="New Bitch" Grid.Column="0" Margin="5, 0" Style="{DynamicResource SquareButtonStyle}" Click="NewCustomerButton_Click"/>
+        </Grid>
+
+        <Grid Grid.Row="1" Name="contextWrapper">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="171*"/>
+                <ColumnDefinition Width="79*"/>
+            </Grid.ColumnDefinitions>
+            
+            <ScrollViewer Grid.Column="0" Grid.ColumnSpan="2" Name="listView">
+                <DataGrid AutoGenerateColumns="True" Name="customerListGrid" Loaded="customerListGrid_Loaded">
+                    
+                </DataGrid>
+            </ScrollViewer>
+        </Grid>
     </Grid>
 </Page>
