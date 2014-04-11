@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using omniBill.InnerComponents.Localization;
 
 namespace omniBill.pages
 {
@@ -34,7 +35,25 @@ namespace omniBill.pages
         {
             customerListGrid.ItemsSource = customerHandler.ItemList();
 
-            //TODO Data Annotations for Customer object
+            /*
+             * public int customerId { get; set; }
+                public string customerName { get; set; }
+                public string street { get; set; }
+                public string postCode { get; set; }
+                public string city { get; set; }
+                public string phoneNumber { get; set; }
+                public string email { get; set; }
+             *  ICollection<DraftInvoice> DraftInvoices { get; set; }
+             */
+
+            customerListGrid.Columns[0].Visibility = Visibility.Hidden;
+            customerListGrid.Columns[1].Header = "Customer Name"; // TODO add Customer Name to omniLang
+            customerListGrid.Columns[2].Header = omniLang.Street;
+            customerListGrid.Columns[3].Header = omniLang.PostCode;
+            customerListGrid.Columns[4].Header = omniLang.City;
+            customerListGrid.Columns[5].Header = omniLang.PhoneNumber;
+            customerListGrid.Columns[6].Header = omniLang.Email;
+            //customerListGrid.Columns[7].Visibility = Visibility.Hidden;
         }
 
         private void NewCustomerButton_Click(object sender, RoutedEventArgs e)

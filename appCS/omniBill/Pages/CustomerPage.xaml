@@ -29,7 +29,7 @@
             </Grid.ColumnDefinitions>
             
             <ScrollViewer Grid.Column="0" Grid.ColumnSpan="2" Name="listView">
-                <DataGrid AutoGenerateColumns="True" Name="customerListGrid" Loaded="customerListGrid_Loaded">
+                <DataGrid Margin="10" AutoGenerateColumns="True" Name="customerListGrid" Loaded="customerListGrid_Loaded">
                     
                 </DataGrid>
             </ScrollViewer>

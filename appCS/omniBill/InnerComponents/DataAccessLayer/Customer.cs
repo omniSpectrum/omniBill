@@ -11,6 +11,8 @@ namespace omniBill.InnerComponents.DataAccessLayer
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class Customer
     {
@@ -18,7 +20,7 @@ namespace omniBill.InnerComponents.DataAccessLayer
         {
             this.DraftInvoices = new HashSet<DraftInvoice>();
         }
-    
+
         public int customerId { get; set; }
         public string customerName { get; set; }
         public string street { get; set; }
