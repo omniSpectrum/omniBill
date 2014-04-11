@@ -21,14 +21,13 @@ namespace omniBill.pages
     /// </summary>
     public partial class CustomerPage : Page
     {
-        MainWindow mainWindow;
         IHandler<Customer> customerHandler;
 
-        public CustomerPage(MainWindow mainWindow)
+        public CustomerPage()
         {
             InitializeComponent();
             customerHandler = new CustomerHandler();
-            this.mainWindow = mainWindow;
+
         }
 
         private void customerListGrid_Loaded(object sender, RoutedEventArgs e)

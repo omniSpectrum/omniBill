@@ -22,15 +22,13 @@ namespace omniBill.pages
     public partial class UserPage : Page
     {
         IHandler<UserTable> userHandler;
-        private MainWindow mainWindow;
 
-        public UserPage(MainWindow mainWindow)
+        public UserPage()
         {
             InitializeComponent();
 
             this.userHandler = new UserHandler();
-            this.mainWindow = mainWindow;
-
+            
             fetchUserData();
         }
 
@@ -87,7 +85,7 @@ namespace omniBill.pages
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
             // Frame.Navigate(new About page());
-            mainWindow.navigation(new AboutPage());          
+            Utils.mainWindow.navigation(new AboutPage());          
         }
     }
 }

@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using omniBill.Properties;
 using omniBill;
 using omniBill.InnerComponents.Localization;
+using omniBill.InnerComponents.LogicLayer;
 
 namespace omniBill.pages
 {
@@ -22,12 +23,10 @@ namespace omniBill.pages
     /// </summary>
     public partial class SettingsPage : Page
     {
-        private MainWindow mainWindow;
 
-        public SettingsPage(MainWindow mainWindow)
+        public SettingsPage()
         {
             InitializeComponent();
-            this.mainWindow = mainWindow;
         }
 
         private void cbLanguages_Loaded(object sender, RoutedEventArgs e)
@@ -44,7 +43,7 @@ namespace omniBill.pages
 
             Settings.Default.Save();
 
-            mainWindow.changeLanguage((omniBill.MainWindow.omniLanguages) userSelection);
+            Utils.mainWindow.changeLanguage((omniBill.MainWindow.omniLanguages) userSelection);
 
             lbLangs.Text = omniLang.Language;
 

@@ -16,6 +16,7 @@ using System.Globalization;
 using omniBill.pages;
 using omniBill.InnerComponents.Localization;
 using omniBill.Properties;
+using omniBill.InnerComponents.LogicLayer;
 namespace omniBill
 {
     /// <summary>
@@ -30,6 +31,7 @@ namespace omniBill
         {
             InitializeComponent();
             changeLanguage((omniLanguages)Settings.Default.LanguageInUse);
+            Utils.mainWindow = this;
             navigation(new CustomerPage());
         }
 
@@ -47,12 +49,12 @@ namespace omniBill
         }
         private void dropDownUserMenuItem_Click(object sender, RoutedEventArgs e)
         {
-            navigation(new UserPage(this));
+            navigation(new UserPage());
         }
 
         private void ddmSettings_Click(object sender, RoutedEventArgs e)
         {
-            navigation(new SettingsPage(this));
+            navigation(new SettingsPage());
         }
 
 
