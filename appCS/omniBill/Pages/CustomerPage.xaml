@@ -1,6 +1,8 @@
 ﻿<Page x:Class="omniBill.pages.CustomerPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro" 
+      xmlns:Behaviours="clr-namespace:MahApps.Metro.Behaviours;assembly=MahApps.Metro"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" 
@@ -9,7 +11,7 @@
 
     <Grid Name="mainCustomerPageGrid">
         <Grid.RowDefinitions>
-            <RowDefinition Height="37*"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="263*"/>
         </Grid.RowDefinitions>
 
@@ -29,10 +31,13 @@
             </Grid.ColumnDefinitions>
             
             <ScrollViewer Grid.Column="0" Grid.ColumnSpan="2" Name="listView">
-                <DataGrid Margin="10" AutoGenerateColumns="True" Name="customerListGrid" Loaded="customerListGrid_Loaded">
+                <DataGrid SelectionChanged="customerListGrid_SelectionChanged" Margin="10" IsReadOnly="True" AutoGenerateColumns="True" Name="customerListGrid" Loaded="customerListGrid_Loaded" >
                     
                 </DataGrid>
             </ScrollViewer>
+            
+            <Frame Name="sidePanelFrame" Grid.Column="1" Visibility="Hidden" />
         </Grid>
+       
     </Grid>
 </Page>

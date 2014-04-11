@@ -28,7 +28,7 @@ namespace omniBill.pages
         {
             InitializeComponent();
             customerHandler = new CustomerHandler();
-
+            Utils.customerPage = this;
         }
 
         private void customerListGrid_Loaded(object sender, RoutedEventArgs e)
@@ -53,12 +53,26 @@ namespace omniBill.pages
             customerListGrid.Columns[4].Header = omniLang.City;
             customerListGrid.Columns[5].Header = omniLang.PhoneNumber;
             customerListGrid.Columns[6].Header = omniLang.Email;
-            //customerListGrid.Columns[7].Visibility = Visibility.Hidden;
+            customerListGrid.Columns[7].Visibility = Visibility.Hidden;
         }
 
         private void NewCustomerButton_Click(object sender, RoutedEventArgs e)
         {
             // TODO Create
+        }
+
+        private void customerListGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            
+            Customer currentCustomer = (Customer)customerListGrid.SelectedItem;
+            showSidePanel(currentCustomer);
+        }
+
+        private void showSidePanel(Customer customer)
+        {
+            Grid.SetColumnSpan(listView, 1);
+            sidePanelFrame.Visibility = System.Windows.Visibility.Visible;
+            sidePanelFrame.Navigate(new CustomerStuffPage(customer));
         }
 
     }
