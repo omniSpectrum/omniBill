@@ -75,5 +75,11 @@ namespace omniBill.pages
             sidePanelFrame.Navigate(new CustomerStuffPage(customer));
         }
 
+        public void hideSidePanel() 
+        {
+            sidePanelFrame.Visibility = System.Windows.Visibility.Hidden;
+            Grid.SetColumnSpan(listView, 2);
+        }
+
     }
 }

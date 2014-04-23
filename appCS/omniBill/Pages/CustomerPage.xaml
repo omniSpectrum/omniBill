@@ -26,18 +26,18 @@
 
         <Grid Grid.Row="1" Name="contextWrapper">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="171*"/>
-                <ColumnDefinition Width="79*"/>
+                <ColumnDefinition Width="73*"/>
+                <ColumnDefinition Width="52*"/>
             </Grid.ColumnDefinitions>
-            
+
             <ScrollViewer Grid.Column="0" Grid.ColumnSpan="2" Name="listView">
                 <DataGrid SelectionChanged="customerListGrid_SelectionChanged" Margin="10" IsReadOnly="True" AutoGenerateColumns="True" Name="customerListGrid" Loaded="customerListGrid_Loaded" >
-                    
+
                 </DataGrid>
             </ScrollViewer>
-            
+
             <Frame Name="sidePanelFrame" Grid.Column="1" Visibility="Hidden" />
         </Grid>
-       
+
     </Grid>
 </Page>
