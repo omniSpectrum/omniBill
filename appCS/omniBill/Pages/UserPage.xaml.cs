@@ -27,8 +27,7 @@ namespace omniBill.pages
         {
             InitializeComponent();
 
-            this.userHandler = new UserHandler();
-            
+            this.userHandler = new UserHandler();           
             fetchUserData();
         }
 
@@ -41,18 +40,7 @@ namespace omniBill.pages
             {
                 UserTable user = userList[0];
 
-                tbCompanyName.Text = user.companyName;
-                tbContactName.Text = user.contactName;
-                tbStreet.Text = user.street;
-                tbPostCode.Text = user.postCode;
-                tbCity.Text = user.city;
-                tbBankName.Text = user.bankName;
-                tbBankAccount.Text = user.bankAccount;
-                tbBusinessId.Text = user.businessId;
-                tbPhoneNumber.Text = user.phoneNumber;
-                tbEmail.Text = user.email;
-
-                tbId.Text = user.userId.ToString();
+                userPageGrid.DataContext = user;
             }
         }
 
@@ -61,20 +49,8 @@ namespace omniBill.pages
         {
             //TODO Validation of user input + UserHandler.EditItem returns predicate
 
-            int id = int.Parse(tbId.Text);
+            UserTable user = (UserTable) userPageGrid.DataContext;
 
-            UserTable user = userHandler.ItemSingle(id);
-
-            user.companyName = tbCompanyName.Text;
-            user.contactName = tbContactName.Text;
-            user.street = tbStreet.Text;
-            user.postCode = tbPostCode.Text;
-            user.city = tbCity.Text;
-            user.bankName = tbBankName.Text;
-            user.bankAccount = tbBankAccount.Text;
-            user.businessId = tbBusinessId.Text;
-            user.phoneNumber = tbPhoneNumber.Text;
-            user.email = tbEmail.Text;
 
             userHandler.EditItem(user);
 

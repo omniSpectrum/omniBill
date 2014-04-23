@@ -32,7 +32,7 @@ namespace omniBill
             InitializeComponent();
             changeLanguage((omniLanguages)Settings.Default.LanguageInUse);
             Utils.mainWindow = this;
-            navigation(new CustomerPage());
+            navigation(new ItemPage());
         }
 
         private void settingsDropDownButton_Click(object sender, RoutedEventArgs e)
@@ -73,6 +73,16 @@ namespace omniBill
             ddmUser.Header = omniLang.User;
             ddmAbout.Header = omniLang.About;
             ddmSettings.Header = omniLang.Settings;
+        }
+
+        private void mmCustomer_Click(object sender, RoutedEventArgs e)
+        {
+            navigation(new CustomerPage());
+        }
+
+        private void mmItem_Click(object sender, RoutedEventArgs e)
+        {
+            navigation(new ItemPage());
         }
 
 

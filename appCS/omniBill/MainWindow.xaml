@@ -44,8 +44,8 @@
 					</ItemsPanelTemplate>
 				</Menu.ItemsPanel>
 				<MenuItem Header="{x:Static resx:omniLang.Invoice}" FontSize="18.667" Foreground="White" Margin="0,0,0,3" Padding="10,15" Name="mmInvoice"/>
-                <MenuItem Header="{x:Static resx:omniLang.Customer}" FontSize="18.667" Foreground="White" Margin="0,3" Padding="10,15" VerticalAlignment="Center" Name="mmCustomer"/>
-                <MenuItem Header="{x:Static resx:omniLang.Item}" FontSize="18.667" Foreground="White" Margin="0,3" Padding="10,15" Name="mmItem"/>
+                <MenuItem Header="{x:Static resx:omniLang.Customer}"  FontSize="18.667" Foreground="White" Margin="0,3" Padding="10,15" VerticalAlignment="Center" Name="mmCustomer" Click="mmCustomer_Click"/>
+                <MenuItem Header="{x:Static resx:omniLang.Item}" FontSize="18.667" Foreground="White" Margin="0,3" Padding="10,15" Name="mmItem" Click="mmItem_Click"/>
 			</Menu>
 		</Grid>
 		<!--<Grid x:Name="ContentGrid" Grid.Column="1">

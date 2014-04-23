@@ -25,7 +25,7 @@
         <Button Style="{DynamicResource SquareButtonStyle}" Grid.Row="0" Content="Close" MaxHeight="45" Click="CloseButton_Click"/>
         
         <!--LABELS-->
-        <TextBlock Text="Customer name" Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" TextWrapping="Wrap" />
+        <TextBlock Text="{x:Static resx:omniLang.CustomerName }" Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" TextWrapping="Wrap" />
         <TextBlock Text="{x:Static resx:omniLang.Street }" Grid.Column="0" Grid.Row="2"  VerticalAlignment="Center" TextWrapping="Wrap"/>
         <TextBlock Text="{x:Static resx:omniLang.PostCode }" Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" TextWrapping="Wrap"/>
         <TextBlock Text="{x:Static resx:omniLang.City }" Grid.Column="0" Grid.Row="4" VerticalAlignment="Center" TextWrapping="Wrap"/>

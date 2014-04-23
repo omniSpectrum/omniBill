@@ -180,4 +180,7 @@
   <data name="Language" xml:space="preserve">
     <value>Kieli</value>
   </data>
+  <data name="CustomerName" xml:space="preserve">
+    <value>Asiakkaan Nimi</value>
+  </data>
 </root>
