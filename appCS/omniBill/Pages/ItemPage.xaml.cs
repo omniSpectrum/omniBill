@@ -23,7 +23,7 @@ namespace omniBill.pages
     public partial class ItemPage : Page
     {
         IHandler<Item> itemHandler;
-        // private ItemStuffPage mypage;
+        private ItemStuffPage mypage;
 
         public ItemPage()
         {
@@ -38,10 +38,30 @@ namespace omniBill.pages
         }
         private void itemListGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            Item currentItem = (Item)itemListGrid.SelectedItem;
+            if (currentItem != null)
+                showSidePanel(currentItem);
         }
 
-        // TODO Show/Hide panel
+        private void showSidePanel(Item item)
+        {
+            Grid.SetColumnSpan(listView, 1);
+            btSave.Visibility = System.Windows.Visibility.Visible;
+            if (item.itemId != 0)
+            {
+                btDelete.Visibility = System.Windows.Visibility.Visible;
+            }
+            sidePanelFrame.Visibility = System.Windows.Visibility.Visible;
+            sidePanelFrame.Navigate(mypage = new ItemStuffPage(item));
+        }
+
+        public void hideSidePanel()
+        {
+            btSave.Visibility = System.Windows.Visibility.Hidden;
+            btDelete.Visibility = System.Windows.Visibility.Hidden;
+            sidePanelFrame.Visibility = System.Windows.Visibility.Hidden;
+            Grid.SetColumnSpan(listView, 2);
+        }
 
         private void newItem_Click(object sender, RoutedEventArgs e)
         {
@@ -74,20 +94,19 @@ namespace omniBill.pages
              */
 
             itemListGrid.Columns[0].Visibility = Visibility.Hidden;
-            itemListGrid.Columns[1].Header = "Item Name";
-            itemListGrid.Columns[2].Header = "Description";
-            itemListGrid.Columns[3].Header = "Price";
+            itemListGrid.Columns[1].Header = omniLang.ItemName;
+            itemListGrid.Columns[2].Header = omniLang.Description;
+            itemListGrid.Columns[3].Header = omniLang.Price;
             itemListGrid.Columns[4].Visibility = Visibility.Hidden;
             itemListGrid.Columns[5].Visibility = Visibility.Hidden;
             itemListGrid.Columns[6].Visibility = Visibility.Hidden;
             
             var c = new DataGridTextColumn();
-            c.Header = "Vat Rate";
+            c.Header = omniLang.VatRate;
             c.Binding = new Binding("VatGroup.percentage");
             c.Binding.StringFormat = "#.0 %";
             itemListGrid.Columns.Add(c);
             
-
             // !!!! TODO ADD TO DICTIONARY!!!!
         }
     }

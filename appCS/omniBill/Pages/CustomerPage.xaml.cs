@@ -38,7 +38,6 @@ namespace omniBill.pages
         }
         private void customerListGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
             Customer currentCustomer = (Customer)customerListGrid.SelectedItem;
             if (currentCustomer != null)
                 showSidePanel(currentCustomer);

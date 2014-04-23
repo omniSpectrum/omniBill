@@ -169,6 +169,15 @@ namespace omniBill.InnerComponents.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Description.
+        /// </summary>
+        public static string Description {
+            get {
+                return ResourceManager.GetString("Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to E-mail.
         /// </summary>
         public static string Email {
@@ -192,6 +201,15 @@ namespace omniBill.InnerComponents.Localization {
         public static string Item {
             get {
                 return ResourceManager.GetString("Item", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Item Name.
+        /// </summary>
+        public static string ItemName {
+            get {
+                return ResourceManager.GetString("ItemName", resourceCulture);
             }
         }
         
@@ -232,6 +250,15 @@ namespace omniBill.InnerComponents.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Price.
+        /// </summary>
+        public static string Price {
+            get {
+                return ResourceManager.GetString("Price", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Settings.
         /// </summary>
         public static string Settings {
@@ -255,6 +282,15 @@ namespace omniBill.InnerComponents.Localization {
         public static string User {
             get {
                 return ResourceManager.GetString("User", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vat Rate.
+        /// </summary>
+        public static string VatRate {
+            get {
+                return ResourceManager.GetString("VatRate", resourceCulture);
             }
         }
     }

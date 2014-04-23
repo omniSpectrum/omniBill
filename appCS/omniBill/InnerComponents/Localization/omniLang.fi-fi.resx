@@ -183,4 +183,16 @@
   <data name="CustomerName" xml:space="preserve">
     <value>Asiakkaan Nimi</value>
   </data>
+  <data name="ItemName" xml:space="preserve">
+    <value>Tuotenimi</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Kuvaus</value>
+  </data>
+  <data name="Price" xml:space="preserve">
+    <value>Hinta</value>
+  </data>
+  <data name="VatRate" xml:space="preserve">
+    <value>Alv</value>
+  </data>
 </root>

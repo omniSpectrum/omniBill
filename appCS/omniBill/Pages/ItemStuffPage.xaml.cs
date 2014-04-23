@@ -1,5 +1,4 @@
-﻿using omniBill.InnerComponents.DataAccessLayer;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,29 +11,40 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using omniBill.InnerComponents.DataAccessLayer;
 using omniBill.InnerComponents.LogicLayer;
 
 namespace omniBill.pages
 {
     /// <summary>
-    /// Interaction logic for CustomerStuffPage.xaml
+    /// Interaction logic for ItemStuffPage.xaml
     /// </summary>
-    public partial class CustomerStuffPage : Page
+    public partial class ItemStuffPage : Page
     {
-        public CustomerStuffPage(Customer customer)
+        IHandler<VatGroup> vatHandler;
+
+        public ItemStuffPage(Item item)
         {
             InitializeComponent();
-            mainCustomerStuffGrid.DataContext = customer;
+
+            vatHandler = new VatHandler();
+            mainItemStuffGrid.DataContext = item;
+            cbBind();
         }
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
-            Utils.customerPage.hideSidePanel();
+            Utils.itemPage.hideSidePanel();
         }
 
-        public Customer displayToModel() {
+        public Item displayToModel()
+        {
+            return (Item)mainItemStuffGrid.DataContext;
+        }
 
-            return (Customer) mainCustomerStuffGrid.DataContext;
+        private void cbBind()
+        {
+            
         }
     }
 }

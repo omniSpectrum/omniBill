@@ -183,4 +183,16 @@
   <data name="CustomerName" xml:space="preserve">
     <value>Nome do Cliente</value>
   </data>
+  <data name="ItemName" xml:space="preserve">
+    <value>Nome do Item</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Descrição</value>
+  </data>
+  <data name="Price" xml:space="preserve">
+    <value>Preço</value>
+  </data>
+  <data name="VatRate" xml:space="preserve">
+    <value>Taxa de IVA</value>
+  </data>
 </root>

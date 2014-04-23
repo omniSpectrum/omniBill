@@ -183,4 +183,16 @@
   <data name="CustomerName" xml:space="preserve">
     <value>Имя Клиента</value>
   </data>
+  <data name="ItemName" xml:space="preserve">
+    <value>Название Предмета</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Описание</value>
+  </data>
+  <data name="Price" xml:space="preserve">
+    <value>Цена</value>
+  </data>
+  <data name="VatRate" xml:space="preserve">
+    <value>Ставка НДС</value>
+  </data>
 </root>
