@@ -11,19 +11,21 @@
     <Grid x:Name="aboutPageGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="10*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <TextBlock VerticalAlignment="Top" Padding="15" TextWrapping="Wrap" FontSize="21" 
                    FontWeight="Bold" Text="omniBill" Grid.Row="0"/>
-
-        <TextBlock VerticalAlignment="Top" Padding="15" TextWrapping="Wrap" Grid.Row="1">
+        <TextBlock Name="lbVersion" VerticalAlignment="Top" Padding="15" TextWrapping="Wrap" Grid.Row="1" />
+        
+        <TextBlock VerticalAlignment="Top" Padding="15" TextWrapping="Wrap" Grid.Row="2">
             <Run Text="{x:Static resx:omniLang.aboutFirstLine}"/>    
             <Run Text="{x:Static resx:omniLang.aboutSecondLine}"/>
         </TextBlock>
 
-        <Grid x:Name="aboutPageFooterGrid" Grid.Row="2" Background="Pink">
+        <Grid x:Name="aboutPageFooterGrid" Grid.Row="3" Background="Pink">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="1*"/>

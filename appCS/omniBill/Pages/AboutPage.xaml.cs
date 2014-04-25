@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -24,6 +25,8 @@ namespace omniBill.pages
         public AboutPage()
         {
             InitializeComponent();
+            Version v = Assembly.GetEntryAssembly().GetName().Version;
+            lbVersion.Text = String.Format("{0}.{1}", v.Major, v.Minor);
         }
 
         private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e)
