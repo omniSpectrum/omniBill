@@ -171,6 +171,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="pages\InvoicePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="pages\ItemPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -201,6 +205,9 @@
     </Compile>
     <Compile Include="pages\CustomerStuffPage.xaml.cs">
       <DependentUpon>CustomerStuffPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pages\InvoicePage.xaml.cs">
+      <DependentUpon>InvoicePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="pages\ItemPage.xaml.cs">
       <DependentUpon>ItemPage.xaml</DependentUpon>

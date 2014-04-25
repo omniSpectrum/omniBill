@@ -65,21 +65,30 @@ namespace omniBill.pages
 
         private void newItem_Click(object sender, RoutedEventArgs e)
         {
-
+            showSidePanel(new Item());
         }
 
         private void saveButton_Click(object sender, RoutedEventArgs e)
         {
-
+            Item item = mypage.displayToModel();
+            bool x = item.itemId == 0 ? itemHandler.CreateItem(item) : itemHandler.EditItem(item);
+            refreshTable();
+            hideSidePanel();
         }
 
         private void deleteButton_Click(object sender, RoutedEventArgs e)
         {
-
+            Item item = mypage.displayToModel();
+            itemHandler.DeleteItem(item.itemId);
+            refreshTable();
+            hideSidePanel();
         }
 
         private void refreshTable()
         {
+            //Clear Columns
+            itemListGrid.Columns.Clear();
+
             itemListGrid.ItemsSource = itemHandler.ItemList();
 
             /*
@@ -100,14 +109,12 @@ namespace omniBill.pages
             itemListGrid.Columns[4].Visibility = Visibility.Hidden;
             itemListGrid.Columns[5].Visibility = Visibility.Hidden;
             itemListGrid.Columns[6].Visibility = Visibility.Hidden;
-            
+
             var c = new DataGridTextColumn();
             c.Header = omniLang.VatRate;
             c.Binding = new Binding("VatGroup.percentage");
             c.Binding.StringFormat = "#.0 %";
             itemListGrid.Columns.Add(c);
-            
-            // !!!! TODO ADD TO DICTIONARY!!!!
         }
     }
 }

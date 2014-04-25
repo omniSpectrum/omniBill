@@ -29,7 +29,7 @@ namespace omniBill.pages
 
             vatHandler = new VatHandler();
             mainItemStuffGrid.DataContext = item;
-            cbBind();
+            cbBind(item);
         }
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
@@ -39,12 +39,18 @@ namespace omniBill.pages
 
         public Item displayToModel()
         {
-            return (Item)mainItemStuffGrid.DataContext;
+            var i = (Item)mainItemStuffGrid.DataContext;
+            i.vatId = ((VatGroup)cbVatRate.SelectedItem).vatId;
+            return i;
         }
 
-        private void cbBind()
+        private void cbBind(Item item)
         {
-            
+            cbVatRate.ItemsSource = vatHandler.ItemList();
+            cbVatRate.DisplayMemberPath = "percentage";
+            cbVatRate.SelectedValuePath = "vatId";
+            cbVatRate.SelectedValue = item.vatId;
+            cbVatRate.ItemStringFormat = "#.0 %";
         }
     }
 }

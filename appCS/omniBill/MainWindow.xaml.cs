@@ -32,7 +32,7 @@ namespace omniBill
             InitializeComponent();
             changeLanguage((omniLanguages)Settings.Default.LanguageInUse);
             Utils.mainWindow = this;
-            navigation(new ItemPage());
+            navigation(new InvoicePage());
         }
 
         private void settingsDropDownButton_Click(object sender, RoutedEventArgs e)
@@ -56,7 +56,6 @@ namespace omniBill
         {
             navigation(new SettingsPage());
         }
-
 
         public void navigation(Page destinationPage)
         {
@@ -85,7 +84,9 @@ namespace omniBill
             navigation(new ItemPage());
         }
 
-
-        
+        private void mmInvoice_Click(object sender, RoutedEventArgs e)
+        {
+            navigation(new InvoicePage());
+        }
     }
 }
