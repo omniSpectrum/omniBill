@@ -20,8 +20,8 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button Content="Save Bitch" Grid.Column="0" Margin="5, 0" Style="{DynamicResource SquareButtonStyle}" Click="SaveButton_Click" />
-            <Button Content="Cancel Bitch" Grid.Column="1" Margin="5, 0" Style="{DynamicResource SquareButtonStyle}" Click="CancelButton_Click" />
+            <Button Content=" Save " Grid.Column="0" Margin="5, 0" Style="{DynamicResource SquareButtonStyle}" Click="SaveButton_Click" />
+            <Button Content=" Cancel " Grid.Column="1" Margin="5, 0" Style="{DynamicResource SquareButtonStyle}" Click="CancelButton_Click" />
         </Grid>
         
         <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1">

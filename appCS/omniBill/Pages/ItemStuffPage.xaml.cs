@@ -51,6 +51,9 @@ namespace omniBill.pages
             cbVatRate.SelectedValuePath = "vatId";
             cbVatRate.SelectedValue = item.vatId;
             cbVatRate.ItemStringFormat = "#.0 %";
+
+            if (item.vatId == 0) //NEW Item, in Order to Avoid NULL Foreign Key
+            { cbVatRate.SelectedIndex = 0; }
         }
     }
 }

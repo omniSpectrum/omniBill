@@ -21,7 +21,7 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <Button Style="{DynamicResource SquareButtonStyle}" Grid.Row="0" Content="Close" MaxHeight="45" Click="CloseButton_Click"/>
+        <Button Style="{DynamicResource SquareButtonStyle}" Grid.Row="0" Content=" Close " MaxHeight="45" Click="CloseButton_Click"/>
 
         <!--LABELS-->
         <TextBlock Text="{x:Static resx:omniLang.ItemName }" Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" TextWrapping="Wrap" />

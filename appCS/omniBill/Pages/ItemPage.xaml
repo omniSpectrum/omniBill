@@ -21,9 +21,9 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <Button Content="New Bitch" Grid.Column="0" Margin="5, 0" Style="{DynamicResource SquareButtonStyle}" Click="newItem_Click"/>
-            <Button Content="Save Bitch" Name="btSave" Grid.Column="1" Margin="5, 0" Style="{DynamicResource SquareButtonStyle}" Click="saveButton_Click" Visibility="Hidden"/>
-            <Button Content="Delete Bitch" Name="btDelete" Grid.Column="2" Margin="5, 0" Style="{DynamicResource SquareButtonStyle}" Click="deleteButton_Click" Visibility="Hidden"/>
+            <Button Content=" New " Grid.Column="0" Margin="5, 0" Style="{DynamicResource SquareButtonStyle}" Click="newItem_Click"/>
+            <Button Content=" Save " Name="btSave" Grid.Column="1" Margin="5, 0" Style="{DynamicResource SquareButtonStyle}" Click="saveButton_Click" Visibility="Hidden"/>
+            <Button Content=" Delete " Name="btDelete" Grid.Column="2" Margin="5, 0" Style="{DynamicResource SquareButtonStyle}" Click="deleteButton_Click" Visibility="Hidden"/>
         </Grid>
 
         <Grid Grid.Row="1" Name="contextWrapper">

@@ -1,13 +1,52 @@
 ﻿<Page x:Class="omniBill.pages.InvoicePage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro" 
+      xmlns:Behaviours="clr-namespace:MahApps.Metro.Behaviours;assembly=MahApps.Metro"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:resx="clr-namespace:omniBill.InnerComponents.Localization"
       mc:Ignorable="d" 
-      d:DesignHeight="300" d:DesignWidth="300"
+      d:DesignHeight="300" d:DesignWidth="500"
 	Title="InvoicePage">
 
-    <Grid>
-        
+    <Grid Name="mainInvoicePageGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="263*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Name="InvoiceContextMenu" Margin="5,5,0,0" Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Button Content=" New " Grid.Column="0" Margin="5, 0" Style="{DynamicResource SquareButtonStyle}" />
+            <Button Content=" Save " Name="btSave" Grid.Column="1" Margin="5, 0" Style="{DynamicResource SquareButtonStyle}" Visibility="Hidden"/>
+            <Button Content=" Delete " Name="btDelete" Grid.Column="2" Margin="5, 0" Style="{DynamicResource SquareButtonStyle}" Visibility="Hidden"/>
+
+        </Grid>
+
+        <Grid Grid.Row="1" Name="contextWrapper">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="73*"/>
+                <ColumnDefinition Width="52*"/>
+            </Grid.ColumnDefinitions>
+
+            <ScrollViewer Grid.Column="0" Grid.ColumnSpan="2" Name="listView">
+                <DataGrid Margin="10" IsReadOnly="True" AutoGenerateColumns="False" Name="invoiceListGrid" Loaded="invoiceListGrid_Loaded" SelectionChanged="invoiceListGrid_SelectionChanged">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="#" Binding="{Binding invoiceId, StringFormat=\{0:D4\}}"/>
+                        <DataGridTextColumn Header="{x:Static resx:omniLang.Customer }" Binding="{Binding Customer.customerName }"/>
+                        <DataGridTextColumn Header="Date" Binding="{Binding dateT, StringFormat=\{0:dd.MM.yy\}}" />
+                        <DataGridTextColumn Header="Due" />
+                        <DataGridTextColumn Header="Lines" Binding="{Binding InvoiceLines.Count }" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </ScrollViewer>
+
+            <Frame Name="sidePanelFrame" Grid.Column="1" Visibility="Hidden" />
+        </Grid>
     </Grid>
 </Page>

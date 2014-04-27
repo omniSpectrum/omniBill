@@ -89,6 +89,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="InnerComponents\LogicLayer\InvoiceHandler.cs" />
     <Compile Include="InnerComponents\LogicLayer\ItemHandler.cs" />
     <Compile Include="InnerComponents\LogicLayer\CustomerHandler.cs" />
     <Compile Include="InnerComponents\LogicLayer\Utils.cs" />
@@ -175,6 +176,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="pages\InvoiceStuffPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="pages\ItemPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -208,6 +213,9 @@
     </Compile>
     <Compile Include="pages\InvoicePage.xaml.cs">
       <DependentUpon>InvoicePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pages\InvoiceStuffPage.xaml.cs">
+      <DependentUpon>InvoiceStuffPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="pages\ItemPage.xaml.cs">
       <DependentUpon>ItemPage.xaml</DependentUpon>

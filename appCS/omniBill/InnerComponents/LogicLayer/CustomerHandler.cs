@@ -54,6 +54,7 @@ namespace omniBill.InnerComponents.LogicLayer
             try
             {
                 Customer customerToBeDeleted = db.Customers.Find(id);
+                customerToBeDeleted.DraftInvoices.Clear();
                 db.Customers.Remove(customerToBeDeleted);
                 db.SaveChanges();
                 return true;

@@ -8,5 +8,6 @@ namespace omniBill.InnerComponents.LogicLayer
         public static MainWindow mainWindow;
         public static CustomerPage customerPage;
         public static ItemPage itemPage;
+        public static InvoicePage invoicePage;
     }
 }

@@ -54,6 +54,7 @@ namespace omniBill.InnerComponents.LogicLayer
             try
             {
                 UserTable userToBeDeleted = db.UserTables.Find(id);
+                userToBeDeleted.DraftInvoices.Clear();
                 db.UserTables.Remove(userToBeDeleted);
                 db.SaveChanges();
                 return true;
