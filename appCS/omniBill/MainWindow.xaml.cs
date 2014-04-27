@@ -26,6 +26,7 @@ namespace omniBill
     {
         readonly String[] langCodes = { "en-us", "fi-fi", "ru-ru", "pt-br" };
         public enum omniLanguages { english, finnish, russian, portuguese }
+        private Brush activeItemColor = Brushes.BlanchedAlmond;
         
         public MainWindow()
         {
@@ -59,6 +60,7 @@ namespace omniBill
 
         public void navigation(Page destinationPage)
         {
+            mmCustomer.Background = mmInvoice.Background = mmItem.Background = null;
             ContentFrame.Navigate(destinationPage);
         }
 
@@ -77,16 +79,19 @@ namespace omniBill
         private void mmCustomer_Click(object sender, RoutedEventArgs e)
         {
             navigation(new CustomerPage());
+            mmCustomer.Background = activeItemColor;
         }
 
         private void mmItem_Click(object sender, RoutedEventArgs e)
         {
             navigation(new ItemPage());
+            mmItem.Background = activeItemColor;
         }
 
         private void mmInvoice_Click(object sender, RoutedEventArgs e)
         {
             navigation(new InvoicePage());
+            mmInvoice.Background = activeItemColor;
         }
     }
 }
