@@ -6,7 +6,7 @@
     <edmx:Diagrams>
       <Diagram DiagramId="e2a43f9b1d8247798169d83f5e788db2" Name="Diagram1">
         <EntityTypeShape EntityType="omniBillMsDbModel.Customer" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="omniBillMsDbModel.DraftInvoice" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="omniBillMsDbModel.DraftInvoice" Width="1.5" PointX="2.875" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="omniBillMsDbModel.InvoiceLine" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
         <EntityTypeShape EntityType="omniBillMsDbModel.Item" Width="1.5" PointX="3" PointY="11" IsExpanded="true" />
         <EntityTypeShape EntityType="omniBillMsDbModel.UserTable" Width="1.5" PointX="0.75" PointY="6.25" IsExpanded="true" />

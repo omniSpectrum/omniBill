@@ -23,6 +23,7 @@ namespace omniBill.InnerComponents.DataAccessLayer
         public int userId { get; set; }
         public int customerid { get; set; }
         public System.DateTime dateT { get; set; }
+        public Nullable<System.DateTime> dueDate { get; set; }
     
         public virtual Customer Customer { get; set; }
         public virtual UserTable UserTable { get; set; }

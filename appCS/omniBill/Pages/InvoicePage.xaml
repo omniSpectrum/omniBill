@@ -30,8 +30,8 @@
 
         <Grid Grid.Row="1" Name="contextWrapper">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="73*"/>
-                <ColumnDefinition Width="52*"/>
+                <ColumnDefinition Width="0*"/>
+                <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
             <ScrollViewer Grid.Column="0" Grid.ColumnSpan="2" Name="listView">
@@ -39,14 +39,14 @@
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="#" Binding="{Binding invoiceId, StringFormat=\{0:D4\}}"/>
                         <DataGridTextColumn Header="{x:Static resx:omniLang.Customer }" Binding="{Binding Customer.customerName }"/>
-                        <DataGridTextColumn Header="Date" Binding="{Binding dateT, StringFormat=\{0:dd.MM.yy\}}" />
-                        <DataGridTextColumn Header="Due" />
+                        <DataGridTextColumn Header="Issued Date" Binding="{Binding dateT, StringFormat=\{0:dd.MM.yy\}}" />
+                        <DataGridTextColumn Header="Due Date" Binding="{Binding dueDate, StringFormat=\{0:dd.MM.yy\}}" />
                         <DataGridTextColumn Header="Lines" Binding="{Binding InvoiceLines.Count }" />
                     </DataGrid.Columns>
                 </DataGrid>
             </ScrollViewer>
 
-            <Frame Name="sidePanelFrame" Grid.Column="1" Visibility="Hidden" />
+            <Frame Name="sidePanelFrame" Margin="10" Grid.Column="1" Visibility="Hidden" />
         </Grid>
     </Grid>
 </Page>

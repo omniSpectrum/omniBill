@@ -22,15 +22,18 @@ namespace omniBill.pages
     public partial class InvoiceStuffPage : Page
     {
         IHandler<Customer> customerHandler;
+        IHandler<Item> itemHandler;
 
         public InvoiceStuffPage(DraftInvoice invoice)
         {
             InitializeComponent();
 
             customerHandler = new CustomerHandler();
+            itemHandler = new ItemHandler();
             invoiceHeaderGrid.DataContext = invoice;
-            invoiceLinesGrid.DataContext = invoice.InvoiceLines;
+            invoiceLinesGrid.ItemsSource = invoice.InvoiceLines;
             cbBind(invoice);
+            //itemListComboBoxBind();
         }
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
@@ -52,6 +55,13 @@ namespace omniBill.pages
 
             if (invoice.customerid == 0) //NEW Invoice, in Order to Avoid NULL Foreign Key
             { cbCustomer.SelectedIndex = 0; }
+        }
+
+        private void itemListComboBoxBind()
+        {
+            //cbItemName.ItemsSource = itemHandler.ItemList();
+            //cbItemName.DisplayMemberPath = "itemName";
+            //cbItemName.SelectedValuePath = "itemId";
         }
     }
 }
