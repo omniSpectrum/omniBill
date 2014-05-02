@@ -60,38 +60,42 @@ namespace omniBill
 
         public void navigation(Page destinationPage)
         {
-            mmCustomer.Background = mmInvoice.Background = mmItem.Background = null;
+            //tileCustomer.Background = tileInvoice.Background = tileItem.Background = null;
+            headerCustomer.Background = headerInvoice.Background = headerItem.Background = null;
             ContentFrame.Navigate(destinationPage);
         }
 
         public void changeLanguage(omniLanguages langToUse = omniLanguages.english) {
             Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(langCodes[(int)langToUse]);
 
-            mmInvoice.Header = omniLang.Invoice;
-            mmCustomer.Header = omniLang.Customer;
-            mmItem.Header = omniLang.Item;
+            headerInvoice.Text = omniLang.Invoice;
+            headerCustomer.Text = omniLang.Customer;
+            headerItem.Text = omniLang.Item;
 
             ddmUser.Header = omniLang.User;
             ddmAbout.Header = omniLang.About;
             ddmSettings.Header = omniLang.Settings;
         }
 
-        private void mmCustomer_Click(object sender, RoutedEventArgs e)
+        private void tileCustomer_Click(object sender, RoutedEventArgs e)
         {
             navigation(new CustomerPage());
-            mmCustomer.Background = activeItemColor;
+            //tileCustomer.Background = activeItemColor;
+            headerCustomer.Background = activeItemColor;
         }
 
-        private void mmItem_Click(object sender, RoutedEventArgs e)
+        private void tileItem_Click(object sender, RoutedEventArgs e)
         {
             navigation(new ItemPage());
-            mmItem.Background = activeItemColor;
+            //tileItem.Background = activeItemColor;
+            headerItem.Background = activeItemColor;
         }
 
-        private void mmInvoice_Click(object sender, RoutedEventArgs e)
+        private void tileInvoice_Click(object sender, RoutedEventArgs e)
         {
             navigation(new InvoicePage());
-            mmInvoice.Background = activeItemColor;
+            //tileInvoice.Background = activeItemColor;
+            headerInvoice.Background = activeItemColor;
         }
     }
 }

@@ -7,7 +7,7 @@
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:Custom="http://metro.mahapps.com/winfx/xaml/shared" mc:Ignorable="d" x:Class="omniBill.MainWindow" 
   Icon="/Resources/dollarBill.ico"
   Height="350" Width="525" MinHeight="350" MinWidth="525"
-  Title="omniBill" BorderBrush="LightGray" BorderThickness="1">
+  Title="omniBill" BorderBrush="LightGray" Foreground="Black" BorderThickness="1">
     <controls:MetroWindow.WindowCommands>
         <controls:WindowCommands>
               <Button Click="settingsDropDownButton_Click">
@@ -34,13 +34,44 @@
         <!--Frame is placed before Menu for SHADOWs overlapping purpose-->
         <Frame Name="ContentFrame" Background="#FFE0E6EB" NavigationUIVisibility="Hidden" DockPanel.Dock="Top" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1"/>
 
-        <Grid Grid.Column="0" x:Name="MenuGrid" Background="White" ShowGridLines="True" UseLayoutRounding="True">
+        <Grid Grid.Column="0" x:Name="MenuGrid" Background="White" UseLayoutRounding="True">
 			<Grid.RowDefinitions>
-				<RowDefinition Height="Auto" />
-				<RowDefinition Height="51*"/>
-			</Grid.RowDefinitions>
-            <Image RenderOptions.BitmapScalingMode="Fant" Grid.Row="0" Source="/Resources/logo.png" MaxHeight="100" />
+				<RowDefinition Height="3*" MaxHeight="150" />
+                <RowDefinition Height="3*" MinHeight="75" />
+                <RowDefinition Height="3*" MinHeight="75" />
+                <RowDefinition Height="3*" MinHeight="75" />
+            </Grid.RowDefinitions>
             
+            <Image RenderOptions.BitmapScalingMode="Fant" Grid.Row="0" Source="/Resources/logo.png" VerticalAlignment="Stretch" StretchDirection="DownOnly"/>
+
+            <Viewbox Grid.Row="1">
+                <controls:Tile Name="tileInvoice" Click="tileInvoice_Click" VerticalAlignment="Stretch" ToolTip="{x:Static resx:omniLang.Invoice}">
+                    <controls:Tile.Background>
+                        <ImageBrush ImageSource="Resources/invoice.png" Stretch="Uniform"/>
+                    </controls:Tile.Background>
+                    <TextBlock Name="headerInvoice" Text="{x:Static resx:omniLang.Invoice}" FontSize="22" Foreground="Black" FontWeight="Bold" VerticalAlignment="Center" Margin="0,100,0,0" />
+                </controls:Tile>
+            </Viewbox>
+
+            <Viewbox Grid.Row="2">
+                <controls:Tile Name="tileCustomer" Click="tileCustomer_Click" VerticalAlignment="Stretch" ToolTip="{x:Static resx:omniLang.Customer}">
+                    <controls:Tile.Background>
+                        <ImageBrush Stretch="Uniform" ImageSource="/Resources/customer.png" />
+                    </controls:Tile.Background>
+                    <TextBlock Name="headerCustomer" Text="{x:Static resx:omniLang.Customer}" FontSize="22" Foreground="Black" FontWeight="Bold" VerticalAlignment="Center" Margin="0,100,0,0" />
+                </controls:Tile>
+            </Viewbox>
+
+            <Viewbox Grid.Row="3">
+                <controls:Tile Name="tileItem" Click="tileItem_Click" VerticalAlignment="Stretch" ToolTip="{x:Static resx:omniLang.Item}">
+                    <controls:Tile.Background>
+                        <ImageBrush Stretch="Uniform" ImageSource="/Resources/item.png" />
+                    </controls:Tile.Background>
+                    <TextBlock Name="headerItem" Text="{x:Static resx:omniLang.Item}" FontSize="22" Foreground="Black" FontWeight="Bold" VerticalAlignment="Center" Margin="0,100,0,0" />
+                </controls:Tile>
+            </Viewbox>
+            
+            <!--
             <Menu x:Name="NavMenu" ItemContainerStyle="{DynamicResource SimpleMenuItem}" Grid.Row="1" HorizontalContentAlignment="Center">
 				<Menu.ItemsPanel>
 					<ItemsPanelTemplate>
@@ -58,6 +89,9 @@
                 <MenuItem Header="{x:Static resx:omniLang.Customer}"  FontSize="18.667" Margin="0,3" Padding="10,15" Name="mmCustomer" Click="mmCustomer_Click"/>
                 <MenuItem Header="{x:Static resx:omniLang.Item}" FontSize="18.667" Margin="0,3" Padding="10,15" Name="mmItem" Click="mmItem_Click"/>
 			</Menu>
+            -->
+            
+            
 		</Grid>
 	</Grid>
 </controls:MetroWindow>
