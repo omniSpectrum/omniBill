@@ -23,6 +23,7 @@ namespace omniBill.pages
     {
         IHandler<Customer> customerHandler;
         IHandler<Item> itemHandler;
+        List<Item> items;
 
         public InvoiceStuffPage(DraftInvoice invoice)
         {
@@ -31,7 +32,7 @@ namespace omniBill.pages
             customerHandler = new CustomerHandler();
             itemHandler = new ItemHandler();
             invoiceHeaderGrid.DataContext = invoice;
-            invoiceLinesGrid.ItemsSource = invoice.InvoiceLines;
+            invoiceLinesGrid.ItemsSource = invoice.InvoiceLines.ToList();
             cbBind(invoice);
         }
 
@@ -60,6 +61,24 @@ namespace omniBill.pages
         private void cbTest_Loaded(object sender, RoutedEventArgs e)
         {
             ComboBox combo = sender as ComboBox;
-            combo.ItemsSource = itemHandler.ItemList();        }
+            combo.ItemsSource = items = itemHandler.ItemList();
+            combo.SelectionChanged += cbTest_SelectionChanged;
+        }
+
+        private void cbTest_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            InvoiceLine currentLine = (InvoiceLine)invoiceLinesGrid.SelectedItem;
+
+            ComboBox combo = sender as ComboBox;
+            int x = (int)combo.SelectedValue;
+
+            Item item = items.Find(i => i.itemId == x);
+            currentLine.itemId = x;
+            currentLine.Item = item;
+
+            var temp = invoiceLinesGrid.ItemsSource;
+            invoiceLinesGrid.ItemsSource = null;
+            invoiceLinesGrid.ItemsSource = temp;
+        }
     }
 }
