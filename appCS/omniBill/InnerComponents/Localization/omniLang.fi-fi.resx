@@ -195,4 +195,13 @@
   <data name="VatRate" xml:space="preserve">
     <value>Alv</value>
   </data>
+  <data name="IssuedDate" xml:space="preserve">
+    <value>Julkaisupäivä</value>
+  </data>
+  <data name="DueDate" xml:space="preserve">
+    <value>Eräpäivä</value>
+  </data>
+  <data name="Lines" xml:space="preserve">
+    <value>Rivit</value>
+  </data>
 </root>

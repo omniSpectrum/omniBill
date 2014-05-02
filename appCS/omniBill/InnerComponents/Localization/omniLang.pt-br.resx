@@ -195,4 +195,13 @@
   <data name="VatRate" xml:space="preserve">
     <value>Taxa de IVA</value>
   </data>
+  <data name="IssuedDate" xml:space="preserve">
+    <value>Data de Emissão</value>
+  </data>
+  <data name="DueDate" xml:space="preserve">
+    <value>Due Date</value>
+  </data>
+  <data name="Lines" xml:space="preserve">
+    <value>Linhas</value>
+  </data>
 </root>

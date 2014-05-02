@@ -39,9 +39,9 @@
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="#" Binding="{Binding invoiceId, StringFormat=\{0:D4\}}"/>
                         <DataGridTextColumn Header="{x:Static resx:omniLang.Customer }" Binding="{Binding Customer.customerName }"/>
-                        <DataGridTextColumn Header="Issued Date" Binding="{Binding dateT, StringFormat=\{0:dd.MM.yy\}}" />
-                        <DataGridTextColumn Header="Due Date" Binding="{Binding dueDate, StringFormat=\{0:dd.MM.yy\}}" />
-                        <DataGridTextColumn Header="Lines" Binding="{Binding InvoiceLines.Count }" />
+                        <DataGridTextColumn Header="{x:Static resx:omniLang.IssuedDate }" Binding="{Binding dateT, StringFormat=\{0:dd.MM.yy\}}" />
+                        <DataGridTextColumn Header="{x:Static resx:omniLang.DueDate }" Binding="{Binding dueDate, StringFormat=\{0:dd.MM.yy\}}" />
+                        <DataGridTextColumn Header="{x:Static resx:omniLang.Lines }" Binding="{Binding InvoiceLines.Count }" />
                     </DataGrid.Columns>
                 </DataGrid>
             </ScrollViewer>

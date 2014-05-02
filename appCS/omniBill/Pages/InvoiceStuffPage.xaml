@@ -33,8 +33,8 @@
             <!--Labels-->
             <TextBlock Margin="10,0" Text="#" Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" TextWrapping="Wrap" />
             <TextBlock  Margin="10,0" Text="{x:Static resx:omniLang.Customer }" Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" TextWrapping="Wrap" />
-            <TextBlock Margin="10,0" Text="Issued Date" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" TextWrapping="Wrap"/>
-            <TextBlock Margin="10,0" Text="Due Date" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" TextWrapping="Wrap"/>
+            <TextBlock Margin="10,0" Text="{x:Static resx:omniLang.IssuedDate }" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" TextWrapping="Wrap"/>
+            <TextBlock Margin="10,0" Text="{x:Static resx:omniLang.DueDate }" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" TextWrapping="Wrap"/>
             
             <!--TextBoxes-->
             <TextBox IsEnabled="False" Text="{Binding invoiceId, StringFormat=\{0:D4\}}" 
@@ -44,7 +44,7 @@
             <TextBox Grid.Column="1" Grid.Row="4" Margin="5" MaxHeight="26" Style="{DynamicResource SimpleTextBox}" Text="{Binding dueDate, StringFormat=\{0:dd.MM.yy\}}" />
         </Grid>
         <ScrollViewer Grid.Row="1">
-            <DataGrid Name="invoiceLinesGrid" IsEnabled="True" Margin="10" IsReadOnly="False" AutoGenerateColumns="False" CanUserAddRows="True" CanUserDeleteRows="True" >
+            <DataGrid Name="invoiceLinesGrid" IsEnabled="True" Margin="10" IsReadOnly="False" AutoGenerateColumns="False" CanUserAddRows="True" CanUserDeleteRows="True" CellEditEnding="invoiceLinesGrid_CellEditEnding" >
                 <DataGrid.Columns>
                     <DataGridTemplateColumn x:Name="cbItemName" Header="{x:Static resx:omniLang.ItemName }" >
                         <DataGridTemplateColumn.CellTemplate>
@@ -53,7 +53,6 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <!--SelectedItemBinding="{Binding Item}"-->
                     <DataGridTextColumn IsReadOnly="False" Header="Qty." Binding="{Binding quantity}"/>
                     <DataGridTextColumn IsReadOnly="True" Header="{x:Static resx:omniLang.Price}" Binding="{Binding Item.price}"/>
                     <DataGridTextColumn IsReadOnly="True" Header="{x:Static resx:omniLang.VatRate}" Binding="{Binding Item.VatGroup.percentage}" />
@@ -65,9 +64,12 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Column="0" Text="TOTAL:  " HorizontalAlignment="Right" VerticalAlignment="Center"/>
-            <TextBlock Grid.Column="1" Text="123 $" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+            <TextBlock Grid.Column="1" Text="123" HorizontalAlignment="Right" VerticalAlignment="Center" 
+                       FontWeight="Bold" FontSize="14" Name="lbTotal"/>
+            <TextBlock Grid.Column="2" Text=" $" HorizontalAlignment="Right" VerticalAlignment="Center"/>
         </Grid>
     </Grid>
 </Page>

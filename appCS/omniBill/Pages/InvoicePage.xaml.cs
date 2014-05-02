@@ -25,8 +25,6 @@ namespace omniBill.pages
         IHandler<DraftInvoice> invoiceHandler;
         private InvoiceStuffPage mypage;
 
-        // TODO ADD TO Dictionary Column headers "DATE", "DUE", "LINES"
-
         public InvoicePage()
         {
             InitializeComponent();

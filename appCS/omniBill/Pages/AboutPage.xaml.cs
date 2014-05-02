@@ -26,7 +26,7 @@ namespace omniBill.pages
         {
             InitializeComponent();
             Version v = Assembly.GetEntryAssembly().GetName().Version;
-            lbVersion.Text = String.Format("{0}.{1}", v.Major, v.Minor);
+            lbVersion.Text = String.Format("v{0}.{1}.{2}", v.Major, v.Minor, v.Build);
         }
 
         private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e)

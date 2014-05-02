@@ -195,4 +195,13 @@
   <data name="VatRate" xml:space="preserve">
     <value>Vat Rate</value>
   </data>
+  <data name="IssuedDate" xml:space="preserve">
+    <value>Issued Date</value>
+  </data>
+  <data name="DueDate" xml:space="preserve">
+    <value>Due Date</value>
+  </data>
+  <data name="Lines" xml:space="preserve">
+    <value>Lines</value>
+  </data>
 </root>

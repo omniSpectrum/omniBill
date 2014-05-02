@@ -195,4 +195,13 @@
   <data name="VatRate" xml:space="preserve">
     <value>Ставка НДС</value>
   </data>
+  <data name="IssuedDate" xml:space="preserve">
+    <value>Дата Выдачи</value>
+  </data>
+  <data name="DueDate" xml:space="preserve">
+    <value>Срок Оплаты</value>
+  </data>
+  <data name="Lines" xml:space="preserve">
+    <value>Строки</value>
+  </data>
 </root>
