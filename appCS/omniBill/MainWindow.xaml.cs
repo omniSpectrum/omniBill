@@ -77,6 +77,12 @@ namespace omniBill
             ddmSettings.Header = omniLang.Settings;
         }
 
+        private void tileInvoice_Click(object sender, RoutedEventArgs e)
+        {
+            navigation(new InvoicePage());
+            //tileInvoice.Background = activeItemColor;
+            headerInvoice.Background = activeItemColor;
+        }
         private void tileCustomer_Click(object sender, RoutedEventArgs e)
         {
             navigation(new CustomerPage());
@@ -87,15 +93,8 @@ namespace omniBill
         private void tileItem_Click(object sender, RoutedEventArgs e)
         {
             navigation(new ItemPage());
-            //tileItem.Background = activeItemColor;
-            headerItem.Background = activeItemColor;
-        }
-
-        private void tileInvoice_Click(object sender, RoutedEventArgs e)
-        {
-            navigation(new InvoicePage());
-            //tileInvoice.Background = activeItemColor;
-            headerInvoice.Background = activeItemColor;
+            tileItem.Background = activeItemColor;
+            //headerItem.Background = activeItemColor;
         }
     }
 }
