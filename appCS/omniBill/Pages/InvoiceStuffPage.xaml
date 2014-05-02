@@ -7,7 +7,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="220"
 	Title="InvoiceStuffPage">
-
+    
     <Grid Name="mainInvoiceStuffGrid" Background="#FAFFFF">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -46,7 +46,13 @@
         <ScrollViewer Grid.Row="1">
             <DataGrid Name="invoiceLinesGrid" Margin="10" IsReadOnly="True" AutoGenerateColumns="False">
                 <DataGrid.Columns>
-                    <DataGridTextColumn x:Name="cbItemName" Header="{x:Static resx:omniLang.ItemName }" Binding="{Binding Item.itemName}"/>
+                    <DataGridTemplateColumn x:Name="cbItemName" Header="{x:Static resx:omniLang.ItemName }" >
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <ComboBox Name="cbTest" SelectedValue="{Binding Path=itemId}" SelectedValuePath="itemId" Loaded="cbTest_Loaded" DisplayMemberPath="itemName" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
                     <!--SelectedItemBinding="{Binding Item}"-->
                     <DataGridTextColumn IsReadOnly="False" Header="Qty." Binding="{Binding quantity}"/>
                     <DataGridTextColumn IsReadOnly="True" Header="{x:Static resx:omniLang.Price}" Binding="{Binding Item.price}"/>

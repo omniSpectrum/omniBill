@@ -33,7 +33,6 @@ namespace omniBill.pages
             invoiceHeaderGrid.DataContext = invoice;
             invoiceLinesGrid.ItemsSource = invoice.InvoiceLines;
             cbBind(invoice);
-            //itemListComboBoxBind();
         }
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
@@ -57,11 +56,10 @@ namespace omniBill.pages
             { cbCustomer.SelectedIndex = 0; }
         }
 
-        private void itemListComboBoxBind()
+
+        private void cbTest_Loaded(object sender, RoutedEventArgs e)
         {
-            //cbItemName.ItemsSource = itemHandler.ItemList();
-            //cbItemName.DisplayMemberPath = "itemName";
-            //cbItemName.SelectedValuePath = "itemId";
-        }
+            ComboBox combo = sender as ComboBox;
+            combo.ItemsSource = itemHandler.ItemList();        }
     }
 }
