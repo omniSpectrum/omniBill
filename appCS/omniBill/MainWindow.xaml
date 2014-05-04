@@ -45,32 +45,36 @@
             <Image RenderOptions.BitmapScalingMode="Fant" Grid.Row="0" Source="/Resources/logo.png" VerticalAlignment="Stretch" StretchDirection="DownOnly"/>
 
             <Viewbox Grid.Row="1">
-                <controls:Tile Name="tileInvoice" Click="tileInvoice_Click" VerticalAlignment="Stretch" ToolTip="{x:Static resx:omniLang.Invoice}">
-                    <controls:Tile.Background>
-                        <ImageBrush ImageSource="Resources/invoice.png" Stretch="Uniform" />
-                    </controls:Tile.Background>
-                    <TextBlock Name="headerInvoice" Text="{x:Static resx:omniLang.Invoice}" FontSize="22" Foreground="Black" FontWeight="Bold" VerticalAlignment="Center" Margin="0,100,0,0" />
-                </controls:Tile>
+                <Grid Name="gridInvoice">
+                    <controls:Tile Name="tileInvoice" Click="tileInvoice_Click" VerticalAlignment="Stretch" ToolTip="{x:Static resx:omniLang.Invoice}">
+                        <controls:Tile.Background>
+                            <ImageBrush ImageSource="Resources/invoice.png" Stretch="Uniform" />
+                        </controls:Tile.Background>
+                        <TextBlock Name="headerInvoice" Text="{x:Static resx:omniLang.Invoice}" FontSize="22" Foreground="Black" FontWeight="Bold" VerticalAlignment="Center" Margin="0,100,0,0" />
+                    </controls:Tile>
+                </Grid>
             </Viewbox>
 
             <Viewbox Grid.Row="2">
-                <controls:Tile Name="tileCustomer" Click="tileCustomer_Click" VerticalAlignment="Stretch" ToolTip="{x:Static resx:omniLang.Customer}">
-                    <controls:Tile.Background>
-                        <ImageBrush Stretch="Uniform" ImageSource="/Resources/customer.png" />
-                    </controls:Tile.Background>
-                    <TextBlock Name="headerCustomer" Text="{x:Static resx:omniLang.Customer}" FontSize="22" Foreground="Black" FontWeight="Bold" VerticalAlignment="Center" Margin="0,100,0,0" />
-                </controls:Tile>
+                <Grid Name="gridCustomer">
+                    <controls:Tile Name="tileCustomer" Click="tileCustomer_Click" VerticalAlignment="Stretch" ToolTip="{x:Static resx:omniLang.Customer}">
+                        <controls:Tile.Background>
+                            <ImageBrush Stretch="Uniform" ImageSource="/Resources/customer.png" />
+                        </controls:Tile.Background>
+                        <TextBlock Name="headerCustomer" Text="{x:Static resx:omniLang.Customer}" FontSize="22" Foreground="Black" FontWeight="Bold" VerticalAlignment="Center" Margin="0,100,0,0" />
+                    </controls:Tile>
+                </Grid>
             </Viewbox>
 
             <Viewbox Grid.Row="3">
-                <controls:Tile Name="tileItem" Click="tileItem_Click" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" ToolTip="{x:Static resx:omniLang.Item}" Background="Transparent">
-                    <controls:Tile.Content>
-                        <StackPanel Orientation="Vertical">
-                            <Image Source="/Resources/item.png" MaxWidth="110" RenderOptions.BitmapScalingMode="Fant"/>
-                            <TextBlock Name="headerItem" Text="{x:Static resx:omniLang.Item}" FontSize="22" Foreground="Black" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,-10,0,0" />
-                        </StackPanel>
-                    </controls:Tile.Content>
-                </controls:Tile>
+                <Grid Name="gridItem">
+                    <controls:Tile Name="tileItem" Click="tileItem_Click" VerticalAlignment="Stretch" ToolTip="{x:Static resx:omniLang.Item}">
+                        <controls:Tile.Background>
+                            <ImageBrush Stretch="Uniform" ImageSource="/Resources/item.png" />
+                        </controls:Tile.Background>
+                        <TextBlock Name="headerItem" Text="{x:Static resx:omniLang.Item}" FontSize="22" Foreground="Black" FontWeight="Bold" VerticalAlignment="Center" Margin="0,100,0,0" />
+                    </controls:Tile>
+                </Grid>
             </Viewbox>
             
             <!--

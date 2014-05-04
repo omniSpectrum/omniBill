@@ -60,8 +60,7 @@ namespace omniBill
 
         public void navigation(Page destinationPage)
         {
-            //tileCustomer.Background = tileInvoice.Background = tileItem.Background = null;
-            headerCustomer.Background = headerInvoice.Background = headerItem.Background = null;
+            gridCustomer.Background = gridInvoice.Background = gridItem.Background = null;
             ContentFrame.Navigate(destinationPage);
         }
 
@@ -80,21 +79,18 @@ namespace omniBill
         private void tileInvoice_Click(object sender, RoutedEventArgs e)
         {
             navigation(new InvoicePage());
-            //tileInvoice.Background = activeItemColor;
-            headerInvoice.Background = activeItemColor;
+            gridInvoice.Background = activeItemColor;
         }
         private void tileCustomer_Click(object sender, RoutedEventArgs e)
         {
             navigation(new CustomerPage());
-            //tileCustomer.Background = activeItemColor;
-            headerCustomer.Background = activeItemColor;
+            gridCustomer.Background = activeItemColor;
         }
 
         private void tileItem_Click(object sender, RoutedEventArgs e)
         {
             navigation(new ItemPage());
-            tileItem.Background = activeItemColor;
-            //headerItem.Background = activeItemColor;
+            gridItem.Background = activeItemColor;
         }
     }
 }
