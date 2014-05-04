@@ -37,7 +37,7 @@ namespace omniBill.pages
             invoiceHeaderGrid.DataContext = invoice;
             invoiceLinesGrid.ItemsSource = invoice.InvoiceLines.ToList();
 
-            lbTotal.Text = total.ToString("0.00");
+            calculateTotal(invoice.InvoiceLines);
             cbBind(invoice);
         }
 
@@ -98,7 +98,7 @@ namespace omniBill.pages
             // The whole grid
             var x = (DataGrid)sender;
 
-            calculatePriceTax(x);
+            //calculatePriceTax(x);
         }
 
         private void calculatePriceTax(DataGrid dg)
@@ -113,9 +113,14 @@ namespace omniBill.pages
                 }
             }
         }
-        private void calculateTotal()
+        private void calculateTotal(ICollection<InvoiceLine> lines)
         {
+            foreach (var l in lines)
+            {
+                total += (l.Item.price * l.quantity) * (1 + (decimal)l.Item.VatGroup.percentage);
+            }
 
+            lbTotal.Text = total.ToString("0.00");
         }
     }
 }
