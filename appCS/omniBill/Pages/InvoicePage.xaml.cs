@@ -30,6 +30,7 @@ namespace omniBill.pages
             InitializeComponent();
             invoiceHandler = new InvoiceHandler();
             Utils.invoicePage = this;
+            showSidePanel(invoiceHandler.ItemSingle(1));
         }
 
         private void invoiceListGrid_Loaded(object sender, RoutedEventArgs e)
