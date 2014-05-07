@@ -34,10 +34,9 @@ namespace omniBill.pages
             customerHandler = new CustomerHandler();
             itemHandler = new ItemHandler();
 
-            invoiceHeaderGrid.DataContext = invoice;
+            mainInvoiceStuffGrid.DataContext = invoice;
             invoiceLinesGrid.ItemsSource = invoice.InvoiceLines.ToList();
 
-            calculateTotal(invoice.InvoiceLines);
             cbBind(invoice);
         }
 
@@ -98,29 +97,28 @@ namespace omniBill.pages
             // The whole grid
             var x = (DataGrid)sender;
 
-            //calculatePriceTax(x);
         }
 
-        private void calculatePriceTax(DataGrid dg)
-        {
-            for (int i = 0; i < dg.Items.Count; i++ )
-            {
-                var line = (InvoiceLine)dg.Items[i];
-                if (line.Item != null)
-                {
-                    decimal my = (line.Item.price * line.quantity) * (1 + (decimal)line.Item.VatGroup.percentage);
+        //private void calculatePriceTax(DataGrid dg)
+        //{
+        //    for (int i = 0; i < dg.Items.Count; i++ )
+        //    {
+        //        var line = (InvoiceLine)dg.Items[i];
+        //        if (line.Item != null)
+        //        {
+        //            decimal my = (line.Item.price * line.quantity) * (1 + (decimal)line.Item.VatGroup.percentage);
                     
-                }
-            }
-        }
-        private void calculateTotal(ICollection<InvoiceLine> lines)
-        {
-            foreach (var l in lines)
-            {
-                total += (l.Item.price * l.quantity) * (1 + (decimal)l.Item.VatGroup.percentage);
-            }
+        //        }
+        //    }
+        //}
+        //private void calculateTotal(ICollection<InvoiceLine> lines)
+        //{
+        //    foreach (var l in lines)
+        //    {
+        //        total += (l.Item.price * l.quantity) * (1 + (decimal)l.Item.VatGroup.percentage);
+        //    }
 
-            lbTotal.Text = total.ToString("0.00");
-        }
+        //    lbTotal.Text = total.ToString("0.00");
+        //}
     }
 }

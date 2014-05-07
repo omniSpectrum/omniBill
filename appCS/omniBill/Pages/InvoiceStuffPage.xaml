@@ -56,7 +56,7 @@
                     <DataGridTextColumn IsReadOnly="False" Header="Qty." Binding="{Binding quantity}"/>
                     <DataGridTextColumn IsReadOnly="True" Header="{x:Static resx:omniLang.Price}" Binding="{Binding Item.price}"/>
                     <DataGridTextColumn IsReadOnly="True" Header="{x:Static resx:omniLang.VatRate}" Binding="{Binding Item.VatGroup.percentage}" />
-                    <DataGridTextColumn IsReadOnly="True" Header="Price + Taxes" />
+                    <DataGridTextColumn IsReadOnly="True" Header="Price + Taxes" Binding="{Binding priceptax, StringFormat=C, ConverterCulture=fi-FI}" />
                 </DataGrid.Columns>
             </DataGrid>
         </ScrollViewer>
@@ -64,12 +64,11 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Column="0" Text="TOTAL:  " HorizontalAlignment="Right" VerticalAlignment="Center"/>
-            <TextBlock Grid.Column="1" Text="123" HorizontalAlignment="Right" VerticalAlignment="Center" 
+            <TextBlock Grid.Column="1" Text="{Binding total, StringFormat=C, ConverterCulture=fi-FI}" HorizontalAlignment="Right" VerticalAlignment="Center" 
                        FontWeight="Bold" FontSize="14" Name="lbTotal"/>
-            <TextBlock Grid.Column="2" Text=" $" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+            
         </Grid>
     </Grid>
 </Page>

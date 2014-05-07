@@ -18,12 +18,27 @@ namespace omniBill.InnerComponents.DataAccessLayer
         {
             this.InvoiceLines = new HashSet<InvoiceLine>();
         }
-    
+
+        private decimal? sum;
+
         public int invoiceId { get; set; }
         public int userId { get; set; }
         public int customerid { get; set; }
         public System.DateTime dateT { get; set; }
         public Nullable<System.DateTime> dueDate { get; set; }
+        public Nullable<decimal> total { 
+            get 
+            {
+                sum = 0;
+                foreach (var line in this.InvoiceLines)
+                {
+                    sum += line.priceptax;
+                }
+                return sum;
+            }
+            set
+            { this.sum = value; }
+        }
     
         public virtual Customer Customer { get; set; }
         public virtual UserTable UserTable { get; set; }

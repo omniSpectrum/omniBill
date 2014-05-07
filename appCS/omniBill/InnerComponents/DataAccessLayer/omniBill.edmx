@@ -54,6 +54,7 @@
           <Property Name="customerid" Type="int" Nullable="false" />
           <Property Name="dateT" Type="datetime" Nullable="false" />
           <Property Name="dueDate" Type="datetime" />
+          <Property Name="total" Type="money" />
         </EntityType>
         <EntityType Name="InvoiceLine">
           <Key>
@@ -64,6 +65,7 @@
           <Property Name="itemId" Type="int" Nullable="false" />
           <Property Name="quantity" Type="int" Nullable="false" />
           <Property Name="comment" Type="nvarchar" MaxLength="1000" />
+          <Property Name="priceptax" Type="money" />
         </EntityType>
         <EntityType Name="Item">
           <Key>
@@ -215,6 +217,7 @@
           <NavigationProperty Name="UserTable" Relationship="omniBillMsDbModel.FK__DraftInvoice__0000000000000352" FromRole="DraftInvoice" ToRole="UserTable" />
           <NavigationProperty Name="InvoiceLines" Relationship="omniBillMsDbModel.FK__InvoiceLine__0000000000000368" FromRole="DraftInvoice" ToRole="InvoiceLine" />
           <Property Type="DateTime" Name="dueDate" Precision="3" />
+          <Property Type="Decimal" Name="total" Precision="19" Scale="4" />
         </EntityType>
         <EntityType Name="InvoiceLine">
           <Key>
@@ -227,6 +230,7 @@
           <Property Name="comment" Type="String" MaxLength="1000" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="DraftInvoice" Relationship="omniBillMsDbModel.FK__InvoiceLine__0000000000000368" FromRole="InvoiceLine" ToRole="DraftInvoice" />
           <NavigationProperty Name="Item" Relationship="omniBillMsDbModel.FK__InvoiceLine__000000000000036C" FromRole="InvoiceLine" ToRole="Item" />
+          <Property Type="Decimal" Name="priceptax" Precision="19" Scale="4" />
         </EntityType>
         <EntityType Name="Item">
           <Key>
@@ -347,6 +351,7 @@
           <EntitySetMapping Name="DraftInvoices">
             <EntityTypeMapping TypeName="omniBillMsDbModel.DraftInvoice">
               <MappingFragment StoreEntitySet="DraftInvoice">
+                <ScalarProperty Name="total" ColumnName="total" />
                 <ScalarProperty Name="dueDate" ColumnName="dueDate" />
                 <ScalarProperty Name="invoiceId" ColumnName="invoiceId" />
                 <ScalarProperty Name="userId" ColumnName="userId" />
@@ -358,6 +363,7 @@
           <EntitySetMapping Name="InvoiceLines">
             <EntityTypeMapping TypeName="omniBillMsDbModel.InvoiceLine">
               <MappingFragment StoreEntitySet="InvoiceLine">
+                <ScalarProperty Name="priceptax" ColumnName="priceptax" />
                 <ScalarProperty Name="invoiceId" ColumnName="invoiceId" />
                 <ScalarProperty Name="itemId" ColumnName="itemId" />
                 <ScalarProperty Name="quantity" ColumnName="quantity" />
