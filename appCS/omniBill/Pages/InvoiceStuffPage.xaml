@@ -44,7 +44,9 @@
             <TextBox Grid.Column="1" Grid.Row="4" Margin="5" MaxHeight="26" Style="{DynamicResource SimpleTextBox}" Text="{Binding dueDate, StringFormat=\{0:dd.MM.yy\}}" />
         </Grid>
         <ScrollViewer Grid.Row="1">
-            <DataGrid Name="invoiceLinesGrid" IsEnabled="True" Margin="10" IsReadOnly="False" AutoGenerateColumns="False" CanUserAddRows="True" CanUserDeleteRows="True" CellEditEnding="invoiceLinesGrid_CellEditEnding" >
+            <DataGrid Name="invoiceLinesGrid" IsEnabled="True" Margin="10" IsReadOnly="False" AutoGenerateColumns="False"
+                      CanUserAddRows="True" CanUserDeleteRows="True" RowEditEnding="invoiceLinesGrid_RowEditEnding" 
+                      PreviewKeyDown="invoiceLinesGrid_PreviewKeyDown">
                 <DataGrid.Columns>
                     <DataGridTemplateColumn x:Name="cbItemName" Header="{x:Static resx:omniLang.ItemName }" >
                         <DataGridTemplateColumn.CellTemplate>
@@ -57,6 +59,7 @@
                     <DataGridTextColumn IsReadOnly="True" Header="{x:Static resx:omniLang.Price}" Binding="{Binding Item.price}"/>
                     <DataGridTextColumn IsReadOnly="True" Header="{x:Static resx:omniLang.VatRate}" Binding="{Binding Item.VatGroup.percentage}" />
                     <DataGridTextColumn IsReadOnly="True" Header="{x:Static resx:omniLang.LineTotal}" Binding="{Binding priceptax, StringFormat=C, ConverterCulture=fi-FI}" />
+                    <DataGridTextColumn IsReadOnly="True" Header="Comment" Binding="{Binding comment}" />
                 </DataGrid.Columns>
             </DataGrid>
         </ScrollViewer>

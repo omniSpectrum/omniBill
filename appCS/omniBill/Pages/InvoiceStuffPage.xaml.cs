@@ -25,6 +25,7 @@ namespace omniBill.pages
         IHandler<Customer> customerHandler;
         IHandler<Item> itemHandler;
         List<Item> items;
+        omniBillMsDbEntities db;
 
         public InvoiceStuffPage(DraftInvoice invoice)
         {
@@ -32,6 +33,7 @@ namespace omniBill.pages
 
             customerHandler = new CustomerHandler();
             itemHandler = new ItemHandler();
+            db = new omniBillMsDbEntities();
 
             mainInvoiceStuffGrid.DataContext = invoice;
             invoiceLinesGrid.ItemsSource = invoice.InvoiceLines.ToList();
@@ -90,12 +92,44 @@ namespace omniBill.pages
             }
         }
 
-        /*Works on Key press Enter Or loosing focus*/
-        private void invoiceLinesGrid_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
+        private void invoiceLinesGrid_RowEditEnding(object sender, DataGridRowEditEndingEventArgs e)
         {
-            // The whole grid
-            var x = (DataGrid)sender;
+            if (e.EditAction == DataGridEditAction.Commit)
+            {
+                InvoiceLine currentRow = e.Row.DataContext as InvoiceLine;
 
+                InvoiceLine myLine = db.InvoiceLines.Find(currentRow.invoiceId, currentRow.itemId);
+
+                db.Entry(myLine).State = System.Data.EntityState.Modified;
+                db.SaveChanges();
+
+            }
         }
+
+        private void invoiceLinesGrid_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Delete)
+            {
+                if ((MessageBox.Show("Are you sure you want to delete these items?", "Please confirm", MessageBoxButton.YesNo) == MessageBoxResult.Yes))
+                {
+                    var grid = (DataGrid)sender;
+                    foreach (var row in grid.SelectedItems)
+                    {
+                        InvoiceLine lineToFind = (InvoiceLine)row;
+                        InvoiceLine linetoDelete = db.InvoiceLines.Find(lineToFind.invoiceId, lineToFind.itemId);
+                        db.InvoiceLines.Remove(linetoDelete);
+                        db.SaveChanges();
+                    }
+                }
+            }
+        }
+
+        ///*Works on Key press Enter Or loosing focus*/
+        //private void invoiceLinesGrid_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
+        //{
+        //    // The whole grid
+        //    var x = (DataGrid)sender;
+
+        //}
     }
 }
