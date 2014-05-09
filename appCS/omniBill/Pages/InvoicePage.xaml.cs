@@ -63,7 +63,25 @@ namespace omniBill.pages
             Grid.SetColumnSpan(listView, 2);
         }
 
-        //TODO Buttons Clicks
+        //Buttons Clicks
+        private void btNew_Click(object sender, RoutedEventArgs e)
+        {
+            showSidePanel(new DraftInvoice());
+        }
+        private void btSave_Click(object sender, RoutedEventArgs e)
+        {
+            DraftInvoice invoice = mypage.displayToModel();
+            bool x = invoice.invoiceId == 0 ? invoiceHandler.CreateItem(invoice) : invoiceHandler.EditItem(invoice);
+            refreshTable();
+            hideSidePanel();
+        }
+        private void btDelete_Click(object sender, RoutedEventArgs e)
+        {
+            DraftInvoice invoice = mypage.displayToModel();
+            invoiceHandler.DeleteItem(invoice.invoiceId);
+            refreshTable();
+            hideSidePanel();
+        }
 
         private void refreshTable()
         {
