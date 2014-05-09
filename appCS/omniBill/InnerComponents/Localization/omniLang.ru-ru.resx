@@ -204,4 +204,13 @@
   <data name="Lines" xml:space="preserve">
     <value>Строки</value>
   </data>
+  <data name="Total" xml:space="preserve">
+    <value>ИТОГО:</value>
+  </data>
+  <data name="LineTotal" xml:space="preserve">
+    <value>Всего</value>
+  </data>
+  <data name="Quantity" xml:space="preserve">
+    <value>Количество</value>
+  </data>
 </root>

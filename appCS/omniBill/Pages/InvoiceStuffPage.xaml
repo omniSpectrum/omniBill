@@ -53,10 +53,10 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTextColumn IsReadOnly="False" Header="Qty." Binding="{Binding quantity}"/>
+                    <DataGridTextColumn IsReadOnly="False" Header="{x:Static resx:omniLang.Quantity}" Binding="{Binding quantity}"/>
                     <DataGridTextColumn IsReadOnly="True" Header="{x:Static resx:omniLang.Price}" Binding="{Binding Item.price}"/>
                     <DataGridTextColumn IsReadOnly="True" Header="{x:Static resx:omniLang.VatRate}" Binding="{Binding Item.VatGroup.percentage}" />
-                    <DataGridTextColumn IsReadOnly="True" Header="Price + Taxes" Binding="{Binding priceptax, StringFormat=C, ConverterCulture=fi-FI}" />
+                    <DataGridTextColumn IsReadOnly="True" Header="{x:Static resx:omniLang.LineTotal}" Binding="{Binding priceptax, StringFormat=C, ConverterCulture=fi-FI}" />
                 </DataGrid.Columns>
             </DataGrid>
         </ScrollViewer>
@@ -65,7 +65,10 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="0" Text="TOTAL:  " HorizontalAlignment="Right" VerticalAlignment="Center"/>
+            <TextBlock Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center">
+                <Run Text="{x:Static resx:omniLang.Total}" />
+                <Run Text="  " />
+            </TextBlock>
             <TextBlock Grid.Column="1" Text="{Binding total, StringFormat=C, ConverterCulture=fi-FI}" HorizontalAlignment="Right" VerticalAlignment="Center" 
                        FontWeight="Bold" FontSize="14" Name="lbTotal"/>
             

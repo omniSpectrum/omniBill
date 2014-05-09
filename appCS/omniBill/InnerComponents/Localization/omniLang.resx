@@ -204,4 +204,13 @@
   <data name="Lines" xml:space="preserve">
     <value>Lines</value>
   </data>
+  <data name="Total" xml:space="preserve">
+    <value>TOTAL:</value>
+  </data>
+  <data name="LineTotal" xml:space="preserve">
+    <value>Line Total</value>
+  </data>
+  <data name="Quantity" xml:space="preserve">
+    <value>Quantity</value>
+  </data>
 </root>
