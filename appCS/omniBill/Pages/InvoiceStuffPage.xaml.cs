@@ -25,7 +25,6 @@ namespace omniBill.pages
         IHandler<Customer> customerHandler;
         IHandler<Item> itemHandler;
         List<Item> items;
-        decimal total = 0m;
 
         public InvoiceStuffPage(DraftInvoice invoice)
         {
