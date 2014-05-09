@@ -22,9 +22,11 @@ namespace omniBill.pages
     /// </summary>
     public partial class InvoiceStuffPage : Page
     {
+ 
         IHandler<Customer> customerHandler;
         IHandler<Item> itemHandler;
         List<Item> items;
+        DraftInvoice myInvoice;
         omniBillMsDbEntities db;
 
         public InvoiceStuffPage(DraftInvoice invoice)
@@ -35,7 +37,7 @@ namespace omniBill.pages
             itemHandler = new ItemHandler();
             db = new omniBillMsDbEntities();
 
-            mainInvoiceStuffGrid.DataContext = invoice;
+            mainInvoiceStuffGrid.DataContext = myInvoice = invoice;
             invoiceLinesGrid.ItemsSource = invoice.InvoiceLines.ToList();
 
             cbBind(invoice);
@@ -73,8 +75,12 @@ namespace omniBill.pages
 
         private void cbTest_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            // Invoice line if exists
             var undef = invoiceLinesGrid.SelectedItem;
+            // Selected Product/Item
+            var z = ((IList<Item>)e.AddedItems)[0];
 
+            // Editting
             if (undef is InvoiceLine)
             {
                 InvoiceLine currentLine = (InvoiceLine)undef;
@@ -86,9 +92,15 @@ namespace omniBill.pages
                 currentLine.itemId = x;
                 currentLine.Item = item;
 
-                var temp = invoiceLinesGrid.ItemsSource;
-                invoiceLinesGrid.ItemsSource = null;
-                invoiceLinesGrid.ItemsSource = temp;
+                refreshLineDataGrid();
+            }
+            else
+            {
+                InvoiceLine line = new InvoiceLine();
+                line.itemId = z.itemId;
+                line.invoiceId = myInvoice.invoiceId;
+
+                saveInvoiceLine(line);
             }
         }
 
@@ -98,12 +110,35 @@ namespace omniBill.pages
             {
                 InvoiceLine currentRow = e.Row.DataContext as InvoiceLine;
 
-                InvoiceLine myLine = db.InvoiceLines.Find(currentRow.invoiceId, currentRow.itemId);
-
-                db.Entry(myLine).State = System.Data.EntityState.Modified;
-                db.SaveChanges();
-
+                saveInvoiceLine(currentRow);
             }
+        }
+
+        private void saveInvoiceLine(InvoiceLine currentRow)
+        {
+            InvoiceLine myLine = db.InvoiceLines.Find(currentRow.invoiceId, currentRow.itemId);
+
+            //Adding new Line
+            if (myLine == null)
+            {
+                Item defaultItem = db.Items.FirstOrDefault();
+                if (defaultItem != null)
+                {
+                    currentRow.itemId = defaultItem.itemId;
+                    currentRow.invoiceId = ((DraftInvoice)mainInvoiceStuffGrid.DataContext).invoiceId;
+
+                    db.InvoiceLines.Add(currentRow);
+                }
+            }
+            //Updating
+            else
+            {
+                db.Entry(myLine).State = System.Data.EntityState.Modified;
+            }
+
+            db.SaveChanges();
+
+            refreshLineDataGrid();
         }
 
         private void invoiceLinesGrid_PreviewKeyDown(object sender, KeyEventArgs e)
@@ -115,21 +150,22 @@ namespace omniBill.pages
                     var grid = (DataGrid)sender;
                     foreach (var row in grid.SelectedItems)
                     {
-                        InvoiceLine lineToFind = (InvoiceLine)row;
+                        InvoiceLine lineToFind = row as InvoiceLine;
                         InvoiceLine linetoDelete = db.InvoiceLines.Find(lineToFind.invoiceId, lineToFind.itemId);
                         db.InvoiceLines.Remove(linetoDelete);
-                        db.SaveChanges();
                     }
+
+                    db.SaveChanges();
+                    refreshLineDataGrid();
                 }
             }
         }
 
-        ///*Works on Key press Enter Or loosing focus*/
-        //private void invoiceLinesGrid_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
-        //{
-        //    // The whole grid
-        //    var x = (DataGrid)sender;
-
-        //}
+        private void refreshLineDataGrid() 
+        {
+            var temp = invoiceLinesGrid.ItemsSource;
+            invoiceLinesGrid.ItemsSource = null;
+            invoiceLinesGrid.ItemsSource = temp;
+        }
     }
 }
