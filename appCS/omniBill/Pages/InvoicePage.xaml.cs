@@ -30,7 +30,7 @@ namespace omniBill.pages
             InitializeComponent();
             invoiceHandler = new InvoiceHandler();
             Utils.invoicePage = this;
-            showSidePanel(invoiceHandler.ItemSingle(1));
+            showSidePanel(invoiceHandler.ItemSingle(1)); //TODO Delete before release
         }
 
         private void invoiceListGrid_Loaded(object sender, RoutedEventArgs e)
@@ -52,6 +52,7 @@ namespace omniBill.pages
             {
                 btDelete.Visibility = System.Windows.Visibility.Visible;
             }
+            btCancel.Visibility = Visibility.Visible;
             sidePanelFrame.Visibility = System.Windows.Visibility.Visible;
             sidePanelFrame.Navigate(mypage = new InvoiceStuffPage(invoice));
         }
@@ -59,6 +60,7 @@ namespace omniBill.pages
         {
             btSave.Visibility = System.Windows.Visibility.Hidden;
             btDelete.Visibility = System.Windows.Visibility.Hidden;
+            btCancel.Visibility = System.Windows.Visibility.Hidden;
             sidePanelFrame.Visibility = System.Windows.Visibility.Hidden;
             Grid.SetColumnSpan(listView, 2);
         }
@@ -70,16 +72,20 @@ namespace omniBill.pages
         }
         private void btSave_Click(object sender, RoutedEventArgs e)
         {
-            DraftInvoice invoice = mypage.displayToModel();
-            bool x = invoice.invoiceId == 0 ? invoiceHandler.CreateItem(invoice) : invoiceHandler.EditItem(invoice);
+            //DraftInvoice invoice = mypage.displayToModel();
+            //bool x = invoice.invoiceId == 0 ? invoiceHandler.CreateItem(invoice) : invoiceHandler.EditItem(invoice);
             refreshTable();
             hideSidePanel();
         }
         private void btDelete_Click(object sender, RoutedEventArgs e)
         {
-            DraftInvoice invoice = mypage.displayToModel();
-            invoiceHandler.DeleteItem(invoice.invoiceId);
+            //DraftInvoice invoice = mypage.displayToModel();
+            //invoiceHandler.DeleteItem(invoice.invoiceId);
             refreshTable();
+            hideSidePanel();
+        }
+        private void btCancel_Click(object sender, RoutedEventArgs e)
+        {
             hideSidePanel();
         }
 

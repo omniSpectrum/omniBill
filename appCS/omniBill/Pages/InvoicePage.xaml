@@ -21,11 +21,12 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
             <Button Content=" New " Name="btNew" Grid.Column="0" Margin="5, 0" Style="{DynamicResource SquareButtonStyle}" Click="btNew_Click" />
             <Button Content=" Save " Name="btSave" Grid.Column="1" Margin="5, 0" Style="{DynamicResource SquareButtonStyle}" Visibility="Hidden" Click="btSave_Click" />
             <Button Content=" Delete " Name="btDelete" Grid.Column="2" Margin="5, 0" Style="{DynamicResource SquareButtonStyle}" Visibility="Hidden" Click="btDelete_Click" />
-
+            <Button Content=" Cancel " Name="btCancel" Grid.Column="3" Margin="5, 0" Style="{DynamicResource SquareButtonStyle}" Visibility="Hidden" Click="btCancel_Click" />
         </Grid>
 
         <Grid Grid.Row="1" Name="contextWrapper">

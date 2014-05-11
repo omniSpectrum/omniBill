@@ -22,10 +22,6 @@ namespace omniBill.pages
     /// </summary>
     public partial class InvoiceStuffPage : Page
     {
- 
-        IHandler<Customer> customerHandler;
-        IHandler<Item> itemHandler;
-        List<Item> items;
         DraftInvoice myInvoice;
         omniBillMsDbEntities db;
 
@@ -33,31 +29,25 @@ namespace omniBill.pages
         {
             InitializeComponent();
 
-            customerHandler = new CustomerHandler();
-            itemHandler = new ItemHandler();
             db = new omniBillMsDbEntities();
 
-            mainInvoiceStuffGrid.DataContext = myInvoice = invoice;
-            invoiceLinesGrid.ItemsSource = invoice.InvoiceLines.ToList();
-
-            cbBind(invoice);
+            invoiceHeaderGrid.DataContext = myInvoice = invoice;
+            refreshTable(myInvoice.invoiceId);
+            cbBind(myInvoice);
         }
 
-        private void CloseButton_Click(object sender, RoutedEventArgs e)
-        {
-            Utils.invoicePage.hideSidePanel();
-        }
-
+        #region Header Events
         public DraftInvoice displayToModel()
         {
             var inv = (DraftInvoice)invoiceHeaderGrid.DataContext;
             inv.customerid = ((Customer)cbCustomer.SelectedItem).customerId;
+            inv.InvoiceLines = (ICollection<InvoiceLine>)invoiceLinesGrid.ItemsSource;
             return inv;
         }
 
         private void cbBind(DraftInvoice invoice)
         {
-            cbCustomer.ItemsSource = customerHandler.ItemList();
+            cbCustomer.ItemsSource = db.Customers.ToList();
             cbCustomer.DisplayMemberPath = "customerName";
             cbCustomer.SelectedValuePath = "customerId";
             cbCustomer.SelectedValue = invoice.customerid;
@@ -66,106 +56,81 @@ namespace omniBill.pages
             { cbCustomer.SelectedIndex = 0; }
         }
 
-        private void cbTest_Loaded(object sender, RoutedEventArgs e)
+        private void invoiceLinesGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            ComboBox combo = sender as ComboBox;
-            combo.ItemsSource = items = itemHandler.ItemList();
-            combo.SelectionChanged += cbTest_SelectionChanged;
+            InvoiceLine currentLine = (InvoiceLine)invoiceLinesGrid.SelectedItem;
+            if (currentLine != null)
+                showLineEditor(currentLine);
         }
 
-        private void cbTest_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void showLineEditor(InvoiceLine currentLine)
         {
-            // Invoice line if exists
-            var undef = invoiceLinesGrid.SelectedItem;
-            // Selected Product/Item
-            var z = ((IList<Item>)e.AddedItems)[0];
+            //Check if there are availible items
+            List<Item> itemsLeft = checkAvailibleItems(myInvoice.invoiceId);
 
-            // Editting
-            if (undef is InvoiceLine)
+            if (itemsLeft.Count > 0)
             {
-                InvoiceLine currentLine = (InvoiceLine)undef;
+                Grid.SetColumnSpan(invoiceHeaderGrid, 1);
+                lineEditorGrid.Visibility = Visibility.Visible;
 
-                ComboBox combo = sender as ComboBox;
-                int x = (int)combo.SelectedValue;
-
-                Item item = items.Find(i => i.itemId == x);
-                currentLine.itemId = x;
-                currentLine.Item = item;
-
-                refreshLineDataGrid();
+                lineEditorGrid.DataContext = currentLine;
+                cbItemNameBind(currentLine, itemsLeft);
             }
             else
             {
-                InvoiceLine line = new InvoiceLine();
-                line.itemId = z.itemId;
-                line.invoiceId = myInvoice.invoiceId;
-
-                saveInvoiceLine(line);
-            }
+                MessageBox.Show("You have no Items availible, or you already used all availible");
+            }            
         }
-
-        private void invoiceLinesGrid_RowEditEnding(object sender, DataGridRowEditEndingEventArgs e)
+        private void hideLineEditor()
         {
-            if (e.EditAction == DataGridEditAction.Commit)
-            {
-                InvoiceLine currentRow = e.Row.DataContext as InvoiceLine;
-
-                saveInvoiceLine(currentRow);
-            }
+            Grid.SetColumnSpan(invoiceHeaderGrid, 2);
+            lineEditorGrid.Visibility = Visibility.Hidden;
         }
 
-        private void saveInvoiceLine(InvoiceLine currentRow)
+        private void refreshTable(int invoiceId)
         {
-            InvoiceLine myLine = db.InvoiceLines.Find(currentRow.invoiceId, currentRow.itemId);
-
-            //Adding new Line
-            if (myLine == null)
-            {
-                Item defaultItem = db.Items.FirstOrDefault();
-                if (defaultItem != null)
-                {
-                    currentRow.itemId = defaultItem.itemId;
-                    currentRow.invoiceId = ((DraftInvoice)mainInvoiceStuffGrid.DataContext).invoiceId;
-
-                    db.InvoiceLines.Add(currentRow);
-                }
-            }
-            //Updating
-            else
-            {
-                db.Entry(myLine).State = System.Data.EntityState.Modified;
-            }
-
-            db.SaveChanges();
-
-            refreshLineDataGrid();
+            invoiceLinesGrid.ItemsSource = db.InvoiceLines.Where(x => x.invoiceId == invoiceId).ToList();
         }
+        #endregion
 
-        private void invoiceLinesGrid_PreviewKeyDown(object sender, KeyEventArgs e)
+        #region LineButtons
+        private void NewLineButton_Click(object sender, RoutedEventArgs e)
         {
-            if (e.Key == Key.Delete)
-            {
-                if ((MessageBox.Show("Are you sure you want to delete these items?", "Please confirm", MessageBoxButton.YesNo) == MessageBoxResult.Yes))
-                {
-                    var grid = (DataGrid)sender;
-                    foreach (var row in grid.SelectedItems)
-                    {
-                        InvoiceLine lineToFind = row as InvoiceLine;
-                        InvoiceLine linetoDelete = db.InvoiceLines.Find(lineToFind.invoiceId, lineToFind.itemId);
-                        db.InvoiceLines.Remove(linetoDelete);
-                    }
-
-                    db.SaveChanges();
-                    refreshLineDataGrid();
-                }
-            }
+            showLineEditor(new InvoiceLine());
         }
+        #endregion
 
-        private void refreshLineDataGrid() 
+        #region LineEditor Events
+        private void lineCloseButton_Click(object sender, RoutedEventArgs e)
         {
-            var temp = invoiceLinesGrid.ItemsSource;
-            invoiceLinesGrid.ItemsSource = null;
-            invoiceLinesGrid.ItemsSource = temp;
+            hideLineEditor();
         }
+
+        private void cbItemNameBind(InvoiceLine line, List<Item> avalible)
+        {
+            if(line.Item != null)
+                avalible.Add(line.Item);
+
+            cbItemName.ItemsSource = avalible;
+
+            cbItemName.SelectedValue = line.itemId;
+            cbItemName.SelectedValuePath = "itemId";
+            cbItemName.DisplayMemberPath = "itemName";
+
+            if (line.itemId == 0) //NEW line, in Order to Avoid NULL Foreign Key
+            { cbItemName.SelectedIndex = 0; }
+        }
+
+        private List<Item> checkAvailibleItems(int invoiceId)
+        {
+            List<Item> allItems = db.Items.ToList();
+            List<Item> inUseItems = db.InvoiceLines.Where(x => x.invoiceId == invoiceId)
+                                    .Select(z => z.Item).ToList();
+
+            List<Item> availibleItems = allItems.Except(inUseItems).ToList();
+
+            return availibleItems;
+        }
+        #endregion
     }
 }
