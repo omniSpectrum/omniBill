@@ -43,18 +43,23 @@
                      Grid.Column="1" Grid.Row="0" Margin="5" MaxHeight="26" Style="{DynamicResource SimpleTextBox}"/>
             <ComboBox Name="cbCustomer" Width="Auto" Height="15"  Margin="5" Grid.Column="1" Grid.Row="1" />
             <TextBox Grid.Column="1" Grid.Row="2" Margin="5" MaxHeight="26" Style="{DynamicResource SimpleTextBox}" 
-                     Text="{Binding dateT, StringFormat=\{0:dd.MM.yy\}}" />
+                     Text="{Binding dateT, StringFormat=dd.MM.yyyy}" Name="tbIssuedDate" />
             <TextBox Grid.Column="1" Grid.Row="3" Margin="5" MaxHeight="26" Style="{DynamicResource SimpleTextBox}" 
-                     Text="{Binding dueDate, StringFormat=\{0:dd.MM.yy\}}" />
+                     Text="{Binding dueDate, StringFormat=dd.MM.yyyy}" Name="tbDueDate"/>
 
             <!--Lines Buttons-->
-            <Grid Name="lineButtonHolderGrid" Grid.Row="4" Margin="5,0,0,0">
+            <Grid Name="lineButtonHolderGrid" Grid.Row="4" Margin="5,0,0,0" Grid.Column="0" Grid.ColumnSpan="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
             
                 <Button Content=" New Line " Grid.Column="0"  Style="{DynamicResource SquareButtonStyle}" Margin="5,0" Click="NewLineButton_Click" />
+                <Button Content=" Save Line " Name="btSaveLine"  Grid.Column="1"  Style="{DynamicResource SquareButtonStyle}" 
+                        Margin="5,0" Click="SaveLineButton_Click" Visibility="Hidden"/>
+                <Button Content=" Delete Line " Name="btDeleteLine"  Grid.Column="2"  Style="{DynamicResource SquareButtonStyle}" 
+                        Margin="5,0" Click="btDeleteLine_Click" Visibility="Hidden"/>
             </Grid>
 
             <!--Lines Grid-->
@@ -63,9 +68,9 @@
                           SelectionChanged="invoiceLinesGrid_SelectionChanged" >
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="{x:Static resx:omniLang.ItemName}" Binding="{Binding Item.itemName}"/>
-                        <DataGridTextColumn Header="{x:Static resx:omniLang.Quantity}" Binding="{Binding quantity}"/>
-                        <DataGridTextColumn Header="{x:Static resx:omniLang.Price}" Binding="{Binding Item.price}"/>
-                        <DataGridTextColumn Header="{x:Static resx:omniLang.VatRate}" Binding="{Binding Item.VatGroup.percentage}" />
+                        <DataGridTextColumn Header="{x:Static resx:omniLang.Quantity}" Binding="{Binding quantity}" FontWeight="SemiBold"/>
+                        <DataGridTextColumn Header="{x:Static resx:omniLang.Price}" Binding="{Binding Item.price, StringFormat=C, ConverterCulture=fi-FI}"/>
+                        <DataGridTextColumn Header="{x:Static resx:omniLang.VatRate}" Binding="{Binding Item.VatGroup.percentage, StringFormat={}{0:P0}}" />
                         <DataGridTextColumn Header="{x:Static resx:omniLang.LineTotal}" Binding="{Binding priceptax, StringFormat=C, ConverterCulture=fi-FI}" />
                     </DataGrid.Columns>
                 </DataGrid>
@@ -80,46 +85,7 @@
 
         </Grid><!--END invoiceHeaderGrid -->
 
-        <Grid Grid.Column="1"  Name="lineEditorGrid" Background="#FFE0E6EB" Visibility="Hidden" Margin="10,0,0,0" >
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-
-            <Button Style="{DynamicResource SquareButtonStyle}" Grid.Row="0" Content=" Close " MaxHeight="45" 
-                     Margin="10" Click="lineCloseButton_Click"/>
-
-            <!--LABELS-->
-            <TextBlock Text="{x:Static resx:omniLang.ItemName }" Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" TextWrapping="Wrap" Margin="10,0"/>
-            <TextBlock Text="{x:Static resx:omniLang.Quantity }" Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" TextWrapping="Wrap" Margin="10,0"/>
-            <TextBlock Text="{x:Static resx:omniLang.Price }" Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" TextWrapping="Wrap" Margin="10,0"/>
-            <TextBlock Text="{x:Static resx:omniLang.VatRate }" Grid.Column="0" Grid.Row="4" VerticalAlignment="Center" TextWrapping="Wrap" Margin="10,0"/>
-            <TextBlock Text="{x:Static resx:omniLang.LineTotal }" Grid.Column="0" Grid.Row="5" VerticalAlignment="Center" TextWrapping="Wrap" Margin="10,0"/>
-            <TextBlock Text="Commentodo" Grid.Column="0" Grid.Row="6" VerticalAlignment="Center" TextWrapping="Wrap" Margin="10,0"/>
-
-            <!--TextBoxes-->
-            <ComboBox Name="cbItemName" Width="Auto" Height="15"  Margin="5" Grid.Column="1" Grid.Row="1" />
-            <TextBox Name="tbQuantity" Text="{Binding quantity}" Grid.Column="1" Grid.Row="2" Margin="5" MaxHeight="26" 
-                     Style="{DynamicResource SimpleTextBox}"/>
-            <TextBlock Text="{Binding Item.price, StringFormat=C, ConverterCulture=fi-FI}" Grid.Column="1" Grid.Row="3" 
-                       VerticalAlignment="Center" TextWrapping="Wrap" Margin="5"/>
-            <TextBlock Text="{Binding Item.VatGroup.percentage, StringFormat={}{0:P0}}" Grid.Column="1" Grid.Row="4" 
-                       VerticalAlignment="Center" TextWrapping="Wrap" Margin="5"/>
-            <TextBlock Text="{Binding priceptax, StringFormat=C, ConverterCulture=fi-FI}" Grid.Column="1" Grid.Row="5" 
-                       VerticalAlignment="Center" TextWrapping="Wrap" Margin="5"/>
-            <TextBox Name="tbComment" Text="{Binding comment}" Grid.Column="1" Grid.Row="6" Margin="5"
-                     Style="{DynamicResource SimpleTextBox}" TextWrapping="Wrap" AcceptsReturn="True"
-                     VerticalScrollBarVisibility="Visible" />
-
-        </Grid><!--END lineEditor -->
+        <Frame Grid.Column="1" Visibility="Hidden" Name="lineEditorFrame" />
+        
     </Grid><!--END mainGrid -->
 </Page>

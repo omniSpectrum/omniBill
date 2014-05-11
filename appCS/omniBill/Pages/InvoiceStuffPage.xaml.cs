@@ -24,7 +24,9 @@ namespace omniBill.pages
     {
         DraftInvoice myInvoice;
         omniBillMsDbEntities db;
+        LineEditorPage childPage;
 
+        //Constructor
         public InvoiceStuffPage(DraftInvoice invoice)
         {
             InitializeComponent();
@@ -40,11 +42,20 @@ namespace omniBill.pages
         public DraftInvoice displayToModel()
         {
             var inv = (DraftInvoice)invoiceHeaderGrid.DataContext;
+
+            try
+            {
+                inv.dateT = DateTime.Parse(tbIssuedDate.Text);
+                inv.dueDate = DateTime.Parse(tbDueDate.Text);
+            }
+            catch (Exception ex) { }
+            
             inv.customerid = ((Customer)cbCustomer.SelectedItem).customerId;
-            inv.InvoiceLines = (ICollection<InvoiceLine>)invoiceLinesGrid.ItemsSource;
+
             return inv;
         }
 
+        // Bind for Customer ComboBox
         private void cbBind(DraftInvoice invoice)
         {
             cbCustomer.ItemsSource = db.Customers.ToList();
@@ -56,6 +67,7 @@ namespace omniBill.pages
             { cbCustomer.SelectedIndex = 0; }
         }
 
+        // Lines Grid Event
         private void invoiceLinesGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             InvoiceLine currentLine = (InvoiceLine)invoiceLinesGrid.SelectedItem;
@@ -68,23 +80,31 @@ namespace omniBill.pages
             //Check if there are availible items
             List<Item> itemsLeft = checkAvailibleItems(myInvoice.invoiceId);
 
-            if (itemsLeft.Count > 0)
+            if (itemsLeft.Count > 0 || currentLine.itemId != 0)
             {
                 Grid.SetColumnSpan(invoiceHeaderGrid, 1);
-                lineEditorGrid.Visibility = Visibility.Visible;
+                lineEditorFrame.Visibility = Visibility.Visible;
+                btSaveLine.Visibility = Visibility.Visible;
+                if (currentLine.invoiceId != 0)
+                {
+                    btDeleteLine.Visibility = System.Windows.Visibility.Visible;
+                }
 
-                lineEditorGrid.DataContext = currentLine;
-                cbItemNameBind(currentLine, itemsLeft);
+                lineEditorFrame.Navigate(childPage = new LineEditorPage(currentLine, itemsLeft, this));
             }
             else
             {
                 MessageBox.Show("You have no Items availible, or you already used all availible");
             }            
         }
-        private void hideLineEditor()
+        public void hideLineEditor()
         {
             Grid.SetColumnSpan(invoiceHeaderGrid, 2);
-            lineEditorGrid.Visibility = Visibility.Hidden;
+            lineEditorFrame.Visibility = Visibility.Hidden;
+            btSaveLine.Visibility = Visibility.Hidden;
+            btDeleteLine.Visibility = Visibility.Hidden;
+
+            invoiceLinesGrid.SelectedIndex = -1;
         }
 
         private void refreshTable(int invoiceId)
@@ -96,31 +116,41 @@ namespace omniBill.pages
         #region LineButtons
         private void NewLineButton_Click(object sender, RoutedEventArgs e)
         {
+            invoiceLinesGrid.SelectedIndex = -1;
             showLineEditor(new InvoiceLine());
         }
-        #endregion
-
-        #region LineEditor Events
-        private void lineCloseButton_Click(object sender, RoutedEventArgs e)
+        private void SaveLineButton_Click(object sender, RoutedEventArgs e)
         {
+            InvoiceLine line = childPage.displayToModel();
+            bool x = line.invoiceId == 0;
+ 
+            if(x)
+            {
+                line.invoiceId = myInvoice.invoiceId;
+                db.InvoiceLines.Add(line);                
+            }
+            else
+            {
+                db.Entry(line).State = System.Data.EntityState.Modified;
+            }
+
+            db.SaveChanges();
+            refreshTable(myInvoice.invoiceId);
             hideLineEditor();
         }
-
-        private void cbItemNameBind(InvoiceLine line, List<Item> avalible)
+        private void btDeleteLine_Click(object sender, RoutedEventArgs e)
         {
-            if(line.Item != null)
-                avalible.Add(line.Item);
+            InvoiceLine line = childPage.displayToModel();
 
-            cbItemName.ItemsSource = avalible;
+            InvoiceLine lineToBeDeleted = db.InvoiceLines.Find(line.invoiceId,line.itemId);
+            db.InvoiceLines.Remove(lineToBeDeleted);
+            db.SaveChanges();
 
-            cbItemName.SelectedValue = line.itemId;
-            cbItemName.SelectedValuePath = "itemId";
-            cbItemName.DisplayMemberPath = "itemName";
-
-            if (line.itemId == 0) //NEW line, in Order to Avoid NULL Foreign Key
-            { cbItemName.SelectedIndex = 0; }
+            refreshTable(myInvoice.invoiceId);
+            hideLineEditor();
         }
-
+        #endregion   
+ 
         private List<Item> checkAvailibleItems(int invoiceId)
         {
             List<Item> allItems = db.Items.ToList();
@@ -131,6 +161,5 @@ namespace omniBill.pages
 
             return availibleItems;
         }
-        #endregion
     }
 }

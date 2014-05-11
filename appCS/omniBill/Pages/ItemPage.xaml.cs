@@ -61,6 +61,8 @@ namespace omniBill.pages
             btDelete.Visibility = System.Windows.Visibility.Hidden;
             sidePanelFrame.Visibility = System.Windows.Visibility.Hidden;
             Grid.SetColumnSpan(listView, 2);
+
+            itemListGrid.SelectedIndex = -1;
         }
 
         private void newItem_Click(object sender, RoutedEventArgs e)

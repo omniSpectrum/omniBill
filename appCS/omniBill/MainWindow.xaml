@@ -10,6 +10,7 @@
   Title="omniBill" BorderBrush="LightGray" Foreground="Black" BorderThickness="1">
     <controls:MetroWindow.WindowCommands>
         <controls:WindowCommands>
+              <Button Content="New Invoice" Click="NewInvoiceButton_Click" />
               <Button Click="settingsDropDownButton_Click">
 				<Button.ContextMenu>
                     <ContextMenu >

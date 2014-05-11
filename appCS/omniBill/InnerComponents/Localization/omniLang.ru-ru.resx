@@ -213,4 +213,7 @@
   <data name="Quantity" xml:space="preserve">
     <value>Количество</value>
   </data>
+  <data name="Comment" xml:space="preserve">
+    <value>Comment</value>
+  </data>
 </root>

@@ -33,7 +33,12 @@ namespace omniBill
             InitializeComponent();
             changeLanguage((omniLanguages)Settings.Default.LanguageInUse);
             Utils.mainWindow = this;
-            navigation(new InvoicePage());
+            navigation(new AboutPage());
+        }
+
+        private void NewInvoiceButton_Click(object sender, RoutedEventArgs e)
+        {
+            navigation(new InvoicePage("New"));
         }
 
         private void settingsDropDownButton_Click(object sender, RoutedEventArgs e)
@@ -43,7 +48,6 @@ namespace omniBill
             (sender as Button).ContextMenu.Placement = System.Windows.Controls.Primitives.PlacementMode.Bottom;
             (sender as Button).ContextMenu.IsOpen = true;
         }
-
         private void dropDownAboutMenuItem_Click(object sender, RoutedEventArgs e)
         {
             navigation(new AboutPage());

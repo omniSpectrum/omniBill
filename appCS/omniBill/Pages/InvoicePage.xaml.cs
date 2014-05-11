@@ -24,13 +24,19 @@ namespace omniBill.pages
     {
         IHandler<DraftInvoice> invoiceHandler;
         private InvoiceStuffPage mypage;
+        omniBillMsDbEntities db;
 
-        public InvoicePage()
+        public InvoicePage(String command = "")
         {
             InitializeComponent();
             invoiceHandler = new InvoiceHandler();
+            db = new omniBillMsDbEntities();
             Utils.invoicePage = this;
-            showSidePanel(invoiceHandler.ItemSingle(1)); //TODO Delete before release
+
+            if (command == "New")
+            {
+                showSidePanel(new DraftInvoice());
+            }
         }
 
         private void invoiceListGrid_Loaded(object sender, RoutedEventArgs e)
@@ -48,10 +54,7 @@ namespace omniBill.pages
         {
             Grid.SetColumnSpan(listView, 1);
             btSave.Visibility = System.Windows.Visibility.Visible;
-            if (invoice.invoiceId != 0)
-            {
-                btDelete.Visibility = System.Windows.Visibility.Visible;
-            }
+            btDelete.Visibility = System.Windows.Visibility.Visible;
             btCancel.Visibility = Visibility.Visible;
             sidePanelFrame.Visibility = System.Windows.Visibility.Visible;
             sidePanelFrame.Navigate(mypage = new InvoiceStuffPage(invoice));
@@ -63,24 +66,51 @@ namespace omniBill.pages
             btCancel.Visibility = System.Windows.Visibility.Hidden;
             sidePanelFrame.Visibility = System.Windows.Visibility.Hidden;
             Grid.SetColumnSpan(listView, 2);
+
+            invoiceListGrid.SelectedIndex = -1;
         }
 
         //Buttons Clicks
         private void btNew_Click(object sender, RoutedEventArgs e)
         {
-            showSidePanel(new DraftInvoice());
+            int customers = db.Customers.Count();
+
+            if (customers > 0)
+            {
+                var newInvoice = new DraftInvoice();
+                newInvoice.dateT = DateTime.Now;
+                newInvoice.dueDate = DateTime.Now;
+
+                Customer c = db.Customers.FirstOrDefault();
+                UserTable u = db.UserTables.FirstOrDefault();
+
+                newInvoice.customerid = c.customerId;
+                newInvoice.userId = u.userId;
+
+                using (var mine = new omniBillMsDbEntities())
+                {
+                    mine.DraftInvoices.Add(newInvoice);
+                    mine.SaveChanges();
+                }
+
+                showSidePanel(newInvoice);
+            }
+            else
+            {
+                MessageBox.Show("Unable to create invoice Without customers");
+            }
         }
         private void btSave_Click(object sender, RoutedEventArgs e)
         {
-            //DraftInvoice invoice = mypage.displayToModel();
-            //bool x = invoice.invoiceId == 0 ? invoiceHandler.CreateItem(invoice) : invoiceHandler.EditItem(invoice);
+            DraftInvoice invoice = mypage.displayToModel();
+            invoiceHandler.EditItem(invoice);
             refreshTable();
             hideSidePanel();
         }
         private void btDelete_Click(object sender, RoutedEventArgs e)
         {
-            //DraftInvoice invoice = mypage.displayToModel();
-            //invoiceHandler.DeleteItem(invoice.invoiceId);
+            DraftInvoice invoice = mypage.displayToModel();
+            invoiceHandler.DeleteItem(invoice.invoiceId);
             refreshTable();
             hideSidePanel();
         }

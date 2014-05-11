@@ -23,8 +23,45 @@ namespace omniBill.InnerComponents.LogicLayer
         {
             return db.DraftInvoices.Find(id);
         }
-        public bool CreateItem(DraftInvoice invoice) { throw new NotImplementedException(); }
-        public bool EditItem(DraftInvoice invoice) { throw new NotImplementedException(); }
-        public bool DeleteItem(int id) { throw new NotImplementedException(); }
+        public bool CreateItem(DraftInvoice invoice) 
+        {
+            try
+            {
+                db.DraftInvoices.Add(invoice);
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            } 
+        }
+        public bool EditItem(DraftInvoice invoice) 
+        {
+            try
+            {
+                db.Entry(invoice).State = System.Data.EntityState.Modified;
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+        public bool DeleteItem(int id) 
+        {
+            try
+            {
+                DraftInvoice invoiceToBeDeleted = db.DraftInvoices.Find(id);
+                db.DraftInvoices.Remove(invoiceToBeDeleted);
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
     }
 }
