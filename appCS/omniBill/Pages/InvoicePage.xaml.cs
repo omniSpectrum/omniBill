@@ -35,7 +35,7 @@ namespace omniBill.pages
 
             if (command == "New")
             {
-                showSidePanel(new DraftInvoice());
+                newInvoiceToDo();
             }
         }
 
@@ -72,6 +72,10 @@ namespace omniBill.pages
 
         //Buttons Clicks
         private void btNew_Click(object sender, RoutedEventArgs e)
+        {
+            newInvoiceToDo();
+        }
+        private void newInvoiceToDo()
         {
             int customers = db.Customers.Count();
 
