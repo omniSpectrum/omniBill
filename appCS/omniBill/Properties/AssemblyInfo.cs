@@ -51,8 +51,6 @@ using System.Windows;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("0.6.5.*")] 
+[assembly: AssemblyVersion("0.8.0.*")] 
 // LEFT 20 = printing (80)
-// 10 = invoice (70)
-// 5 = menu (65)
 [assembly: AssemblyFileVersion("1.0.0.0")]
